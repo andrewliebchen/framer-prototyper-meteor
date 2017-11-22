@@ -1,0 +1,39 @@
+.Modal {
+  position: fixed;
+  background-color: white;
+  z-index: 1;
+  top: 0;
+  left: 50%;
+  padding: 3em 2em 1em;
+  width: 520px;
+  border-radius: 0 0 6px 6px;
+  z-index: 9999;
+}
+
+.ModalHeader {
+  margin-bottom: 0.5em;
+}
+
+.ModalButton {
+  margin: 2em 0 1em;
+  display: block;
+  width: 100%;
+}
+
+.ModalBackground {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+}
+
+.Underlay {
+  transition: 0.1s ease-in-out;
+}
+
+.Underlay.showModal {
+  transform: scale(0.9);
+  opacity: 0.8;
+}

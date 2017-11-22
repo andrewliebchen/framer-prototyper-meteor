@@ -1,0 +1,40 @@
+.ToggleContainer {
+  margin-bottom: 2em;
+}
+
+.Toggle {
+  transition: 0.1s ease-in-out;
+  width: 4em;
+  height: 3px;
+  border-radius: 3px;
+  background-color: var(--color-gray-3);
+  margin-top: 1em;
+  position: relative;
+  cursor: pointer;
+}
+
+.isOn .Toggle {
+  background-color: var(--color-gray-1);
+}
+
+.ToggleHandle {
+  transition: 0.1s ease-in-out;
+  width: 2em;
+  height: 2em;
+  border-radius: 1em;
+  border: 3px solid var(--color-gray-3);
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  transform: translate3d(0.25em, -50%, 0);
+}
+
+.isOn .ToggleHandle {
+  border-color: black;
+  transform: translate3d(1.75em, -50%, 0);
+}
+
+.ToggleHint {
+  display: block;
+  padding-top: 1em;
+}
