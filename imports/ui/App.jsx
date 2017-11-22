@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Flex, Box } from "reflexbox";
-import queryString from "query-string";
+// import queryString from "query-string";
 import ReactTooltip from "react-tooltip";
 import { Helmet } from "react-helmet";
-// import { createContainer } from "meteor/react-meteor-data";
+import { createContainer } from "meteor/react-meteor-data";
 
 import Editor from "./components/Editor.jsx";
 import Preview from "./components/Preview.jsx";
@@ -20,8 +21,6 @@ import "./styles/App.css";
 class App extends Component {
   constructor(props) {
     super(props);
-
-    // const urlParams = queryString.parse(this.props.location.search);
 
     this.state = {
       code: initialCode,
@@ -93,10 +92,14 @@ class App extends Component {
   }
 }
 
-// export default createContainer(() => {
-//   return {
-//     prototypes: Prototypes.find({}).fetch()
-//   };
-// }, App);
+App.propTypes = {
+  prototypes: PropTypes.array
+};
 
-export default App;
+export default createContainer(() => {
+  return {
+    prototypes: Prototypes.findOne()
+  };
+}, App);
+
+// export default App;

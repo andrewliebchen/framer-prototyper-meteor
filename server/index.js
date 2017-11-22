@@ -1,3 +1,8 @@
 import { Meteor } from "meteor/meteor";
+import { Prototypes } from "../imports/api/prototypes";
 
-import "../imports/api/prototypes.js";
+Meteor.startup(() => {
+  if (Prototypes.find().count() === 0) {
+    Prototypes.insert({});
+  }
+});
