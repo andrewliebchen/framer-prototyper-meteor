@@ -8,7 +8,6 @@ import Icon from "./Icon";
 
 import "../styles/Editor.css";
 
-import "brace/mode/coffee";
 import "brace/mode/jsx";
 import "../lib/tomorrow_night_eighties";
 
@@ -21,10 +20,8 @@ const Editor = props => (
       align="center"
       style={{ height: headerHeight }}
     >
-      <Box className="Control" data-tip="New Frame">
-        {/* <Link to="/" target="_blank"> */}
-        <Icon name="logo" />
-        {/* </Link> */}
+      <Box className="Control" data-tip="All prototypes">
+        <Icon name="fileCabinet" />
       </Box>
       <Flex align="center" style={{ marginLeft: "auto" }}>
         <Box
@@ -32,9 +29,6 @@ const Editor = props => (
           onClick={props.showSettings}
           data-tip="Settings"
         >
-          <span className="ControlLabel">
-            {props.javascript ? "Javascript" : "Coffeescript"}
-          </span>
           <Icon name="cog" />
         </Box>
         <Box
@@ -48,7 +42,7 @@ const Editor = props => (
     </Flex>
     <div className="EditorCode">
       <AceEditor
-        mode={props.javascript ? "jsx" : "coffee"}
+        mode="jsx"
         theme="tomorrow_night_eighties"
         name="editorCode"
         value={props.code}
@@ -74,7 +68,6 @@ const Editor = props => (
 
 Editor.propTypes = {
   code: PropTypes.string.isRequired,
-  javascript: PropTypes.bool.isRequired,
   handleChange: PropTypes.func,
   togglePlaying: PropTypes.func,
   playing: PropTypes.bool,

@@ -24,10 +24,7 @@
   border-radius: 2em;
   color: #ccc;
   transition: 0.15s ease-in-out;
-}
-
-.Control + .Control {
-  margin-left: 0.5em;
+  margin-right: 0.5em;
 }
 
 .Control:hover {
@@ -41,8 +38,8 @@
   text-transform: uppercase;
 }
 
-.Control > .ControlLabel {
-  padding-right: 0.5em;
+.ControlLabel ~ .Icon {
+  padding-left: 0.25em;
 }
 
 .Control:hover {

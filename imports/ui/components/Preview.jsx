@@ -6,11 +6,9 @@ import Frame from "react-frame-component";
 import { Flex, Box } from "reflexbox";
 import Transition from "react-transition-group/Transition";
 
-import "../styles/Preview.css";
+import { framerURI } from "../lib/config";
 
-const framerURI = "//builds.framerjs.com/version/latest/framer.js";
-const coffeescriptURI =
-  "//cdnjs.cloudflare.com/ajax/libs/coffee-script/1.7.1/coffee-script.min.js";
+import "../styles/Preview.css";
 
 const duration = 100;
 
@@ -43,11 +41,6 @@ class Preview extends Component {
   }
 
   render() {
-    // Not sure why the double return is necessary but...
-    const renderCode = this.props.javascript
-      ? this.props.code
-      : `\n\n${this.props.code}`;
-
     return (
       <div className="Preview">
         <ReactInterval
@@ -94,11 +87,9 @@ class Preview extends Component {
               </head>
               <body>
                 <script src="${framerURI}"></script>
-                <script ${!this.props.javascript && 'type="text/coffeescript"'}>
-                  ${renderCode}
+                <script>
+                  ${this.props.code}
                 </script>
-                ${!this.props.javascript &&
-                  `<script src="${coffeescriptURI}"></script>`}
               </body>
             </html>`}
         />
@@ -109,8 +100,7 @@ class Preview extends Component {
 
 Preview.propTypes = {
   code: PropTypes.string,
-  playing: PropTypes.bool,
-  javascript: PropTypes.bool
+  playing: PropTypes.bool
 };
 
 export default Preview;

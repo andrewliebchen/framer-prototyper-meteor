@@ -11,24 +11,11 @@ import Modal from "./components/Modal.jsx";
 import FormInput from "./components/FormInput.jsx";
 import FormButton from "./components/FormButton.jsx";
 
+import { initialCode } from "./lib/config";
+
 import { Prototypes } from "../api/prototypes";
 
 import "./styles/App.css";
-
-const initialCode = {
-  coffeescript: `layerA = new Layer
-    x: Align.center
-    y: Align.center
-    backgroundColor: new Color('blue').alpha(0.5)`,
-  javascript: `const layerA = new Layer({
-    x: Align.center,
-    y: Align.center,
-    backgroundColor: new Color('blue').alpha(0.5),
-  });`
-};
-
-// eslint-disable-next-line
-const appTitle = "🖼🎉 Framer is fun";
 
 class App extends Component {
   constructor(props) {
@@ -37,19 +24,10 @@ class App extends Component {
     // const urlParams = queryString.parse(this.props.location.search);
 
     this.state = {
-      code: initialCode.coffeescript,
-      javascript: true,
+      code: initialCode,
       playing: true,
       modal: false
     };
-  }
-
-  handleSyntaxChange() {
-    const { javascript } = this.state;
-    this.setState({
-      javascript: !javascript,
-      code: initialCode[javascript ? "coffeescript" : "javascript"]
-    });
   }
 
   toggleSettings() {
@@ -61,19 +39,6 @@ class App extends Component {
       case "settings":
         return (
           <div>
-            <FormButton
-              buttonLabel={`Switch to ${this.state.javascript
-                ? "Coffeescript"
-                : "Javascript"}`}
-              onClick={this.handleSyntaxChange.bind(this)}
-              label="Syntax"
-              hint={
-                <p>
-                  <b>Warning!</b> Switching syntaxes will reset your current
-                  work. This can not be undone!
-                </p>
-              }
-            />
             <FormInput
               label="URL"
               value={window.location.href}
@@ -111,6 +76,9 @@ class App extends Component {
         />
         <Flex className="App Underlay">
           <Box auto>
+            <Preview {...this.state} />
+          </Box>
+          <Box auto>
             <Editor
               handleChange={newCode => this.setState({ code: newCode })}
               showSettings={() => this.setState({ modal: "settings" })}
@@ -118,9 +86,6 @@ class App extends Component {
                 this.setState({ playing: !this.state.playing })}
               {...this.state}
             />
-          </Box>
-          <Box auto>
-            <Preview {...this.state} />
           </Box>
         </Flex>
       </Modal>
