@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import Transition from "react-transition-group/Transition";
 
-import "./Modal.css";
+import "../styles/Modal.css";
 
 const duration = 200;
 
@@ -26,7 +26,7 @@ const transitionStyles = {
   }
 };
 
-const Modal = props =>
+const Modal = props => (
   <div>
     <div
       className={classNames({
@@ -37,7 +37,7 @@ const Modal = props =>
       {props.children}
     </div>
     <Transition in={props.show} timeout={duration}>
-      {state =>
+      {state => (
         <div
           className="Modal"
           style={{
@@ -46,10 +46,12 @@ const Modal = props =>
           }}
         >
           {props.content}
-        </div>}
+        </div>
+      )}
     </Transition>
     {props.show && <div className="ModalBackground" onClick={props.close} />}
-  </div>;
+  </div>
+);
 
 Modal.propTypes = {
   show: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]).isRequired,

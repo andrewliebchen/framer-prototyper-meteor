@@ -2,14 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Flex, Box } from "reflexbox";
 
-import "./FormButton.css";
+import "../styles/FormButton.css";
 
-const FormButton = props =>
+const FormButton = props => (
   <Flex className="Form" column>
     <Box>
-      <label className="FormLabel">
-        {props.label}
-      </label>
+      <label className="FormLabel">{props.label}</label>
       {props.hint}
     </Box>
     <Box>
@@ -17,7 +15,8 @@ const FormButton = props =>
         {props.buttonLabel}
       </button>
     </Box>
-  </Flex>;
+  </Flex>
+);
 
 FormButton.propTypes = {
   label: PropTypes.string,

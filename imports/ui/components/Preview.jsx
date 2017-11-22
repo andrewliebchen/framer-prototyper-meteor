@@ -6,7 +6,7 @@ import Frame from "react-frame-component";
 import { Flex, Box } from "reflexbox";
 import Transition from "react-transition-group/Transition";
 
-import "./Preview.css";
+import "../styles/Preview.css";
 
 const framerURI = "//builds.framerjs.com/version/latest/framer.js";
 const coffeescriptURI =

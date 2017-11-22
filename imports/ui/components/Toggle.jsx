@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { Flex, Box } from "reflexbox";
 import classNames from "classnames";
 
-import "./Toggle.css";
+import "../styles/Toggle.css";
 
-const Toggle = props =>
+const Toggle = props => (
   <div
     className={classNames({
       ToggleContainer: true,
@@ -20,15 +20,12 @@ const Toggle = props =>
         </div>
       </Box>
       <Box>
-        <div className="ToggleLabel">
-          {props.label}
-        </div>
-        <small className="ToggleHint">
-          {props.hint}
-        </small>
+        <div className="ToggleLabel">{props.label}</div>
+        <small className="ToggleHint">{props.hint}</small>
       </Box>
     </Flex>
-  </div>;
+  </div>
+);
 
 Toggle.propTypes = {
   on: PropTypes.bool,

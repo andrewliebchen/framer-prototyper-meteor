@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Flex, Box } from "reflexbox";
 import CopyToClipboard from "react-copy-to-clipboard";
 
-import "./FormInput.css";
+import "../styles/FormInput.css";
 
 class FormInput extends Component {
   constructor(props) {
@@ -17,9 +17,7 @@ class FormInput extends Component {
     return (
       <Flex className="Form" column>
         <Box>
-          <label className="FormLabel">
-            {this.props.label}
-          </label>
+          <label className="FormLabel">{this.props.label}</label>
         </Box>
         <Box style={{ position: "relative" }}>
           <input
@@ -30,7 +28,7 @@ class FormInput extends Component {
             value={this.props.value}
             disabled={this.props.disabled}
           />
-          {this.props.copy &&
+          {this.props.copy && (
             <div className="FormCopy">
               <CopyToClipboard
                 text={this.props.copy}
@@ -39,11 +37,10 @@ class FormInput extends Component {
                   setTimeout(() => this.setState({ copied: false }), 4000);
                 }}
               >
-                <span>
-                  {this.state.copied ? "Copied!" : "Copy"}
-                </span>
+                <span>{this.state.copied ? "Copied!" : "Copy"}</span>
               </CopyToClipboard>
-            </div>}
+            </div>
+          )}
         </Box>
       </Flex>
     );

@@ -6,7 +6,7 @@ import { Flex, Box } from "reflexbox";
 
 import Icon from "./Icon";
 
-import "./Editor.css";
+import "../styles/Editor.css";
 
 import "brace/mode/coffee";
 import "brace/mode/jsx";

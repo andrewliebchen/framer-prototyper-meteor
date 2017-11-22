@@ -13,6 +13,8 @@ import FormButton from "./components/FormButton.jsx";
 
 import { Prototypes } from "../api/prototypes";
 
+import "./styles/App.css";
+
 const initialCode = {
   coffeescript: `layerA = new Layer
     x: Align.center
