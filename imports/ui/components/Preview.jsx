@@ -6,10 +6,9 @@ import Frame from "react-frame-component";
 import { Flex, Box } from "reflexbox";
 import Transition from "react-transition-group/Transition";
 
-import { framerURI } from "../lib/config";
-
 import "../styles/Preview.css";
 
+const framerURI = "//builds.framerjs.com/version/latest/framer.js";
 const duration = 100;
 
 const defaultStyle = {
@@ -64,10 +63,12 @@ class Preview extends Component {
             </Flex>
           )}
         </Transition>
-        <Frame
-          key={this.state.renderCount}
-          className="PreviewFrame"
-          initialContent={`
+        <div className="PreviewFrame">
+          {this.props.code && (
+            <Frame
+              key={this.state.renderCount}
+              className="PreviewFrame"
+              initialContent={`
             <!DOCTYPE html>
             <html>
               <head>
@@ -92,7 +93,9 @@ class Preview extends Component {
                 </script>
               </body>
             </html>`}
-        />
+            />
+          )}
+        </div>
       </div>
     );
   }

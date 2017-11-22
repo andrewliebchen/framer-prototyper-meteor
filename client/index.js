@@ -4,7 +4,7 @@ import { render } from "react-dom";
 import ReactDOM from "react-dom";
 // import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import App from "../imports/ui/App.jsx";
+import PrototypeContainer from "../imports/ui/App.jsx";
 
 import "./index.css";
 
@@ -18,5 +18,5 @@ import "./index.css";
 // );
 
 Meteor.startup(() => {
-  render(<App />, document.getElementById("root"));
+  render(<PrototypeContainer />, document.getElementById("root"));
 });

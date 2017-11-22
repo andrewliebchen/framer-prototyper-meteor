@@ -4,7 +4,7 @@ import { Flex, Box } from "reflexbox";
 // import queryString from "query-string";
 import ReactTooltip from "react-tooltip";
 import { Helmet } from "react-helmet";
-import { createContainer } from "meteor/react-meteor-data";
+import { withTracker } from "meteor/react-meteor-data";
 
 import Editor from "./components/Editor.jsx";
 import Preview from "./components/Preview.jsx";
@@ -12,8 +12,6 @@ import Modal from "./components/Modal.jsx";
 import FormInput from "./components/FormInput.jsx";
 import FormButton from "./components/FormButton.jsx";
 import Controls from "./components/Controls.jsx";
-
-import { initialCode } from "./lib/config";
 
 import { Prototypes } from "../api/prototypes";
 
@@ -24,7 +22,6 @@ class App extends Component {
     super(props);
 
     this.state = {
-      code: initialCode,
       playing: true,
       modal: false
     };
@@ -59,6 +56,7 @@ class App extends Component {
   }
 
   render() {
+    const code = this.props.prototype ? this.props.prototype.code : "";
     return (
       <Modal
         show={this.state.modal ? true : false}
@@ -76,10 +74,11 @@ class App extends Component {
         />
         <Flex className="App Underlay">
           <Box auto>
-            <Preview {...this.state} />
+            <Preview code={code} {...this.state} />
           </Box>
           <Box auto>
             <Editor
+              code={code}
               handleChange={newCode => this.setState({ code: newCode })}
               {...this.state}
             />
@@ -96,13 +95,18 @@ class App extends Component {
 }
 
 App.propTypes = {
-  prototypes: PropTypes.object
+  prototype: PropTypes.object,
+  loading: PropTypes.bool
 };
 
-export default createContainer(() => {
+export default (PrototypeContainer = withTracker(() => {
+  const prototypeHandle = Meteor.subscribe("prototype");
+  const loading = !prototypeHandle.ready();
+
   return {
-    prototypes: Prototypes.findOne()
+    loading,
+    prototype: loading ? {} : Prototypes.findOne()
   };
-}, App);
+})(App));
 
 // export default App;

@@ -38,7 +38,7 @@ const Editor = props => (
 );
 
 Editor.propTypes = {
-  code: PropTypes.string.isRequired,
+  code: PropTypes.string,
   handleChange: PropTypes.func,
   playing: PropTypes.bool
 };
