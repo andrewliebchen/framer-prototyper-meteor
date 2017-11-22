@@ -1,0 +1,27 @@
+.Controls {
+  position: fixed;
+  z-index: 1;
+  right: 1em;
+  top: 1em;
+}
+
+.Control {
+  cursor: pointer;
+  height: 24px;
+  background-color: black;
+  height: var(--control-size);
+  width: var(--control-size);
+  text-align: center;
+  padding: 0 1em;
+  display: flex;
+  align-items: center;
+  border-radius: var(--control-size);
+  color: #ccc;
+  transition: 0.15s ease-in-out;
+  margin-bottom: 0.5em;
+}
+
+.Control:hover {
+  box-shadow: 0 0 0 2px var(--color-accent);
+  color: white;
+}

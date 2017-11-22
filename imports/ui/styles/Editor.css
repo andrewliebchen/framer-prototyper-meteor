@@ -1,47 +1,4 @@
 .Editor {
   background-color: var(--color-gray-2);
-}
-
-.EditorHeader {
-  background-color: var(--color-gray-1);
-  padding: 0 2em;
-}
-
-.EditorCode {
-  padding: 1em;
-}
-
-.Control {
-  cursor: pointer;
-  height: 24px;
-  background-color: black;
-  height: 3em;
-  min-width: 4em;
-  text-align: center;
-  padding: 0 1em;
-  display: flex;
-  align-items: center;
-  border-radius: 2em;
-  color: #ccc;
-  transition: 0.15s ease-in-out;
-  margin-right: 0.5em;
-}
-
-.Control:hover {
-  box-shadow: 0 0 0 1px var(--color-accent);
-  color: white;
-}
-
-.ControlLabel {
-  line-height: 1;
-  letter-spacing: var(--letter-spacing);
-  text-transform: uppercase;
-}
-
-.ControlLabel ~ .Icon {
-  padding-left: 0.25em;
-}
-
-.Control:hover {
-  color: white;
+  padding: 2em;
 }

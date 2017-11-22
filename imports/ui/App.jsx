@@ -11,6 +11,7 @@ import Preview from "./components/Preview.jsx";
 import Modal from "./components/Modal.jsx";
 import FormInput from "./components/FormInput.jsx";
 import FormButton from "./components/FormButton.jsx";
+import Controls from "./components/Controls.jsx";
 
 import { initialCode } from "./lib/config";
 
@@ -80,20 +81,22 @@ class App extends Component {
           <Box auto>
             <Editor
               handleChange={newCode => this.setState({ code: newCode })}
-              showSettings={() => this.setState({ modal: "settings" })}
-              togglePlaying={() =>
-                this.setState({ playing: !this.state.playing })}
               {...this.state}
             />
           </Box>
         </Flex>
+        <Controls
+          showSettings={() => this.setState({ modal: "settings" })}
+          togglePlaying={() => this.setState({ playing: !this.state.playing })}
+          {...this.state}
+        />
       </Modal>
     );
   }
 }
 
 App.propTypes = {
-  prototypes: PropTypes.array
+  prototypes: PropTypes.object
 };
 
 export default createContainer(() => {

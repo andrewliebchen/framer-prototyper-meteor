@@ -7,6 +7,8 @@
   --color-accent: #0074d9;
 
   --letter-spacing: 0.02em;
+
+  --control-size: 4.5em;
 }
 
 * {
