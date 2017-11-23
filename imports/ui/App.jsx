@@ -49,12 +49,6 @@ class App extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state !== prevState) {
-      this._updateURI();
-    }
-  }
-
   render() {
     const code = this.props.prototype ? this.props.prototype.code : "";
     return (
@@ -77,11 +71,7 @@ class App extends Component {
             <Preview code={code} {...this.state} />
           </Box>
           <Box auto>
-            <Editor
-              code={code}
-              handleChange={newCode => this.setState({ code: newCode })}
-              {...this.state}
-            />
+            <Editor code={code} {...this.props} {...this.state} />
           </Box>
         </Flex>
         <Controls

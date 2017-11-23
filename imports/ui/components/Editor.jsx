@@ -1,4 +1,5 @@
 import React from "react";
+import { Meteor } from "meteor/meteor";
 import AceEditor from "react-ace";
 import PropTypes from "prop-types";
 import { Flex, Box } from "reflexbox";
@@ -18,7 +19,6 @@ const Editor = props => (
       theme="tomorrow_night_eighties"
       name="editorCode"
       value={props.code}
-      onChange={event => props.handleChange(event)}
       width="50vw"
       height="100vh"
       tabSize={2}
@@ -26,6 +26,8 @@ const Editor = props => (
       showInvisibles
       highlightActiveLine={false}
       highlightGutterLine={false}
+      onChange={event =>
+        Meteor.call("updateCode", { code: event, id: props.prototype._id })}
       editorProps={{
         $blockScrolling: true
       }}
@@ -39,7 +41,7 @@ const Editor = props => (
 
 Editor.propTypes = {
   code: PropTypes.string,
-  handleChange: PropTypes.func,
+  prototype: PropTypes.object,
   playing: PropTypes.bool
 };
 

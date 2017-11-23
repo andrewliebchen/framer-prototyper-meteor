@@ -8,7 +8,7 @@ const renderIcon = name => {
     case "cog":
       return "⚙️";
     case "play":
-      return "🏃💨";
+      return "🏃";
     case "pause":
       return "✋";
     case "logo":
