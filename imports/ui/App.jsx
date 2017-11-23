@@ -27,13 +27,9 @@ class App extends Component {
     };
   }
 
-  toggleSettings() {
-    this.setState({ settings: !this.state.settings });
-  }
-
   _renderModalContent() {
     switch (this.state.modal) {
-      case "settings":
+      case "Settings":
         return (
           <div>
             <FormInput
@@ -75,7 +71,7 @@ class App extends Component {
           </Box>
         </Flex>
         <Controls
-          showSettings={() => this.setState({ modal: "settings" })}
+          showSettings={() => this.setState({ modal: "Settings" })}
           togglePlaying={() => this.setState({ playing: !this.state.playing })}
           {...this.state}
         />

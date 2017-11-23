@@ -10,16 +10,16 @@ const duration = 200;
 const defaultStyle = {
   boxShadow: "none",
   pointerEvents: "none",
-  transform: "translate3d(-50%, -100%, 0)",
+  transform: "translateX(100%)",
   transition: `${duration}ms ease-out`
 };
 
 const transitionStyles = {
   entered: {
-    boxShadow: "0 5px 50px rgba(0, 0, 0, 0.3)",
+    boxShadow: "0 0 10px rgba(0, 0, 0, 0.8)",
     opacity: 1,
     pointerEvents: "all",
-    transform: "translate3d(-50%, -2em, 0)"
+    transform: "translateX(0)"
   },
   exiting: {
     transition: `100ms ease-in`
@@ -45,6 +45,7 @@ const Modal = props => (
             ...transitionStyles[state]
           }}
         >
+          <h2>{props.title}</h2>
           {props.content}
         </div>
       )}

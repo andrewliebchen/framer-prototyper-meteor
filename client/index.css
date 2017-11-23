@@ -26,12 +26,18 @@ body {
   line-height: 1.5;
 }
 
+h1,
+h2,
+h3,
+p {
+  margin-bottom: 1em;
+}
+
 a {
   text-decoration: none;
 }
 
 p {
-  margin-bottom: 1em;
   font-size: 16px;
 }
 
