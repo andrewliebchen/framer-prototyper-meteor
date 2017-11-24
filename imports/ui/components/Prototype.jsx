@@ -6,17 +6,17 @@ import ReactTooltip from "react-tooltip";
 import { Helmet } from "react-helmet";
 import { withTracker } from "meteor/react-meteor-data";
 
-import Editor from "./components/Editor.jsx";
-import Preview from "./components/Preview.jsx";
-import Modal from "./components/Modal.jsx";
-import FormInput from "./components/FormInput.jsx";
-import FormButton from "./components/FormButton.jsx";
-import Controls from "./components/Controls.jsx";
+import Editor from "./Editor.jsx";
+import Preview from "./Preview.jsx";
+import Modal from "./Modal.jsx";
+import FormInput from "./FormInput.jsx";
+import FormButton from "./FormButton.jsx";
+import Controls from "./Controls.jsx";
 import AccountsUIWrapper from "./AccountsUIWrapper.jsx";
 
-import { Prototypes } from "../api/prototypes";
+import { Prototypes } from "../../api/prototypes";
 
-import "./styles/App.css";
+import "../styles/App.css";
 
 class App extends Component {
   constructor(props) {

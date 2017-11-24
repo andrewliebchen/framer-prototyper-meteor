@@ -4,8 +4,8 @@ import { render } from "react-dom";
 import ReactDOM from "react-dom";
 // import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import AccountsUIWrapper from "../imports/ui/AccountsUIWrapper.jsx";
-import PrototypeContainer from "../imports/ui/Prototype.jsx";
+import AccountsUIWrapper from "../imports/ui/components/AccountsUIWrapper.jsx";
+import PrototypeContainer from "../imports/ui/components/Prototype.jsx";
 
 import "./index.css";
 
