@@ -20,14 +20,17 @@ const Control = props => (
 
 const Controls = props => (
   <Flex className="Controls" column>
-    <Control tip="All prototypes" icon="fileCabinet" />
+    <Control
+      tip="All prototypes"
+      icon="fileCabinet"
+      handleClick={props.showAll}
+    />
     <Control tip="Settings" icon="cog" handleClick={props.showSettings} />
     <Control
       tip={props.playing ? "Pause" : "Play"}
       icon={props.playing ? "pause" : "play"}
       handleClick={props.togglePlaying}
     />
-    <Control tip="Account" icon="account" handleClick={props.showAccount} />
     <Control
       tip="New Prototype"
       icon="baby"
@@ -44,7 +47,7 @@ Controls.propTypes = {
   togglePlaying: PropTypes.func,
   playing: PropTypes.bool,
   showSettings: PropTypes.func,
-  showAccount: PropTypes.func
+  showAll: PropTypes.func
 };
 
 export default Controls;

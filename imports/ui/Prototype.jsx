@@ -39,10 +39,11 @@ class App extends Component {
               copy={window.location.href}
               disabled
             />
+            <AccountsUIWrapper />
           </div>
         );
-      case "Account":
-        return <AccountsUIWrapper />;
+      case "All":
+        <div>All prototypes</div>;
       default:
         return <div />;
     }
@@ -74,8 +75,8 @@ class App extends Component {
           </Box>
         </Flex>
         <Controls
+          showAll={() => this.setState({ modal: "Account" })}
           showSettings={() => this.setState({ modal: "Settings" })}
-          showAccount={() => this.setState({ modal: "Account" })}
           togglePlaying={() => this.setState({ playing: !this.state.playing })}
           {...this.state}
         />
