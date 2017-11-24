@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 
 const renderIcon = name => {
   switch (name) {
+    case "account":
+      return "💁";
+    case "baby":
+      return "👶";
     case "fileCabinet":
       return "🗄";
     case "cog":
@@ -41,6 +45,8 @@ Icon.defaultProps = {
 
 Icon.propTypes = {
   name: PropTypes.oneOf([
+    "account",
+    "baby",
     "fileCabinet",
     "cog",
     "pause",

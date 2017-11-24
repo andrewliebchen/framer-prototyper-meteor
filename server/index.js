@@ -7,19 +7,21 @@ const initialCode = `const layerA = new Layer({
   backgroundColor: new Color('blue').alpha(0.5),
 });`;
 
-Meteor.startup(() => {
-  if (Prototypes.find().count() === 0) {
-    Prototypes.insert({
-      code: initialCode
-    });
-  }
-});
-
 Meteor.methods({
+  newPrototype(args) {
+    return Prototypes.insert({
+      code: intialCode,
+      createdAt: args.createdAt,
+      updatedAt: args.createdAt,
+      owner: args.currentUserId
+    });
+  },
+
   updateCode(args) {
     return Prototypes.update(args.id, {
       $set: {
-        code: args.code
+        code: args.code,
+        updatedAt: args.createdAt
       }
     });
   }

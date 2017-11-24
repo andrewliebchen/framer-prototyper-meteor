@@ -1,10 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
 import { Meteor } from "meteor/meteor";
 import { render } from "react-dom";
 import ReactDOM from "react-dom";
 // import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import PrototypeContainer from "../imports/ui/App.jsx";
+import AccountsUIWrapper from "../imports/ui/AccountsUIWrapper.jsx";
+import PrototypeContainer from "../imports/ui/Prototype.jsx";
 
 import "./index.css";
 
@@ -17,6 +18,27 @@ import "./index.css";
 //   document.getElementById("root")
 // );
 
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loggedIn: Meteor.userId()
+    };
+  }
+
+  render() {
+    if (this.state.loggedIn) {
+      return <PrototypeContainer />;
+    } else {
+      return (
+        <div>
+          <AccountsUIWrapper />
+        </div>
+      );
+    }
+  }
+}
+
 Meteor.startup(() => {
-  render(<PrototypeContainer />, document.getElementById("root"));
+  render(<App />, document.getElementById("root"));
 });

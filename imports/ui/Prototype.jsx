@@ -12,6 +12,7 @@ import Modal from "./components/Modal.jsx";
 import FormInput from "./components/FormInput.jsx";
 import FormButton from "./components/FormButton.jsx";
 import Controls from "./components/Controls.jsx";
+import AccountsUIWrapper from "./AccountsUIWrapper.jsx";
 
 import { Prototypes } from "../api/prototypes";
 
@@ -40,6 +41,8 @@ class App extends Component {
             />
           </div>
         );
+      case "Account":
+        return <AccountsUIWrapper />;
       default:
         return <div />;
     }
@@ -72,6 +75,7 @@ class App extends Component {
         </Flex>
         <Controls
           showSettings={() => this.setState({ modal: "Settings" })}
+          showAccount={() => this.setState({ modal: "Account" })}
           togglePlaying={() => this.setState({ playing: !this.state.playing })}
           {...this.state}
         />

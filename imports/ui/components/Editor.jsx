@@ -27,7 +27,11 @@ const Editor = props => (
       highlightActiveLine={false}
       highlightGutterLine={false}
       onChange={event =>
-        Meteor.call("updateCode", { code: event, id: props.prototype._id })}
+        Meteor.call("updateCode", {
+          id: props.prototype._id,
+          code: event,
+          updatedAt: Date.now()
+        })}
       editorProps={{
         $blockScrolling: true
       }}
