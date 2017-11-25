@@ -81,3 +81,11 @@ button.isActive {
 .Tooltip::after {
   border-bottom-color: var(--color-accent) !important;
 }
+
+.Login {
+  color: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}

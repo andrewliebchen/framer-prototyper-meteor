@@ -19,7 +19,7 @@ import { Prototypes } from "../../api/prototypes";
 
 import "../styles/Prototype.css";
 
-class App extends Component {
+class Prototype extends Component {
   constructor(props) {
     super(props);
 
@@ -52,7 +52,6 @@ class App extends Component {
 
   render() {
     const code = this.props.prototype ? this.props.prototype.code : "";
-
     if (this.props.loading) {
       return (
         <Loading
@@ -103,17 +102,17 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
+Prototype.propTypes = {
   prototype: PropTypes.object,
   loading: PropTypes.bool
 };
 
-export default (PrototypeContainer = withTracker(() => {
-  const prototypeHandle = Meteor.subscribe("prototype");
+export default (PrototypeContainer = withTracker(({ id }) => {
+  const prototypeHandle = Meteor.subscribe("prototype", id);
   const loading = !prototypeHandle.ready();
 
   return {
     loading,
     prototype: loading ? {} : Prototypes.findOne()
   };
-})(App));
+})(Prototype));
