@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Flex, Box } from "reflexbox";
+import { Link } from "react-router-dom";
 
 import Icon from "./Icon.jsx";
 
@@ -31,15 +32,16 @@ const Controls = props => (
       icon={props.playing ? "pause" : "play"}
       handleClick={props.togglePlaying}
     />
-    <Control
-      tip="New Prototype"
-      icon="baby"
-      handleClick={() =>
-        Meteor.call("newPrototype", {
-          createdAt: Date.now(),
-          owner: Meteor.userId()
-        })}
-    />
+    <Box
+      className="Control"
+      data-tip="New Prototype"
+      align="center"
+      justify="center"
+    >
+      <Link to="/new">
+        <Icon name="baby" />
+      </Link>
+    </Box>
   </Flex>
 );
 

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Flex, Box } from "reflexbox";
-// import queryString from "query-string";
 import ReactTooltip from "react-tooltip";
 import { Helmet } from "react-helmet";
 import { withTracker } from "meteor/react-meteor-data";
