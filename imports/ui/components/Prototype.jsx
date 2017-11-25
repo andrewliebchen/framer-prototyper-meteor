@@ -5,6 +5,7 @@ import { Flex, Box } from "reflexbox";
 import ReactTooltip from "react-tooltip";
 import { Helmet } from "react-helmet";
 import { withTracker } from "meteor/react-meteor-data";
+import Loading from "react-loading-animation";
 
 import Editor from "./Editor.jsx";
 import Preview from "./Preview.jsx";
@@ -16,7 +17,7 @@ import AccountsUIWrapper from "./AccountsUIWrapper.jsx";
 
 import { Prototypes } from "../../api/prototypes";
 
-import "../styles/App.css";
+import "../styles/Prototype.css";
 
 class App extends Component {
   constructor(props) {
@@ -51,6 +52,23 @@ class App extends Component {
 
   render() {
     const code = this.props.prototype ? this.props.prototype.code : "";
+
+    if (this.props.loading) {
+      return (
+        <Loading
+          width="80px"
+          height="80px"
+          strokeWidth="3"
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate3d(-50%, -50%, 0)"
+          }}
+        />
+      );
+    }
+
     return (
       <Modal
         show={this.state.modal ? true : false}
@@ -99,5 +117,3 @@ export default (PrototypeContainer = withTracker(() => {
     prototype: loading ? {} : Prototypes.findOne()
   };
 })(App));
-
-// export default App;
