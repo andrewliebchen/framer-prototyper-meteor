@@ -43,7 +43,7 @@ class App extends Component {
             <AccountsUIWrapper />
           </div>
         );
-      case "All":
+      case "Prototypes":
         <div>All prototypes</div>;
       default:
         return <div />;
@@ -93,7 +93,7 @@ class App extends Component {
           </Box>
         </Flex>
         <Controls
-          showAll={() => this.setState({ modal: "Account" })}
+          showAll={() => this.setState({ modal: "Prototypes" })}
           showSettings={() => this.setState({ modal: "Settings" })}
           togglePlaying={() => this.setState({ playing: !this.state.playing })}
           {...this.state}
