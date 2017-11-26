@@ -68,31 +68,35 @@ class Preview extends Component {
             <Frame
               key={this.state.renderCount}
               className="PreviewFrame"
+              style={{
+                height: "100vh",
+                width: this.props.fullScreen ? "100vw" : "50vw"
+              }}
               initialContent={`
-            <!DOCTYPE html>
-            <html>
-              <head>
-                <style>
-                  body {
-                    height: 100vh;
-                    width: 100vw;
-                    margin: 0;
-                    position: relative;
-                  }
+                <!DOCTYPE html>
+                <html>
+                  <head>
+                    <style>
+                      body {
+                        height: 100vh;
+                        width: 100vw;
+                        margin: 0;
+                        position: relative;
+                      }
 
-                  .framerContext {
-                    height: 100vh;
-                    width: 100vw;
-                  }
-                </style>
-              </head>
-              <body>
-                <script src="${framerURI}"></script>
-                <script>
-                  ${this.props.code}
-                </script>
-              </body>
-            </html>`}
+                      .framerContext {
+                        height: 100vh;
+                        width: 100vw;
+                      }
+                    </style>
+                  </head>
+                  <body>
+                    <script src="${framerURI}"></script>
+                    <script>
+                      ${this.props.code}
+                    </script>
+                  </body>
+                </html>`}
             />
           )}
         </div>
@@ -103,7 +107,8 @@ class Preview extends Component {
 
 Preview.propTypes = {
   code: PropTypes.string,
-  playing: PropTypes.bool
+  playing: PropTypes.bool,
+  fullScreen: PropTypes.bool
 };
 
 export default Preview;

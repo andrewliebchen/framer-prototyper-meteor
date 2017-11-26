@@ -13,7 +13,7 @@ Meteor.methods({
       code: initialCode,
       createdAt: args.createdAt,
       updatedAt: args.createdAt,
-      owner: args.currentUserId
+      owner: args.owner
     });
   },
 

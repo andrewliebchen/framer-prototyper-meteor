@@ -4,15 +4,15 @@ import { Flex, Box } from "reflexbox";
 import ReactTooltip from "react-tooltip";
 import { Helmet } from "react-helmet";
 import { withTracker } from "meteor/react-meteor-data";
-import Loading from "react-loading-animation";
 
-import Editor from "./Editor.jsx";
-import Preview from "./Preview.jsx";
-import Modal from "./Modal.jsx";
-import FormInput from "./FormInput.jsx";
-import FormButton from "./FormButton.jsx";
-import Controls from "./Controls.jsx";
-import AccountsUIWrapper from "./AccountsUIWrapper.jsx";
+import Loader from "../components/Loader.jsx";
+import Editor from "../components/Editor.jsx";
+import Preview from "../components/Preview.jsx";
+import Modal from "../components/Modal.jsx";
+import FormInput from "../components/FormInput.jsx";
+import FormButton from "../components/FormButton.jsx";
+import Controls from "../components/Controls.jsx";
+import AccountsUIWrapper from "../components/AccountsUIWrapper.jsx";
 
 import { Prototypes } from "../../api/prototypes";
 
@@ -21,7 +21,6 @@ import "../styles/Prototype.css";
 class Prototype extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       playing: true,
       modal: false
@@ -50,24 +49,13 @@ class Prototype extends Component {
   }
 
   render() {
-    const code = this.props.prototype ? this.props.prototype.code : "";
-    if (this.props.loading) {
-      return (
-        <Loading
-          width="80px"
-          height="80px"
-          strokeWidth="3"
-          style={{
-            position: "fixed",
-            top: "50%",
-            left: "50%",
-            transform: "translate3d(-50%, -50%, 0)"
-          }}
-        />
-      );
-    }
+    const { prototype, loading } = this.props;
+    const code = prototype ? prototype.code : "";
+    const canEdit = prototype && Meteor.userId() === prototype.owner;
 
-    return (
+    return loading ? (
+      <Loader />
+    ) : (
       <Modal
         show={this.state.modal ? true : false}
         close={() => this.setState({ modal: false })}
@@ -84,18 +72,21 @@ class Prototype extends Component {
         />
         <Flex className="App Underlay">
           <Box auto>
-            <Preview code={code} {...this.state} />
+            <Preview code={code} fullScreen={!canEdit} {...this.state} />
           </Box>
-          <Box auto>
-            <Editor code={code} {...this.props} {...this.state} />
-          </Box>
+          {canEdit && (
+            <Box auto>
+              <Editor code={code} {...this.props} {...this.state} />
+              <Controls
+                showAll={() => this.setState({ modal: "Prototypes" })}
+                showSettings={() => this.setState({ modal: "Settings" })}
+                togglePlaying={() =>
+                  this.setState({ playing: !this.state.playing })}
+                {...this.state}
+              />
+            </Box>
+          )}
         </Flex>
-        <Controls
-          showAll={() => this.setState({ modal: "Prototypes" })}
-          showSettings={() => this.setState({ modal: "Settings" })}
-          togglePlaying={() => this.setState({ playing: !this.state.playing })}
-          {...this.state}
-        />
       </Modal>
     );
   }
@@ -106,7 +97,7 @@ Prototype.propTypes = {
   loading: PropTypes.bool
 };
 
-export default (PrototypeContainer = withTracker(({ id }) => {
+export default withTracker(({ id }) => {
   const prototypeHandle = Meteor.subscribe("prototype", id);
   const loading = !prototypeHandle.ready();
 
@@ -114,4 +105,4 @@ export default (PrototypeContainer = withTracker(({ id }) => {
     loading,
     prototype: loading ? {} : Prototypes.findOne()
   };
-})(Prototype));
+})(Prototype);

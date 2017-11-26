@@ -4,60 +4,28 @@ import { render } from "react-dom";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
-import AccountsUIWrapper from "../imports/ui/components/AccountsUIWrapper.jsx";
-import PrototypeContainer from "../imports/ui/components/Prototype.jsx";
+import LoginPage from "../imports/ui/pages/Login.jsx";
+import PrototypePage from "../imports/ui/pages/Prototype.jsx";
+import NewPrototypePage from "../imports/ui/pages/NewPrototype.jsx";
 
 import "./index.css";
 
-const App = ({ match }) => {
-  if (Meteor.userId()) {
-    return <PrototypeContainer id={match.params.id} />;
-  } else {
-    return (
-      <div className="Login">
-        <AccountsUIWrapper />
-      </div>
-    );
-  }
-};
-
-class NewPrototype extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      newId: null
-    };
-  }
-
-  render() {
-    // Create the new prototype
-    Meteor.call(
-      "newPrototype",
-      {
-        createdAt: Date.now(),
-        owner: Meteor.userId()
-      },
-      (err, id) => {
-        if (id) {
-          return this.setState({ newId: id });
-        }
-      }
-    );
-
-    // Render the proper thingy
-    if (this.state.newId) {
-      return <Redirect to={`/${this.state.newId}`} />;
-    } else {
-      return null;
-    }
-  }
-}
+// Pages
+// Login: No current user
+// Prototype: If there is a current user, visiting a prototype with /:id will show edit mode
+// Preview: If not a current user, visiting /:id will show preview. Current user can visit /:id/preview
+// New: A pass through page that creates a new prototype /new
 
 const RenderRoutes = () => (
   <Router>
     <div>
-      <Route exact path="/:id" component={App} />
-      <Route path="/new" component={NewPrototype} />
+      <Route
+        exact
+        path="/:id"
+        render={({ match }) => <PrototypePage id={match.params.id} />}
+      />
+      <Route path="/new" component={NewPrototypePage} />
+      <Route path="/login" compoent={LoginPage} />
     </div>
   </Router>
 );
