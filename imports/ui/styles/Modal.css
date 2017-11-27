@@ -30,7 +30,7 @@
 }
 
 .Underlay {
-  transition: 0.1s ease-in-out;
+  transition: var(--transition);
 }
 
 .Underlay.showModal {

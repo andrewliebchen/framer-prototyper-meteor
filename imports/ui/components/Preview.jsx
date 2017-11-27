@@ -40,6 +40,8 @@ class Preview extends Component {
   }
 
   render() {
+    // FIXME: Preview only is not getting data via id...?
+
     return (
       <div className="Preview">
         <ReactInterval
@@ -69,7 +71,6 @@ class Preview extends Component {
               key={this.state.renderCount}
               className="PreviewFrame"
               style={{
-                height: "100vh",
                 width: this.props.fullScreen ? "100vw" : "50vw"
               }}
               initialContent={`

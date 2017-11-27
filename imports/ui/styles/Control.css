@@ -1,0 +1,34 @@
+.Control {
+  cursor: pointer;
+  height: 24px;
+  background-color: black;
+  height: var(--control-size);
+  width: var(--control-size);
+  text-align: center;
+  padding: 0 1em;
+  display: flex;
+  align-items: center;
+  border-radius: var(--control-size);
+  color: #ccc;
+  transition: var(--transition);
+  margin-bottom: 0.5em;
+}
+
+.Control:hover {
+  box-shadow: 0 0 0 2px var(--color-accent);
+  color: white;
+}
+
+.PreviewControl {
+  background-color: var(--color-gray-4);
+}
+
+.PreviewControl .Icon {
+  filter: grayscale(100%);
+  opacity: 0.3;
+}
+
+.Controls:hover .Icon {
+  filter: grayscale(0);
+  opacity: 1;
+}

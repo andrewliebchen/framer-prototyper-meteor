@@ -11,7 +11,8 @@ import Preview from "../components/Preview.jsx";
 import Modal from "../components/Modal.jsx";
 import FormInput from "../components/FormInput.jsx";
 import FormButton from "../components/FormButton.jsx";
-import Controls from "../components/Controls.jsx";
+import EditControls from "../components/EditControls.jsx";
+import PreviewControls from "../components/PreviewControls.jsx";
 import AccountsUIWrapper from "../components/AccountsUIWrapper.jsx";
 
 import { Prototypes } from "../../api/prototypes";
@@ -49,7 +50,7 @@ class Prototype extends Component {
   }
 
   render() {
-    const { prototype, loading } = this.props;
+    const { prototype, loading, fullScreen } = this.props;
     const code = prototype ? prototype.code : "";
     const canEdit = prototype && Meteor.userId() === prototype.owner;
 
@@ -71,13 +72,18 @@ class Prototype extends Component {
           className="Tooltip"
         />
         <Flex className="App Underlay">
-          <Box auto>
-            <Preview code={code} fullScreen={!canEdit} {...this.state} />
+          <Box auto style={{ position: "relative" }}>
+            <Preview
+              code={code}
+              fullScreen={!canEdit || fullScreen}
+              {...this.state}
+            />
+            <PreviewControls />
           </Box>
           {canEdit && (
-            <Box auto>
+            <Box w={1 / 2} style={{ position: "relative" }}>
               <Editor code={code} {...this.props} {...this.state} />
-              <Controls
+              <EditControls
                 showAll={() => this.setState({ modal: "Prototypes" })}
                 showSettings={() => this.setState({ modal: "Settings" })}
                 togglePlaying={() =>
@@ -94,7 +100,8 @@ class Prototype extends Component {
 
 Prototype.propTypes = {
   prototype: PropTypes.object,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+  fullScreen: PropTypes.bool
 };
 
 export default withTracker(({ id }) => {

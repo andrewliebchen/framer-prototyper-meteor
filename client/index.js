@@ -24,6 +24,7 @@ const RenderRoutes = () => (
         path="/:id"
         render={({ match }) => <PrototypePage id={match.params.id} />}
       />
+      <Route path="/:id/preview" render={() => <PrototypePage fullScreen />} />
       <Route path="/new" component={NewPrototypePage} />
       <Route path="/login" compoent={LoginPage} />
     </div>

@@ -7,18 +7,18 @@ const renderIcon = name => {
       return "💁";
     case "baby":
       return "👶";
-    case "fileCabinet":
-      return "🗄";
     case "cog":
       return "⚙️";
-    case "play":
-      return "🏃";
-    case "pause":
-      return "✋";
-    case "logo":
-      return "🖼🎉️";
     case "copy":
       return "👯";
+    case "eye":
+      return "👁";
+    case "fileCabinet":
+      return "🗄";
+    case "pause":
+      return "✋";
+    case "play":
+      return "🏃";
     default:
       return "";
   }
@@ -47,12 +47,12 @@ Icon.propTypes = {
   name: PropTypes.oneOf([
     "account",
     "baby",
-    "fileCabinet",
     "cog",
+    "copy",
+    "eye",
+    "fileCabinet",
     "pause",
-    "play",
-    "logo",
-    "copy"
+    "play"
   ]),
   size: PropTypes.number,
   onClick: PropTypes.func

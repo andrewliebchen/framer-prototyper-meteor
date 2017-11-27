@@ -3,7 +3,7 @@
 }
 
 .Toggle {
-  transition: 0.1s ease-in-out;
+  transition: var(--transition);
   width: 4em;
   height: 3px;
   border-radius: 3px;
@@ -18,7 +18,7 @@
 }
 
 .ToggleHandle {
-  transition: 0.1s ease-in-out;
+  transition: var(--transition);
   width: 2em;
   height: 2em;
   border-radius: 1em;

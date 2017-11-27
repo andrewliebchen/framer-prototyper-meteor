@@ -5,6 +5,7 @@
 .PreviewFrame {
   border: 0;
   background-color: white;
+  height: 100vh;
 }
 
 .PreviewBanner {
