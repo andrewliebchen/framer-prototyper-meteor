@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import LoginPage from "../imports/ui/pages/Login.jsx";
 import PrototypePage from "../imports/ui/pages/Prototype.jsx";
 import NewPrototypePage from "../imports/ui/pages/NewPrototype.jsx";
+import FullPreview from "../imports/ui/pages/FullPreview.jsx";
 
 import "./index.css";
 
@@ -24,7 +25,10 @@ const RenderRoutes = () => (
         path="/:id"
         render={({ match }) => <PrototypePage id={match.params.id} />}
       />
-      <Route path="/:id/preview" render={() => <PrototypePage fullScreen />} />
+      <Route
+        path="/:id/preview"
+        render={({ match }) => <FullPreview id={match.params.id} />}
+      />
       <Route path="/new" component={NewPrototypePage} />
       <Route path="/login" compoent={LoginPage} />
     </div>

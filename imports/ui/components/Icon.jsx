@@ -11,6 +11,8 @@ const renderIcon = name => {
       return "⚙️";
     case "copy":
       return "👯";
+    case "edit":
+      return "✏️";
     case "eye":
       return "👁";
     case "fileCabinet":
@@ -49,6 +51,7 @@ Icon.propTypes = {
     "baby",
     "cog",
     "copy",
+    "edit",
     "eye",
     "fileCabinet",
     "pause",

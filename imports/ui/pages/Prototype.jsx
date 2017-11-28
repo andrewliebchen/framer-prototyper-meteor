@@ -5,6 +5,7 @@ import ReactTooltip from "react-tooltip";
 import { Helmet } from "react-helmet";
 import { withTracker } from "meteor/react-meteor-data";
 
+import PageComponents from "../components/PageComponents.jsx";
 import Loader from "../components/Loader.jsx";
 import Editor from "../components/Editor.jsx";
 import Preview from "../components/Preview.jsx";
@@ -12,7 +13,6 @@ import Modal from "../components/Modal.jsx";
 import FormInput from "../components/FormInput.jsx";
 import FormButton from "../components/FormButton.jsx";
 import EditControls from "../components/EditControls.jsx";
-import PreviewControls from "../components/PreviewControls.jsx";
 import AccountsUIWrapper from "../components/AccountsUIWrapper.jsx";
 
 import { Prototypes } from "../../api/prototypes";
@@ -50,7 +50,7 @@ class Prototype extends Component {
   }
 
   render() {
-    const { prototype, loading, fullScreen } = this.props;
+    const { prototype, loading } = this.props;
     const code = prototype ? prototype.code : "";
     const canEdit = prototype && Meteor.userId() === prototype.owner;
 
@@ -63,22 +63,10 @@ class Prototype extends Component {
         title={this.state.modal ? this.state.modal : null}
         content={this._renderModalContent()}
       >
-        <Helmet>
-          <title>Framer Prototyper</title>
-        </Helmet>
-        <ReactTooltip
-          place="bottom"
-          offset={{ bottom: 10 }}
-          className="Tooltip"
-        />
+        <PageComponents />
         <Flex className="App Underlay">
           <Box auto style={{ position: "relative" }}>
-            <Preview
-              code={code}
-              fullScreen={!canEdit || fullScreen}
-              {...this.state}
-            />
-            <PreviewControls />
+            <Preview full={false} {...this.state} {...this.props} />
           </Box>
           {canEdit && (
             <Box w={1 / 2} style={{ position: "relative" }}>
@@ -100,8 +88,7 @@ class Prototype extends Component {
 
 Prototype.propTypes = {
   prototype: PropTypes.object,
-  loading: PropTypes.bool,
-  fullScreen: PropTypes.bool
+  loading: PropTypes.bool
 };
 
 export default withTracker(({ id }) => {

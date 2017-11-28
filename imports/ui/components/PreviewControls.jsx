@@ -9,12 +9,21 @@ import "../styles/Controls.css";
 const PreviewControls = props => (
   <Flex className="Controls" column>
     <Control
-      tip="Preview"
-      icon="eye"
+      tip={props.full ? "Edit" : "Preview"}
+      icon={props.full ? "edit" : "eye"}
       className="PreviewControl"
-      link={`preview`}
+      link={
+        props.full
+          ? `/${props.prototype._id}`
+          : `/${props.prototype._id}/preview`
+      }
     />
   </Flex>
 );
+
+PreviewControls.propType = {
+  full: PropTypes.bool,
+  prototype: PropTypes.object
+};
 
 export default PreviewControls;

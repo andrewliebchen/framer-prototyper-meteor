@@ -6,6 +6,8 @@ import Frame from "react-frame-component";
 import { Flex, Box } from "reflexbox";
 import Transition from "react-transition-group/Transition";
 
+import PreviewControls from "../components/PreviewControls.jsx";
+
 import "../styles/Preview.css";
 
 const framerURI = "//builds.framerjs.com/version/latest/framer.js";
@@ -40,17 +42,19 @@ class Preview extends Component {
   }
 
   render() {
-    // FIXME: Preview only is not getting data via id...?
+    console.log(this.props);
+    const { prototype, playing, full } = this.props;
+    const code = prototype ? prototype.code : "";
 
     return (
       <div className="Preview">
         <ReactInterval
           timeout={1000}
-          enabled={this.props.playing}
+          enabled={playing}
           callback={this._reRender}
         />
         {/* <WindowResizeListener onResize={windowSize => this._reRender()} /> */}
-        <Transition in={!this.props.playing} timeout={duration}>
+        <Transition in={!playing} timeout={duration}>
           {state => (
             <Flex
               className="PreviewBanner"
@@ -66,12 +70,13 @@ class Preview extends Component {
           )}
         </Transition>
         <div className="PreviewFrame">
-          {this.props.code && (
+          <PreviewControls {...this.props} />
+          {code && (
             <Frame
               key={this.state.renderCount}
               className="PreviewFrame"
               style={{
-                width: this.props.fullScreen ? "100vw" : "50vw"
+                width: this.props.full ? "100vw" : "50vw"
               }}
               initialContent={`
                 <!DOCTYPE html>
@@ -94,7 +99,7 @@ class Preview extends Component {
                   <body>
                     <script src="${framerURI}"></script>
                     <script>
-                      ${this.props.code}
+                      ${code}
                     </script>
                   </body>
                 </html>`}
@@ -107,9 +112,9 @@ class Preview extends Component {
 }
 
 Preview.propTypes = {
-  code: PropTypes.string,
+  prototype: PropTypes.object,
   playing: PropTypes.bool,
-  fullScreen: PropTypes.bool
+  full: PropTypes.bool
 };
 
 export default Preview;
