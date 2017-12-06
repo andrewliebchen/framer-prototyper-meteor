@@ -12,6 +12,8 @@
   color: #ccc;
   transition: var(--transition);
   margin-bottom: 0.5em;
+  align-items: center;
+  justify-content: center;
 }
 
 .Control:hover {
@@ -23,12 +25,16 @@
   background-color: var(--color-gray-4);
 }
 
-.PreviewControl .Icon {
-  filter: grayscale(100%);
-  opacity: 0.3;
+.Icon {
+  height: 24px;
+  display: inline-block;
+  color: white;
 }
 
-.Controls:hover .Icon {
-  filter: grayscale(0);
-  opacity: 1;
+.PreviewControl .Icon {
+  color: var(--color-gray-3);
+}
+
+.PreviewControl:hover .Icon {
+  color: var(--color-accent);
 }

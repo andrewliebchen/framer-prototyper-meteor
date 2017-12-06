@@ -26,6 +26,7 @@ class Prototype extends Component {
       playing: true,
       modal: false
     };
+    this._handlePlayToggle = this._handlePlayToggle.bind(this)
   }
 
   _renderModalContent() {
@@ -49,6 +50,10 @@ class Prototype extends Component {
     }
   }
 
+  _handlePlayToggle() {
+    this.setState({ playing: !this.state.playing });
+  }
+
   render() {
     const { prototype, loading } = this.props;
     const code = prototype ? prototype.code : "";
@@ -66,7 +71,11 @@ class Prototype extends Component {
         <PageComponents />
         <Flex className="App Underlay">
           <Box auto style={{ position: "relative" }}>
-            <Preview full={false} {...this.state} {...this.props} />
+            <Preview
+              full={false}
+              togglePlaying={this._handlePlayToggle}
+              {...this.state}
+              {...this.props} />
           </Box>
           {canEdit && (
             <Box w={1 / 2} style={{ position: "relative" }}>
@@ -74,8 +83,7 @@ class Prototype extends Component {
               <EditControls
                 showAll={() => this.setState({ modal: "Prototypes" })}
                 showSettings={() => this.setState({ modal: "Settings" })}
-                togglePlaying={() =>
-                  this.setState({ playing: !this.state.playing })}
+                togglePlaying={this._handlePlayToggle}
                 {...this.state}
               />
             </Box>

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Flex, Box } from "reflexbox";
+import { ExternalLink, Edit3 } from 'react-feather';
 
 import Control from "./Control.jsx";
 
@@ -10,7 +11,7 @@ const PreviewControls = props => (
   <Flex className="Controls" column>
     <Control
       tip={props.full ? "Edit" : "Preview"}
-      icon={props.full ? "edit" : "eye"}
+      icon={props.full ? <Edit3/> : <ExternalLink/>}
       className="PreviewControl"
       link={
         props.full

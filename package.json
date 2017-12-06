@@ -16,6 +16,7 @@
     "react-addons-pure-render-mixin": "^15.6.2",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.1.1",
+    "react-feather": "^1.0.7",
     "react-frame-component": "^2.0.0",
     "react-helmet": "^5.2.0",
     "react-interval": "^2.0.2",

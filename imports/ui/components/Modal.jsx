@@ -11,7 +11,8 @@ const defaultStyle = {
   boxShadow: "none",
   pointerEvents: "none",
   transform: "translateX(100%)",
-  transition: `${duration}ms ease-out`
+  transition: `${duration}ms ease-out`,
+  transitionDelay: 0.15
 };
 
 const transitionStyles = {

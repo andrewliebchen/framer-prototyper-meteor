@@ -42,8 +42,7 @@ class Preview extends Component {
   }
 
   render() {
-    console.log(this.props);
-    const { prototype, playing, full } = this.props;
+    const { prototype, playing, full, togglePlaying } = this.props;
     const code = prototype ? prototype.code : "";
 
     return (
@@ -57,7 +56,7 @@ class Preview extends Component {
         <Transition in={!playing} timeout={duration}>
           {state => (
             <Flex
-              className="PreviewBanner"
+              className="PreviewBannerWrapper"
               align="center"
               justify="center"
               style={{
@@ -65,7 +64,9 @@ class Preview extends Component {
                 ...transitionStyles[state]
               }}
             >
-              <Box>Reload is paused</Box>
+              <Box
+                className="PreviewBanner"
+                onClick={togglePlaying}>Reload is paused</Box>
             </Flex>
           )}
         </Transition>
@@ -114,7 +115,8 @@ class Preview extends Component {
 Preview.propTypes = {
   prototype: PropTypes.object,
   playing: PropTypes.bool,
-  full: PropTypes.bool
+  full: PropTypes.bool,
+  togglePlaying: PropTypes.func
 };
 
 export default Preview;
