@@ -5,13 +5,23 @@
   top: 0;
   right: 0;
   bottom: 0;
-  padding: 3em 2em 1em;
+  padding: 2em;
   width: 520px;
   z-index: 9999;
+  will-change: transform;
 }
 
 .ModalHeader {
   margin-bottom: 0.5em;
+  position: relative;
+}
+
+.ModalStatus {
+  will-change: transform;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  color: var(--color-green);
 }
 
 .ModalButton {
@@ -31,9 +41,10 @@
 
 .Underlay {
   transition: var(--transition);
+  will-change: transform, opacity;
 }
 
 .Underlay.showModal {
   transform: scale(0.9);
-  opacity: 0.8;
+  opacity: 0.2;
 }

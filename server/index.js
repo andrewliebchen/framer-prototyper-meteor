@@ -17,6 +17,14 @@ Meteor.methods({
     });
   },
 
+  updateName(args) {
+    return Prototypes.update(args.id, {
+      $set: {
+        name: args.name
+      }
+    });
+  },
+
   updateCode(args) {
     return Prototypes.update(args.id, {
       $set: {

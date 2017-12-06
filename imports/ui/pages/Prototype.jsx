@@ -11,7 +11,6 @@ import Editor from "../components/Editor.jsx";
 import Preview from "../components/Preview.jsx";
 import Modal from "../components/Modal.jsx";
 import FormInput from "../components/FormInput.jsx";
-import FormButton from "../components/FormButton.jsx";
 import EditControls from "../components/EditControls.jsx";
 import AccountsUIWrapper from "../components/AccountsUIWrapper.jsx";
 
@@ -24,9 +23,11 @@ class Prototype extends Component {
     super(props);
     this.state = {
       playing: true,
-      modal: false
+      modal: false,
+      updated: false
     };
-    this._handlePlayToggle = this._handlePlayToggle.bind(this)
+    this._renderModalContent = this._renderModalContent.bind(this);
+    this._handlePlayToggle = this._handlePlayToggle.bind(this);
   }
 
   _renderModalContent() {
@@ -34,6 +35,20 @@ class Prototype extends Component {
       case "Settings":
         return (
           <div>
+            <FormInput
+              label="Prototype name"
+              defaultValue={this.props.prototype.name}
+              placeholder="Make it snappy"
+              onChange={event =>
+                Meteor.call(
+                  "updateName",
+                  {
+                    id: this.props.prototype._id,
+                    name: event.target.value
+                  },
+                  (err, success) => this.setState({ updated: true })
+                )}
+            />
             <FormInput
               label="URL"
               value={window.location.href}
@@ -67,6 +82,7 @@ class Prototype extends Component {
         close={() => this.setState({ modal: false })}
         title={this.state.modal ? this.state.modal : null}
         content={this._renderModalContent()}
+        updated={this.state.updated}
       >
         <PageComponents />
         <Flex className="App Underlay">
@@ -75,7 +91,8 @@ class Prototype extends Component {
               full={false}
               togglePlaying={this._handlePlayToggle}
               {...this.state}
-              {...this.props} />
+              {...this.props}
+            />
           </Box>
           {canEdit && (
             <Box w={1 / 2} style={{ position: "relative" }}>

@@ -4,7 +4,7 @@
 }
 
 .FormLabel {
-  font-size: 14px;
+  font-size: 12px;
   display: block;
   font-weight: bold;
   margin-bottom: 0.5em;
@@ -42,4 +42,9 @@
   letter-spacing: var(--letter-spacing);
   text-transform: uppercase;
   color: var(--color-accent);
+}
+
+.FormIcon {
+  position: absolute;
+  right: 0;
 }

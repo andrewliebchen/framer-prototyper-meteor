@@ -20,14 +20,7 @@ class FormInput extends Component {
           <label className="FormLabel">{this.props.label}</label>
         </Box>
         <Box style={{ position: "relative" }}>
-          <input
-            className="FormInput"
-            type={this.props.type}
-            placeholder={this.props.placeholder}
-            defaultValue={this.props.defaultValue}
-            value={this.props.value}
-            disabled={this.props.disabled}
-          />
+          <input className="FormInput" {...this.props} />
           {this.props.copy && (
             <div className="FormCopy">
               <CopyToClipboard

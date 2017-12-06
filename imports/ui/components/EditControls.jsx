@@ -4,7 +4,6 @@ import { Flex, Box } from "reflexbox";
 import { Folder, Settings, Play, Pause, Sun } from 'react-feather';
 import { Link } from "react-router-dom";
 
-import Icon from "./Icon.jsx";
 import Control from "./Control.jsx";
 
 import "../styles/Controls.css";

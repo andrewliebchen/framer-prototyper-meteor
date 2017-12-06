@@ -5,8 +5,6 @@ import PropTypes from "prop-types";
 import { Flex, Box } from "reflexbox";
 // import { Link } from "react-router-dom";
 
-import Icon from "./Icon";
-
 import "../styles/Editor.css";
 
 import "brace/mode/jsx";
