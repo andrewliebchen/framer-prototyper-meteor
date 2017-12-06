@@ -26,7 +26,7 @@ class Prototype extends Component {
       modal: false,
       updated: false
     };
-    this._renderModalContent = this._renderModalContent.bind(this);
+    this._updateStatusBadge = this._updateStatusBadge.bind(this);
     this._handlePlayToggle = this._handlePlayToggle.bind(this);
   }
 
@@ -46,7 +46,7 @@ class Prototype extends Component {
                     id: this.props.prototype._id,
                     name: event.target.value
                   },
-                  (err, success) => this.setState({ updated: true })
+                  (err, success) => this._updateStatusBadge()
                 )}
             />
             <FormInput
@@ -69,6 +69,11 @@ class Prototype extends Component {
     this.setState({ playing: !this.state.playing });
   }
 
+  _updateStatusBadge() {
+    this.setState({ updated: true });
+    setTimeout(() => this.setState({ updated: false }), 3000);
+  }
+
   render() {
     const { prototype, loading } = this.props;
     const code = prototype ? prototype.code : "";
@@ -79,7 +84,7 @@ class Prototype extends Component {
     ) : (
       <Modal
         show={this.state.modal ? true : false}
-        close={() => this.setState({ modal: false })}
+        close={() => this.setState({ modal: false, updated: false })}
         title={this.state.modal ? this.state.modal : null}
         content={this._renderModalContent()}
         updated={this.state.updated}
