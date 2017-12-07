@@ -6,11 +6,12 @@
 
   --color-accent: #0074d9;
   --color-green: #2ecc40;
+  --color-red: #ff4136;
 
+  --outline-focus: 0 0 0 2px white, 0 0 0 3px var(--color-accent);
   --letter-spacing: 0.02em;
 
   --control-size: 4.5em;
-
   --transition: 0.1s ease-in-out;
 }
 
@@ -66,13 +67,22 @@ button:hover {
 
 button:focus {
   outline: none;
-  box-shadow: 0 0 0 2px white, 0 0 0 3px var(--color-accent);
+  box-shadow: var(--outline-focus);
 }
 
-button.isActive {
-  background-color: white;
-  color: #111;
-  z-index: 1;
+button.negative {
+  border-color: var(--color-red);
+  color: var(--color-red);
+}
+
+button.negative:hover {
+  background-color: var(--color-red);
+  color: white;
+}
+
+button.block {
+  display: block;
+  width: 100%;
 }
 
 .Tooltip {

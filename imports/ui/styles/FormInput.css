@@ -23,8 +23,17 @@
   border-radius: 2px;
 }
 
+.FormInput:hover {
+  border-color: var(--color-accent);
+}
+
 .FormInput:disabled {
   background-color: var(--color-gray-4);
+}
+
+.FormInput:focus {
+  box-shadow: var(--outline-focus);
+  outline: none;
 }
 
 .FormCopy {

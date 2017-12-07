@@ -35,27 +35,49 @@ class Prototype extends Component {
       case "Settings":
         return (
           <div>
-            <FormInput
-              label="Prototype name"
-              defaultValue={this.props.prototype.name}
-              placeholder="Make it snappy"
-              onChange={event =>
-                Meteor.call(
-                  "updateName",
-                  {
-                    id: this.props.prototype._id,
-                    name: event.target.value
-                  },
-                  (err, success) => this._updateStatusBadge()
-                )}
-            />
-            <FormInput
-              label="URL"
-              value={window.location.href}
-              copy={window.location.href}
-              disabled
-            />
-            <AccountsUIWrapper />
+            <div className="ModalSection">
+              <FormInput
+                label="Prototype name"
+                defaultValue={this.props.prototype.name}
+                placeholder="Make it snappy"
+                onChange={event =>
+                  Meteor.call(
+                    "updateName",
+                    {
+                      id: this.props.prototype._id,
+                      name: event.target.value
+                    },
+                    (err, success) => this._updateStatusBadge()
+                  )}
+              />
+              <FormInput
+                label="URL"
+                value={window.location.href}
+                copy={window.location.href}
+                disabled
+              />
+            </div>
+            <div className="ModalSection">
+              <h2>Account</h2>
+              <AccountsUIWrapper />
+            </div>
+            <div className="ModalSection">
+              <h2>Danger zone</h2>
+              <button
+                className="negative block"
+                onClick={() => {
+                  if (
+                    window.confirm(
+                      "Are you sure you want to delete this prototype?"
+                    )
+                  ) {
+                    Meteor.call("deletePrototype", this.props.prototype._id);
+                  }
+                }}
+              >
+                Delete prototype
+              </button>
+            </div>
           </div>
         );
       case "Prototypes":

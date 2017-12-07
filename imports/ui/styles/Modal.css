@@ -11,6 +11,10 @@
   will-change: transform;
 }
 
+.ModalSection + .ModalSection {
+  margin-top: 4em;
+}
+
 .ModalHeader {
   margin-bottom: 0.5em;
   position: relative;

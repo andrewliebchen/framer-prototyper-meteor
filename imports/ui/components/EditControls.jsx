@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Flex, Box } from "reflexbox";
-import { Folder, Settings, Play, Pause, Sun } from 'react-feather';
+import { Folder, Settings, Play, Pause, Sun, HelpCircle } from "react-feather";
 import { Link } from "react-router-dom";
 
 import Control from "./Control.jsx";
@@ -12,17 +12,22 @@ const EditControls = props => (
   <Flex className="Controls" column>
     <Control
       tip="All prototypes"
-      icon={<Folder/>}
+      icon={<Folder />}
       handleClick={props.showAll}
     />
-    <Control tip="Settings" icon={<Settings/>} handleClick={props.showSettings} />
+    <Control
+      tip="Settings"
+      icon={<Settings />}
+      handleClick={props.showSettings}
+    />
     <Control
       tip={props.playing ? "Pause" : "Play"}
-      icon={props.playing ? <Pause/> : <Play/>}
+      icon={props.playing ? <Pause /> : <Play />}
       handleClick={props.togglePlaying}
     />
-    <Link className="Control" to="/new" data-tip="New Prototype">
-        <Sun/>
+    <Control tip={"Help"} icon={<HelpCircle />} />
+    <Link className="Control PrimaryControl" to="/new" data-tip="New Prototype">
+      <Sun />
     </Link>
   </Flex>
 );

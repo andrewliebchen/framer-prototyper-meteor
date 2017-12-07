@@ -32,5 +32,9 @@ Meteor.methods({
         updatedAt: args.createdAt
       }
     });
+  },
+
+  deletePrototype(id) {
+    return Prototypes.remove(id);
   }
 });
