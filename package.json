@@ -25,6 +25,7 @@
     "react-tooltip": "^3.4.0",
     "react-transition-group": "^2.2.1",
     "reflexbox": "^3.0.0-0",
+    "timeago.js": "^3.0.2",
     "window-resize-listener-react": "^1.0.3"
   },
   "version": "1.0.0",

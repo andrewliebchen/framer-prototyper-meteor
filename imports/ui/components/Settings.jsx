@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
 import AccountsUIWrapper from "../components/AccountsUIWrapper.jsx";
 
+import { deletePrototype } from "../lib/utils";
+
 import FormInput from "../components/FormInput.jsx";
 
 const Settings = props => (
@@ -37,13 +39,7 @@ const Settings = props => (
       <h2>Danger zone</h2>
       <button
         className="negative block"
-        onClick={() => {
-          if (
-            window.confirm("Are you sure you want to delete this prototype?")
-          ) {
-            Meteor.call("deletePrototype", props.prototype._id);
-          }
-        }}
+        onClick={() => deletePrototype(props.prototype_id)}
       >
         Delete prototype
       </button>

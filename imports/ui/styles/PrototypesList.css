@@ -1,0 +1,12 @@
+.PrototypeItem {
+  border: 1px solid var(--color-gray-3);
+  padding: 1em;
+  margin-bottom: 1em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.PrototypeItem:hover,
+.PrototypeItem.Current {
+  border-color: var(--color-accent);
+}

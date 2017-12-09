@@ -13,6 +13,7 @@ import Modal from "../components/Modal.jsx";
 import FormInput from "../components/FormInput.jsx";
 import EditControls from "../components/EditControls.jsx";
 import Settings from "../components/Settings.jsx";
+import PrototypesList from "../components/PrototypesList.jsx";
 
 import { Prototypes } from "../../api/prototypes";
 
@@ -23,7 +24,7 @@ class Prototype extends Component {
     super(props);
     this.state = {
       playing: true,
-      modal: false,
+      modal: "Prototypes",
       updated: false
     };
     this._handlePlayToggle = this._handlePlayToggle.bind(this);
@@ -39,7 +40,12 @@ class Prototype extends Component {
           />
         );
       case "Prototypes":
-        <div>All prototypes</div>;
+        return (
+          <PrototypesList
+            showSettings={() => this.setState({ modal: "Settings" })}
+            {...this.props}
+          />
+        );
       case "Help":
         <div>Help</div>;
       default:
@@ -96,15 +102,16 @@ class Prototype extends Component {
 
 Prototype.propTypes = {
   prototype: PropTypes.object,
+  prototypes: PropTypes.array,
   loading: PropTypes.bool
 };
 
 export default withTracker(({ id }) => {
-  const prototypeHandle = Meteor.subscribe("prototype", id);
+  const prototypeHandle = Meteor.subscribe("prototypes", Meteor.userId());
   const loading = !prototypeHandle.ready();
-
   return {
     loading,
-    prototype: loading ? {} : Prototypes.findOne()
+    prototype: loading ? {} : Prototypes.findOne(id),
+    prototypes: loading ? [] : Prototypes.find().fetch()
   };
 })(Prototype);
