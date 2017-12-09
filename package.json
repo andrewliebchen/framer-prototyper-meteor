@@ -24,8 +24,8 @@
     "react-router-dom": "^4.2.2",
     "react-tooltip": "^3.4.0",
     "react-transition-group": "^2.2.1",
-    "react-window-resize-listener": "^1.1.0",
-    "reflexbox": "^3.0.0-0"
+    "reflexbox": "^3.0.0-0",
+    "window-resize-listener-react": "^1.0.3"
   },
   "version": "1.0.0",
   "main": "index.js",

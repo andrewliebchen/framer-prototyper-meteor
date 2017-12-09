@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ReactInterval from "react-interval";
 import Frame from "react-frame-component";
-// import { WindowResizeListener } from "react-window-resize-listener";
+import ReactWindowResizeListener from "window-resize-listener-react";
 import { Flex, Box } from "reflexbox";
 import Transition from "react-transition-group/Transition";
 
@@ -52,7 +52,8 @@ class Preview extends Component {
           enabled={playing}
           callback={this._reRender}
         />
-        {/* <WindowResizeListener onResize={windowSize => this._reRender()} /> */}
+        {/* FIXME: This doesn't work */}
+        <ReactWindowResizeListener onResize={() => this._reRender()} />
         <Transition in={!playing} timeout={duration}>
           {state => (
             <Flex
@@ -64,9 +65,9 @@ class Preview extends Component {
                 ...transitionStyles[state]
               }}
             >
-              <Box
-                className="PreviewBanner"
-                onClick={togglePlaying}>Reload is paused</Box>
+              <Box className="PreviewBanner" onClick={togglePlaying}>
+                Reload is paused
+              </Box>
             </Flex>
           )}
         </Transition>

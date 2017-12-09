@@ -25,7 +25,7 @@ const EditControls = props => (
       icon={props.playing ? <Pause /> : <Play />}
       handleClick={props.togglePlaying}
     />
-    <Control tip={"Help"} icon={<HelpCircle />} />
+    <Control tip={"Help"} icon={<HelpCircle />} handleClick={props.showHelp} />
     <Link className="Control PrimaryControl" to="/new" data-tip="New Prototype">
       <Sun />
     </Link>
@@ -36,6 +36,7 @@ EditControls.propTypes = {
   togglePlaying: PropTypes.func,
   playing: PropTypes.bool,
   showSettings: PropTypes.func,
+  showHelp: PropTypes.func,
   showAll: PropTypes.func
 };
 

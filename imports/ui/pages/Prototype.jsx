@@ -12,7 +12,7 @@ import Preview from "../components/Preview.jsx";
 import Modal from "../components/Modal.jsx";
 import FormInput from "../components/FormInput.jsx";
 import EditControls from "../components/EditControls.jsx";
-import AccountsUIWrapper from "../components/AccountsUIWrapper.jsx";
+import Settings from "../components/Settings.jsx";
 
 import { Prototypes } from "../../api/prototypes";
 
@@ -26,7 +26,6 @@ class Prototype extends Component {
       modal: false,
       updated: false
     };
-    this._updateStatusBadge = this._updateStatusBadge.bind(this);
     this._handlePlayToggle = this._handlePlayToggle.bind(this);
   }
 
@@ -34,54 +33,15 @@ class Prototype extends Component {
     switch (this.state.modal) {
       case "Settings":
         return (
-          <div>
-            <div className="ModalSection">
-              <FormInput
-                label="Prototype name"
-                defaultValue={this.props.prototype.name}
-                placeholder="Make it snappy"
-                onChange={event =>
-                  Meteor.call(
-                    "updateName",
-                    {
-                      id: this.props.prototype._id,
-                      name: event.target.value
-                    },
-                    (err, success) => this._updateStatusBadge()
-                  )}
-              />
-              <FormInput
-                label="URL"
-                value={window.location.href}
-                copy={window.location.href}
-                disabled
-              />
-            </div>
-            <div className="ModalSection">
-              <h2>Account</h2>
-              <AccountsUIWrapper />
-            </div>
-            <div className="ModalSection">
-              <h2>Danger zone</h2>
-              <button
-                className="negative block"
-                onClick={() => {
-                  if (
-                    window.confirm(
-                      "Are you sure you want to delete this prototype?"
-                    )
-                  ) {
-                    Meteor.call("deletePrototype", this.props.prototype._id);
-                  }
-                }}
-              >
-                Delete prototype
-              </button>
-            </div>
-          </div>
+          <Settings
+            updateStatusBadge={this._updateStatusBadge}
+            {...this.props}
+          />
         );
       case "Prototypes":
         <div>All prototypes</div>;
+      case "Help":
+        <div>Help</div>;
       default:
         return <div />;
     }
@@ -89,11 +49,6 @@ class Prototype extends Component {
 
   _handlePlayToggle() {
     this.setState({ playing: !this.state.playing });
-  }
-
-  _updateStatusBadge() {
-    this.setState({ updated: true });
-    setTimeout(() => this.setState({ updated: false }), 3000);
   }
 
   render() {
@@ -127,6 +82,7 @@ class Prototype extends Component {
               <EditControls
                 showAll={() => this.setState({ modal: "Prototypes" })}
                 showSettings={() => this.setState({ modal: "Settings" })}
+                showHelp={() => this.setState({ modal: "Help" })}
                 togglePlaying={this._handlePlayToggle}
                 {...this.state}
               />
