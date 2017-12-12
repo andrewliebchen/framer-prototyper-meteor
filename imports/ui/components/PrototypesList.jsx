@@ -5,6 +5,7 @@ import { Trash2, Settings } from "react-feather";
 import timeago from "timeago.js";
 import { Flex, Box } from "reflexbox";
 import classnames from "classnames";
+import { Link } from "react-router-dom";
 
 import { deletePrototype } from "../lib/utils";
 
@@ -26,23 +27,24 @@ const PrototypesList = props => (
     {props.prototypes.map(prototype => {
       const isCurrent = prototype._id === props.prototype._id;
       return (
-        <Flex
-          className={classnames({
-            PrototypeItem: true,
-            Current: isCurrent
-          })}
-          key={prototype._id}
-        >
-          <Box>
-            <h3>{prototype.name || "Untitled"}</h3>
-            <div>Created {timeagoInstance.format(prototype.createdAt)}</div>
-            <div>Updated {timeagoInstance.format(prototype.updatedAt)}</div>
-          </Box>
-          <Box>
-            <Trash2 onClick={() => deletePrototype(prototype._id)} />
-            {isCurrent && <Settings onClick={props.showSettings} />}
-          </Box>
-        </Flex>
+        <Link to={`/${prototype._id}`} key={prototype._id}>
+          <Flex
+            className={classnames({
+              PrototypeItem: true,
+              Current: isCurrent
+            })}
+          >
+            <Box>
+              <h3>{prototype.name || "Untitled"}</h3>
+              <div>Created {timeagoInstance.format(prototype.createdAt)}</div>
+              <div>Updated {timeagoInstance.format(prototype.updatedAt)}</div>
+            </Box>
+            <Box>
+              <Trash2 onClick={() => deletePrototype(prototype._id)} />
+              {isCurrent && <Settings onClick={props.showSettings} />}
+            </Box>
+          </Flex>
+        </Link>
       );
     })}
   </div>

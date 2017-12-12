@@ -1,4 +1,5 @@
-.Control {
+.Control,
+a.Control {
   cursor: pointer;
   height: 24px;
   background-color: black;
@@ -9,26 +10,26 @@
   display: flex;
   align-items: center;
   border-radius: var(--control-size);
-  color: #ccc;
   transition: var(--transition);
   margin-bottom: 0.5em;
   align-items: center;
   justify-content: center;
-}
-
-.Control:hover {
-  box-shadow: 0 0 0 2px var(--color-accent);
   color: white;
 }
 
-.PreviewControl {
-  background-color: var(--color-gray-4);
+.Control:hover,
+a.Control:hover {
+  box-shadow: 0 0 0 2px var(--color-accent);
 }
 
 .Icon {
   height: 24px;
   display: inline-block;
-  color: white;
+  color: inherit;
+}
+
+.PreviewControl {
+  background-color: var(--color-gray-4);
 }
 
 .PreviewControl .Icon {

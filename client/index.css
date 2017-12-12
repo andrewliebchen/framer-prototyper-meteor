@@ -41,6 +41,10 @@ a {
   text-decoration: none;
 }
 
+a:visited {
+  color: var(--color-accent);
+}
+
 p {
   font-size: 16px;
 }

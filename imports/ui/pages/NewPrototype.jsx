@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Meteor } from "meteor/meteor";
+import { Redirect } from "react-router-dom";
+
+import Loader from "../components/Loader.jsx";
 
 // Creates a new prototype, passes the new prototype id to state.
 // Then, redirects to the new prototype from id in state.
@@ -12,7 +15,7 @@ class NewPrototypePage extends Component {
     };
   }
 
-  render() {
+  componentDidMount() {
     Meteor.call(
       "newPrototype",
       {
@@ -25,11 +28,13 @@ class NewPrototypePage extends Component {
         }
       }
     );
+  }
 
+  render() {
     if (this.state.newId) {
       return <Redirect to={`/${this.state.newId}`} />;
     } else {
-      return null;
+      return <Loader />;
     }
   }
 }

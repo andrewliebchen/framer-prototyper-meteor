@@ -24,7 +24,7 @@ class Prototype extends Component {
     super(props);
     this.state = {
       playing: true,
-      modal: "Prototypes",
+      modal: false,
       updated: false
     };
     this._handlePlayToggle = this._handlePlayToggle.bind(this);
@@ -112,6 +112,8 @@ export default withTracker(({ id }) => {
   return {
     loading,
     prototype: loading ? {} : Prototypes.findOne(id),
-    prototypes: loading ? [] : Prototypes.find().fetch()
+    prototypes: loading
+      ? []
+      : Prototypes.find({}, { sort: { updatedAt: -1 } }).fetch()
   };
 })(Prototype);
