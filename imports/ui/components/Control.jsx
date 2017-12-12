@@ -5,13 +5,11 @@ import "../styles/Control.css";
 
 const Control = props => (
   <div
-    className={`Control ${props.className ? props.className : ''}`}
+    className={`Control ${props.className ? props.className : ""}`}
     data-tip={props.tip}
     onClick={props.handleClick && props.handleClick}
   >
-      <div className="Icon">
-        {props.icon}
-      </div>
+    <div className="Icon">{props.icon}</div>
   </div>
 );
 

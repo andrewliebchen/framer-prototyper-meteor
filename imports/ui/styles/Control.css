@@ -22,20 +22,16 @@ a.Control:hover {
   box-shadow: 0 0 0 2px var(--color-accent);
 }
 
-.Icon {
-  height: 24px;
-  display: inline-block;
-  color: inherit;
-}
-
-.PreviewControl {
+a.PreviewControl {
   background-color: var(--color-gray-4);
-}
-
-.PreviewControl .Icon {
   color: var(--color-gray-3);
 }
 
-.PreviewControl:hover .Icon {
+a.PreviewControl:hover {
   color: var(--color-accent);
+}
+
+.Icon svg {
+  position: relative;
+  top: 2px;
 }

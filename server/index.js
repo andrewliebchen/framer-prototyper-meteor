@@ -7,6 +7,10 @@ const initialCode = `const layerA = new Layer({
   backgroundColor: new Color('blue').alpha(0.5),
 });`;
 
+Meteor.publish("prototype", id => {
+  return Prototypes.find({ _id: id });
+});
+
 Meteor.publish("prototypes", userId => {
   return Prototypes.find({ owner: userId });
 });

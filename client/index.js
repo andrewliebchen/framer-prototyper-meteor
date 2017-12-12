@@ -26,15 +26,15 @@ const RenderRoutes = () => (
   <Router>
     <div>
       <Switch>
-        <Route exact path="/new" component={NewPrototypePage} />
-        <Route exact path="/login" compoent={LoginPage} />
-        <Route
-          path="/:id"
-          render={({ match }) => <PrototypePage id={match.params.id} />}
-        />
+        <Route path="/new" component={NewPrototypePage} />
+        <Route path="/login" compoent={LoginPage} />
         <Route
           path="/:id/preview"
           render={({ match }) => <FullPreview id={match.params.id} />}
+        />
+        <Route
+          path="/:id"
+          render={({ match }) => <PrototypePage id={match.params.id} />}
         />
       </Switch>
     </div>

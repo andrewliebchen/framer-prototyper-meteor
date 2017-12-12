@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Flex, Box } from "reflexbox";
-import { ExternalLink, Edit3 } from 'react-feather';
+import { Flex } from "reflexbox";
+import { Link } from "react-router-dom";
+import { ExternalLink, Edit3 } from "react-feather";
 
 import Control from "./Control.jsx";
 
@@ -9,16 +10,19 @@ import "../styles/Controls.css";
 
 const PreviewControls = props => (
   <Flex className="Controls" column>
-    <Control
-      tip={props.full ? "Edit" : "Preview"}
-      icon={props.full ? <Edit3/> : <ExternalLink/>}
-      className="PreviewControl"
-      link={
-        props.full
-          ? `/${props.prototype._id}`
-          : `/${props.prototype._id}/preview`
-      }
-    />
+    {Meteor.userId() && (
+      <Link
+        className="Control PreviewControl"
+        to={
+          props.full
+            ? `/${props.prototype._id}`
+            : `/${props.prototype._id}/preview`
+        }
+        data-tip={props.full ? "Edit" : "Preview"}
+      >
+        {props.full ? <Edit3 /> : <ExternalLink />}
+      </Link>
+    )}
   </Flex>
 );
 
