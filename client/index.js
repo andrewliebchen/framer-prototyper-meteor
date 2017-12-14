@@ -25,18 +25,22 @@ import "./index.css";
 const RenderRoutes = () => (
   <Router>
     <div>
-      <Switch>
-        <Route path="/new" component={NewPrototypePage} />
-        <Route path="/login" compoent={LoginPage} />
-        <Route
-          path="/:id/preview"
-          render={({ match }) => <FullPreview id={match.params.id} />}
-        />
-        <Route
-          path="/:id"
-          render={({ match }) => <PrototypePage id={match.params.id} />}
-        />
-      </Switch>
+      {Meteor.userId() ? (
+        <Switch>
+          <Route path="/new" component={NewPrototypePage} />
+          <Route path="/login" compoent={LoginPage} />
+          <Route
+            path="/:id/preview"
+            render={({ match }) => <FullPreview id={match.params.id} />}
+          />
+          <Route
+            path="/:id"
+            render={({ match }) => <PrototypePage id={match.params.id} />}
+          />
+        </Switch>
+      ) : (
+        <LoginPage />
+      )}
     </div>
   </Router>
 );

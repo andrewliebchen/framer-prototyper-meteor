@@ -1,12 +1,39 @@
+.PrototypeListButton {
+  width: 100%;
+  margin-bottom: 1em;
+}
+
 .PrototypeItem {
   border: 1px solid var(--color-gray-3);
   padding: 1em;
   margin-bottom: 1em;
   cursor: pointer;
   user-select: none;
+  color: var(--color-gray-1);
 }
 
 .PrototypeItem:hover,
 .PrototypeItem.Current {
   border-color: var(--color-accent);
+}
+
+.PrototypeItem.Current {
+  box-shadow: var(--outline-focus);
+}
+
+.PrototypeItemActions {
+  display: none;
+}
+
+.PrototypeItem:hover .PrototypeItemActions {
+  display: block;
+}
+
+.PrototypeItemAction {
+  color: var(--color-gray-2);
+  margin-left: 0.5em;
+}
+
+.PrototypeItemAction:hover {
+  color: var(--color-accent);
 }

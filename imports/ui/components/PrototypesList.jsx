@@ -16,6 +16,7 @@ const timeagoInstance = timeago();
 const PrototypesList = props => (
   <div>
     <button
+      className="PrototypeListButton"
       onClick={() =>
         Meteor.call("newPrototype", {
           createdAt: Date.now(),
@@ -33,15 +34,27 @@ const PrototypesList = props => (
               PrototypeItem: true,
               Current: isCurrent
             })}
+            justify="space-between"
           >
             <Box>
               <h3>{prototype.name || "Untitled"}</h3>
               <div>Created {timeagoInstance.format(prototype.createdAt)}</div>
               <div>Updated {timeagoInstance.format(prototype.updatedAt)}</div>
             </Box>
-            <Box>
-              <Trash2 onClick={() => deletePrototype(prototype._id)} />
-              {isCurrent && <Settings onClick={props.showSettings} />}
+            <Box className="PrototypeItemActions">
+              {isCurrent && (
+                <Settings
+                  className="PrototypeItemAction"
+                  onClick={props.showSettings}
+                />
+              )}
+              <Trash2
+                className="PrototypeItemAction"
+                onClick={event => {
+                  event.preventDefault();
+                  deletePrototype(prototype._id);
+                }}
+              />
             </Box>
           </Flex>
         </Link>

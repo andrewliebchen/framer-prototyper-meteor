@@ -24,7 +24,7 @@ class Prototype extends Component {
     super(props);
     this.state = {
       playing: true,
-      modal: false,
+      modal: "Prototypes",
       updated: false
     };
     this._handlePlayToggle = this._handlePlayToggle.bind(this);
