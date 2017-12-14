@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
-import AccountsUIWrapper from "../components/AccountsUIWrapper.jsx";
+import Accounts from "../components/Accounts.jsx";
 
 import { deletePrototype } from "../lib/utils";
 
@@ -33,7 +33,7 @@ const Settings = props => (
     </div>
     <div className="ModalSection">
       <h2>Account</h2>
-      <AccountsUIWrapper />
+      <Accounts />
     </div>
     <div className="ModalSection">
       <h2>Danger zone</h2>

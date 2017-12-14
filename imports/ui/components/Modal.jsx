@@ -2,20 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import Transition from "react-transition-group/Transition";
-import { CheckCircle } from "react-feather";
+import { X } from "react-feather";
+import { Flex } from "reflexbox";
 
 import "../styles/Modal.css";
-
-const statusDuration = 300;
-const statusDefaultStyle = {
-  transform: "translateY(-50%) scale(0)",
-  transition: `${statusDuration}ms cubic-bezier(0.680, -0.550, 0.265, 1.550)`
-};
-const statusTransitionStyles = {
-  entered: {
-    transform: "translateY(-50%) scale(1)"
-  }
-};
 
 const modalDuration = 200;
 const modalDefaultStyle = {
@@ -56,22 +46,10 @@ const Modal = props => (
             ...modalTransitionStyles[state]
           }}
         >
-          <div className="ModalHeader">
-            <h2>{props.title}</h2>
-            <Transition in={props.updated} timeout={statusDuration}>
-              {state => (
-                <div
-                  className="ModalStatus"
-                  style={{
-                    ...statusDefaultStyle,
-                    ...statusTransitionStyles[state]
-                  }}
-                >
-                  <CheckCircle />
-                </div>
-              )}
-            </Transition>
-          </div>
+          <Flex className="ModalHeader" justify="space-between" align="center">
+            <h2 className="ModalTitle">{props.title}</h2>
+            <X className="ModalClose" onClick={props.close} />
+          </Flex>
           {props.content}
         </div>
       )}

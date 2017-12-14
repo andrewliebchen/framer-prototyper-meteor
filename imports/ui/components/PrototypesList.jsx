@@ -42,14 +42,12 @@ const PrototypesList = props => (
               <div>Updated {timeagoInstance.format(prototype.updatedAt)}</div>
             </Box>
             <Box className="PrototypeItemActions">
-              {isCurrent && (
-                <Settings
-                  className="PrototypeItemAction"
-                  onClick={props.showSettings}
-                />
-              )}
-              <Trash2
+              <Settings
                 className="PrototypeItemAction"
+                onClick={props.showSettings}
+              />
+              <Trash2
+                className="PrototypeItemAction Delete"
                 onClick={event => {
                   event.preventDefault();
                   deletePrototype(prototype._id);

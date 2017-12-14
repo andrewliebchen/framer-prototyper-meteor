@@ -1,0 +1,9 @@
+.login-display-name {
+  margin-bottom: 1em;
+  font-weight: bold;
+}
+
+.login-display-name::before {
+  content: "Signed in as ";
+  font-weight: normal;
+}

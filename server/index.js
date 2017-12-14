@@ -37,7 +37,7 @@ Meteor.methods({
     return Prototypes.update(args.id, {
       $set: {
         code: args.code,
-        updatedAt: args.createdAt
+        updatedAt: args.updatedAt
       }
     });
   },

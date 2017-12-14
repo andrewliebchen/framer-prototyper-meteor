@@ -37,3 +37,7 @@
 .PrototypeItemAction:hover {
   color: var(--color-accent);
 }
+
+.PrototypeItemAction.Delete:hover {
+  color: var(--color-red);
+}

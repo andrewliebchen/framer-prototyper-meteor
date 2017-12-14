@@ -16,16 +16,21 @@
 }
 
 .ModalHeader {
-  margin-bottom: 0.5em;
+  margin-bottom: 2em;
   position: relative;
 }
 
-.ModalStatus {
-  will-change: transform;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  color: var(--color-green);
+.ModalTitle {
+  margin: 0;
+}
+
+.ModalClose {
+  cursor: pointer;
+  color: var(--color-gray-3);
+}
+
+.ModalClose:hover {
+  color: var(--color-accent);
 }
 
 .ModalButton {

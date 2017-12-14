@@ -14,6 +14,7 @@ import FormInput from "../components/FormInput.jsx";
 import EditControls from "../components/EditControls.jsx";
 import Settings from "../components/Settings.jsx";
 import PrototypesList from "../components/PrototypesList.jsx";
+import Snippets from "../components/Snippets.jsx";
 
 import { Prototypes } from "../../api/prototypes";
 
@@ -24,7 +25,7 @@ class Prototype extends Component {
     super(props);
     this.state = {
       playing: true,
-      modal: "Prototypes",
+      modal: "Help",
       updated: false
     };
     this._handlePlayToggle = this._handlePlayToggle.bind(this);
@@ -47,7 +48,7 @@ class Prototype extends Component {
           />
         );
       case "Help":
-        <div>Help</div>;
+        return <Snippets prototype={this.props.prototype} />;
       default:
         return <div />;
     }

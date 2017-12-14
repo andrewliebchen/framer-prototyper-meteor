@@ -1,6 +1,6 @@
 import React from "react";
 import { Meteor } from "meteor/meteor";
-import AccountsUIWrapper from "../components/AccountsUIWrapper.jsx";
+import Accounts from "../components/Accounts.jsx";
 import { Redirect } from "react-router-dom";
 
 // FIXME: Where do we redirect to if you're logged in?
@@ -10,7 +10,7 @@ const LoginPage = () => {
   } else {
     return (
       <div className="Login">
-        <AccountsUIWrapper />
+        <Accounts />
       </div>
     );
   }
