@@ -1,5 +1,87 @@
 const snippets = [
-  { name: "test", description: "This is only a test", code: "print('test');" }
+  {
+    name: "Create Layers",
+    description:
+      "Duis est sit cillum esse ipsum sit adipisicing eu eu consequat officia minim ad.",
+    code: `
+let index;
+let asc, end;
+let asc1, end1;
+const screenA = new Layer({
+  size: Screen.size,
+  backgroundColor: "#00AAFF"
+});
+
+const screenB = new Layer({
+  size: Screen.size,
+  backgroundColor: "#FFCC33"
+});
+    `
+  },
+  {
+    name: "Set up FlowComponent",
+    description:
+      "Duis est sit cillum esse ipsum sit adipisicing eu eu consequat officia minim ad.",
+    code: `
+const flow = new FlowComponent;
+flow.showNext(screenA);
+
+// Switch on click
+screenA.onClick(() => flow.showNext(screenB));
+
+screenB.onClick(() => flow.showPrevious());
+    `
+  },
+  {
+    name: "Variables",
+    code: `
+const pageCount = 8;
+let gutter = 60;
+    `
+  },
+  {
+    name: "Create PageComponent",
+    code: `
+const pageScroller = new PageComponent({
+	point: Align.center,
+	width: Screen.width / 2,
+	height: Screen.height / 2,
+	scrollVertical: false,
+	clip: false
+});
+`
+  },
+  {
+    name: "Loop to create pages",
+    code: `
+for (index = 0, end = pageCount, asc = 0 <= end; asc ? index < end : index > end; asc ? index++ : index--) {
+	const page = new Layer({
+		size: pageScroller.size,
+		x: (pageScroller.width + gutter) * index,
+		backgroundColor: "#00AAFF",
+		hueRotate: index * 20,
+		parent: pageScroller.content
+	});
+
+	page.onClick(function() {
+		return pageScroller.snapToPage(this);
+	});
+}
+    `
+  },
+  {
+    name: "Create a range slider",
+    code: `
+const range = new RangeSliderComponent({
+  x: Align.center,
+  y: Align.center,
+  min: 0,
+  max: 100,
+  minValue: 0,
+  maxValue: 50
+});
+    `
+  }
 ];
 
 export default snippets;
@@ -15,67 +97,21 @@ INCLUDE OTHERS?
 // Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
 
 // Create layers
-let index;
-let asc, end;
-let asc1, end1;
-const screenA = new Layer({
-	size: Screen.size,
-	backgroundColor: "#00AAFF"
-});
 
-const screenB = new Layer({
-	size: Screen.size,
-	backgroundColor: "#FFCC33"
-});
 
 // Set up FlowComponent
-const flow = new FlowComponent;
-flow.showNext(screenA);
 
-// Switch on click
-screenA.onClick(() => flow.showNext(screenB));
-
-screenB.onClick(() => flow.showPrevious());
 
 
 // Variables
-const pageCount = 8;
-let gutter = 60;
-
-// Create PageComponent
-const pageScroller = new PageComponent({
-	point: Align.center,
-	width: Screen.width / 2,
-	height: Screen.height / 2,
-	scrollVertical: false,
-	clip: false
-});
-
-// Loop to create pages
-for (index = 0, end = pageCount, asc = 0 <= end; asc ? index < end : index > end; asc ? index++ : index--) {
-	const page = new Layer({
-		size: pageScroller.size,
-		x: (pageScroller.width + gutter) * index,
-		backgroundColor: "#00AAFF",
-		hueRotate: index * 20,
-		parent: pageScroller.content
-	});
-
-	page.onClick(function() {
-		return pageScroller.snapToPage(this);
-	});
-}
 
 
-// Create a range slider
-const range = new RangeSliderComponent({
-	x: Align.center,
-	y: Align.center,
-	min: 0,
-	max: 100,
-	minValue: 0,
-	maxValue: 50
-});
+
+
+
+
+
+
 
 
 
