@@ -25,7 +25,7 @@ class Prototype extends Component {
     super(props);
     this.state = {
       playing: true,
-      modal: "Settings",
+      modal: false,
       updated: false
     };
     this._handlePlayToggle = this._handlePlayToggle.bind(this);
@@ -61,37 +61,39 @@ class Prototype extends Component {
     return loading ? (
       <Loader />
     ) : (
-      <Modal
-        show={this.state.modal ? true : false}
-        close={() => this.setState({ modal: false, updated: false })}
-        title={this.state.modal ? this.state.modal : null}
-        content={this._renderModalContent()}
-        updated={this.state.updated}
-      >
+      <div>
         <PageComponents />
-        <Flex className="App Underlay">
-          <Box auto style={{ position: "relative" }}>
-            <Preview
-              full={false}
-              togglePlaying={this._handlePlayToggle}
-              {...this.state}
-              {...this.props}
-            />
-          </Box>
-          {canEdit && (
-            <Box w={1 / 2} style={{ position: "relative" }}>
-              <Editor code={code} {...this.props} {...this.state} />
-              <EditControls
-                showAll={() => this.setState({ modal: "Prototypes" })}
-                showSettings={() => this.setState({ modal: "Settings" })}
-                showSnippets={() => this.setState({ modal: "Snippets" })}
+        <Modal
+          show={this.state.modal ? true : false}
+          close={() => this.setState({ modal: false, updated: false })}
+          title={this.state.modal ? this.state.modal : null}
+          content={this._renderModalContent()}
+          updated={this.state.updated}
+        >
+          <Flex className="App Underlay">
+            <Box auto style={{ position: "relative" }}>
+              <Preview
+                full={false}
                 togglePlaying={this._handlePlayToggle}
                 {...this.state}
+                {...this.props}
               />
             </Box>
-          )}
-        </Flex>
-      </Modal>
+            {canEdit && (
+              <Box w={1 / 2} style={{ position: "relative" }}>
+                <Editor code={code} {...this.props} {...this.state} />
+                <EditControls
+                  showAll={() => this.setState({ modal: "Prototypes" })}
+                  showSettings={() => this.setState({ modal: "Settings" })}
+                  showSnippets={() => this.setState({ modal: "Snippets" })}
+                  togglePlaying={this._handlePlayToggle}
+                  {...this.state}
+                />
+              </Box>
+            )}
+          </Flex>
+        </Modal>
+      </div>
     );
   }
 }

@@ -101,7 +101,6 @@ input {
   display: block;
   padding: 0.5em;
   width: 100%;
-  border-radius: 3px;
 }
 
 input:hover,
@@ -125,7 +124,6 @@ select {
   appearance: menulist-button;
   font-size: 1em;
   height: 3em;
-  border-radius: 0;
   background-color: white;
   border-color: var(--color-gray-1);
   outline: none;

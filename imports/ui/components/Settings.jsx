@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
 import Accounts from "../components/Accounts.jsx";
+import { toast } from "react-toastify";
 
 import { deletePrototype } from "../lib/utils";
 
@@ -15,9 +16,20 @@ const Settings = props => (
         defaultValue={props.prototype.name}
         placeholder="Make it snappy"
         onChange={event =>
-          Meteor.call("update", props.prototype._id, {
-            name: event.target.value
-          })}
+          Meteor.call(
+            "update",
+            props.prototype._id,
+            {
+              name: event.target.value
+            },
+            (err, success) => {
+              if (success) {
+                if (!toast.isActive(this.toastId)) {
+                  this.toastId = toast("Name has been updated!");
+                }
+              }
+            }
+          )}
       />
       <div className="Form">
         <label className="FormLabel">Syntax</label>
@@ -28,9 +40,18 @@ const Settings = props => (
         <select
           defaultValue={props.prototype.syntax}
           onChange={event =>
-            Meteor.call("update", props.prototype._id, {
-              syntax: event.target.value
-            })}
+            Meteor.call(
+              "update",
+              props.prototype._id,
+              {
+                syntax: event.target.value
+              },
+              (err, success) => {
+                if (success) {
+                  toast("Syntax updated!");
+                }
+              }
+            )}
         >
           <option value="javascript">JavaScript</option>
           <option value="coffeescript">CoffeeScript</option>
