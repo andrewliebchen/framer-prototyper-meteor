@@ -1,8 +1,6 @@
 const snippets = [
   {
     name: "Create Layers",
-    description:
-      "Duis est sit cillum esse ipsum sit adipisicing eu eu consequat officia minim ad.",
     code: `
 let index;
 let asc, end;
@@ -20,8 +18,6 @@ const screenB = new Layer({
   },
   {
     name: "Set up FlowComponent",
-    description:
-      "Duis est sit cillum esse ipsum sit adipisicing eu eu consequat officia minim ad.",
     code: `
 const flow = new FlowComponent;
 flow.showNext(screenA);
@@ -81,84 +77,44 @@ const range = new RangeSliderComponent({
   maxValue: 50
 });
     `
-  }
-];
-
-export default snippets;
-
-/*
-COMPONENT AND LAYER SNIPPETS...
-INCLUDE OTHERS?
-
-
-// decaffeinate suggestions:
-// DS102: Remove unnecessary code created because of implicit returns
-// DS202: Simplify dynamic range loops
-// Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
-
-// Create layers
-
-
-// Set up FlowComponent
-
-
-
-// Variables
-
-
-
-
-
-
-
-
-
-
-
-// Variables
-const rows = 16;
-gutter = 10;
-const rowHeight = 200;
-
-const scroll = new ScrollComponent({
-	size: Screen.size,
-	scrollHorizontal: false
-});
-
-// Loop to create row layers
+  },
+  {
+    name: "Loop to create row layers",
+    code: `
 for (index = 0, end1 = rows, asc1 = 0 <= end1; asc1 ? index < end1 : index > end1; asc1 ? index++ : index--) {
-
-	const cell = new Layer({
-		width:  Screen.width,
-		height: rowHeight,
-		y: index * (rowHeight + gutter),
-		parent: scroll.content,
-		backgroundColor: "#00AAFF",
-		hueRotate: index * 10
-	});
-}
-
-
-
-// Create slider
+  const cell = new Layer({
+  	width:  Screen.width,
+  	height: rowHeight,
+  	y: index * (rowHeight + gutter),
+  	parent: scroll.content,
+  	backgroundColor: "#00AAFF",
+  	hueRotate: index * 10
+  });
+}`
+  },
+  {
+    name: "Create slider",
+    code: `
 const slider = new SliderComponent({
 	point: Align.center,
 	knobSize: 44
-});
-
-// Listen for slider value updates
-slider.onValueChange(() => Screen.backgroundColor = Color.mix("black", "#00AAFF", slider.value));
-
-
-
-
-// Create layer
+});`
+  },
+  {
+    name: "Listen for slider value updates",
+    code: `slider.onValueChange(() => Screen.backgroundColor = Color.mix("black", "#00AAFF", slider.value));`
+  },
+  {
+    name: "Create layer",
+    code: `
 let layer = new Layer({
 	x: Align.center,
 	y: Align.center
-});
-
-// Rotate on click
+});`
+  },
+  {
+    name: "Rotate on click",
+    code: `
 layer.onClick(() =>
 	layer.animate({
 		rotation: layer.rotation + 90,
@@ -166,58 +122,62 @@ layer.onClick(() =>
 			curve: Spring({damping: 0.5})
 		}
 	})
-);
-
-
-// Create the constraints layer
+);`
+  },
+  {
+    name: "Create the constraints layer",
+    code: `
 const constraints = new Layer({
 	width: 400,
 	height: 200,
 	x: Align.center,
 	y: Align.center,
 	opacity: 0.5
-});
-
-// Create the draggable layer
-layer = new Layer({
+});`
+  },
+  {
+    name: "Create the draggable layer",
+    code: `
+const layer = new Layer({
 	x: Align.center(-100),
 	y: Align.center
-});
-
-// Enable dragging, set constraints
+});`
+  },
+  {
+    name: "Enable dragging, set constraints",
+    code: `
 layer.draggable.enabled = true;
-layer.draggable.constraints = constraints.frame;
-
-
-
-// Create the draggable layer
-layer = new Layer({
+layer.draggable.constraints = constraints.frame;`
+  },
+  {
+    name: "Create the draggable layer",
+    code: `
+const layer = new Layer({
 	x: Align.center,
 	y: Align.center
-});
-
-// Enable dragging
-layer.draggable.enabled = true;
-
-
-
-// Create layer, define image
-layer = new Layer({
+});`
+  },
+  {
+    name: "Enable dragging",
+    code: `layer.draggable.enabled = true;`
+  },
+  {
+    name: "Create layer, define image",
+    code: `
+const layer = new Layer({
 	image: "http://i.imgur.com/SdLS9us.jpg",
 	borderRadius: 4,
 	x: Align.center,
 	y: Align.center
-});
-
-
-
-// Create layer
-layer = new Layer({
+});`
+  },
+  {
+    name: "Create layer, add states",
+    code: `layer = new Layer({
 	x: Align.center,
 	y: Align.center
 });
 
-// Add states
 layer.states = {
 	one: {
 		scale: 0.75
@@ -225,24 +185,27 @@ layer.states = {
 	two: {
 		scale: 1
 	}
-};
-
-// Define animationOptions
-layer.animationOptions =
-	{curve: Spring({damping: 0.5})};
-
-// Switch states on click
-layer.onClick(() => layer.stateCycle("one", "two"));
-
-
-
-// Create text layer
+};`
+  },
+  {
+    name: "Define animationOptions",
+    code: `layer.animationOptions = {curve: Spring({damping: 0.5})};`
+  },
+  {
+    name: "Switch states on click",
+    code: `layer.onClick(() => layer.stateCycle("one", "two"));`
+  },
+  {
+    name: "Create text layer",
+    code: `
 const text = new TextLayer({
 	text: "Hello World",
 	fontSize: 64,
 	fontWeight: 600,
 	x: Align.center,
 	y: Align.center
-});
+});`
+  }
+];
 
-*/
+export default snippets;

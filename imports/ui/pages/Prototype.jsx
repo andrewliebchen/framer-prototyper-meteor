@@ -25,7 +25,7 @@ class Prototype extends Component {
     super(props);
     this.state = {
       playing: true,
-      modal: "Help",
+      modal: "Snippets",
       updated: false
     };
     this._handlePlayToggle = this._handlePlayToggle.bind(this);
@@ -47,7 +47,7 @@ class Prototype extends Component {
             {...this.props}
           />
         );
-      case "Help":
+      case "Snippets":
         return <Snippets prototype={this.props.prototype} />;
       default:
         return <div />;
@@ -89,7 +89,7 @@ class Prototype extends Component {
               <EditControls
                 showAll={() => this.setState({ modal: "Prototypes" })}
                 showSettings={() => this.setState({ modal: "Settings" })}
-                showHelp={() => this.setState({ modal: "Help" })}
+                showSnippets={() => this.setState({ modal: "Snippets" })}
                 togglePlaying={this._handlePlayToggle}
                 {...this.state}
               />

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Flex, Box } from "reflexbox";
-import { Folder, Settings, Play, Pause, Sun, HelpCircle } from "react-feather";
+import { Folder, Settings, Play, Pause, Sun, Scissors } from "react-feather";
 import { Link } from "react-router-dom";
 
 import Control from "./Control.jsx";
@@ -21,11 +21,15 @@ const EditControls = props => (
       handleClick={props.showSettings}
     />
     <Control
+      tip={"Snippets"}
+      icon={<Scissors />}
+      handleClick={props.showSnippets}
+    />
+    <Control
       tip={props.playing ? "Pause" : "Play"}
       icon={props.playing ? <Pause /> : <Play />}
       handleClick={props.togglePlaying}
     />
-    <Control tip={"Help"} icon={<HelpCircle />} handleClick={props.showHelp} />
     <Link className="Control PrimaryControl" to="/new" data-tip="New Prototype">
       <Sun />
     </Link>
@@ -36,7 +40,7 @@ EditControls.propTypes = {
   togglePlaying: PropTypes.func,
   playing: PropTypes.bool,
   showSettings: PropTypes.func,
-  showHelp: PropTypes.func,
+  showSnippets: PropTypes.func,
   showAll: PropTypes.func
 };
 

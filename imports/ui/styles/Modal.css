@@ -8,6 +8,7 @@
   padding: 2em;
   width: 520px;
   z-index: 9999;
+  overflow: auto;
   will-change: transform;
 }
 
@@ -37,6 +38,10 @@
   margin: 2em 0 1em;
   display: block;
   width: 100%;
+}
+
+.Search {
+  margin-bottom: 1em;
 }
 
 .ModalBackground {
