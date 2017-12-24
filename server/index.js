@@ -21,24 +21,14 @@ Meteor.methods({
       code: initialCode,
       createdAt: args.createdAt,
       updatedAt: args.createdAt,
-      owner: args.owner
+      owner: args.owner,
+      syntax: "javascript"
     });
   },
 
-  updateName(args) {
-    return Prototypes.update(args.id, {
-      $set: {
-        name: args.name
-      }
-    });
-  },
-
-  updateCode(args) {
-    return Prototypes.update(args.id, {
-      $set: {
-        code: args.code,
-        updatedAt: args.updatedAt
-      }
+  update(id, args) {
+    return Prototypes.update(id, {
+      $set: { ...args, updatedAt: Date.now() }
     });
   },
 

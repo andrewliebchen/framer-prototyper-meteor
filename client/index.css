@@ -66,12 +66,14 @@ button,
   text-transform: uppercase;
 }
 
-button:hover {
+button:hover,
+.login-button:hover {
   background-color: var(--color-accent);
   color: white;
 }
 
-button:focus {
+button:focus,
+.login-button:focus {
   outline: none;
   box-shadow: var(--outline-focus);
 }
@@ -99,10 +101,11 @@ input {
   display: block;
   padding: 0.5em;
   width: 100%;
-  border-radius: 2px;
+  border-radius: 3px;
 }
 
-input:hover {
+input:hover,
+select:hover {
   border-color: var(--color-accent);
 }
 
@@ -110,8 +113,21 @@ input:disabled {
   background-color: var(--color-gray-4);
 }
 
-input:focus {
+input:focus,
+select:focus {
   box-shadow: var(--outline-focus);
+  outline: none;
+}
+
+select {
+  display: block;
+  width: 100%;
+  appearance: menulist-button;
+  font-size: 1em;
+  height: 3em;
+  border-radius: 0;
+  background-color: white;
+  border-color: var(--color-gray-1);
   outline: none;
 }
 

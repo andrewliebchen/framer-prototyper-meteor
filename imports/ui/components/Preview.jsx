@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ReactInterval from "react-interval";
 import Frame from "react-frame-component";
-import ReactWindowResizeListener from "window-resize-listener-react";
 import { Flex, Box } from "reflexbox";
 import Transition from "react-transition-group/Transition";
 
@@ -10,14 +9,17 @@ import PreviewControls from "../components/PreviewControls.jsx";
 
 import "../styles/Preview.css";
 
-const framerURI = "//builds.framerjs.com/version/latest/framer.js";
-const duration = 100;
+const uri = {
+  framer: "//builds.framerjs.com/version/latest/framer.js",
+  coffeescript:
+    "//cdnjs.cloudflare.com/ajax/libs/coffee-script/1.7.1/coffee-script.min.js"
+};
 
+const duration = 100;
 const defaultStyle = {
   transform: "translateY(-100%)",
   transition: `${duration}ms cubic-bezier(0.445,  0.050, 0.550, 0.950)`
 };
-
 const transitionStyles = {
   entered: {
     transform: "translateY(0%)"
@@ -52,8 +54,6 @@ class Preview extends Component {
           enabled={playing}
           callback={this._reRender}
         />
-        {/* FIXME: This doesn't work */}
-        <ReactWindowResizeListener onResize={() => this._reRender()} />
         <Transition in={!playing} timeout={duration}>
           {state => (
             <Flex
@@ -99,10 +99,11 @@ class Preview extends Component {
                     </style>
                   </head>
                   <body>
-                    <script src="${framerURI}"></script>
-                    <script>
-                      ${code}
-                    </script>
+                    <script src="${uri.framer}"></script>
+                    ${prototype.syntax === "coffeescript"
+                      ? `<script src="${uri.coffeescript}"></script>`
+                      : ""}
+                    <script type="text/${prototype.syntax}">${code}</script>
                   </body>
                 </html>`}
             />
@@ -112,6 +113,10 @@ class Preview extends Component {
     );
   }
 }
+
+Preview.defaultProps = {
+  syntax: "javascript"
+};
 
 Preview.propTypes = {
   prototype: PropTypes.object,

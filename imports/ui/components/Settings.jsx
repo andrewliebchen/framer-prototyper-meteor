@@ -15,15 +15,27 @@ const Settings = props => (
         defaultValue={props.prototype.name}
         placeholder="Make it snappy"
         onChange={event =>
-          Meteor.call(
-            "updateName",
-            {
-              id: props.prototype._id,
-              name: event.target.value
-            },
-            (err, success) => console.log("Update status badge") //FIXME
-          )}
+          Meteor.call("update", props.prototype._id, {
+            name: event.target.value
+          })}
       />
+      <div className="Form">
+        <label className="FormLabel">Syntax</label>
+        <p>
+          If you change syntax, your prototype may not run as you expect. be
+          sure to go back an manually convert necessary code.
+        </p>
+        <select
+          defaultValue={props.prototype.syntax}
+          onChange={event =>
+            Meteor.call("update", props.prototype._id, {
+              syntax: event.target.value
+            })}
+        >
+          <option value="javascript">JavaScript</option>
+          <option value="coffeescript">CoffeeScript</option>
+        </select>
+      </div>
       <FormInput
         label="URL"
         value={window.location.href}

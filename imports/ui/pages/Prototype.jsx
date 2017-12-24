@@ -25,7 +25,7 @@ class Prototype extends Component {
     super(props);
     this.state = {
       playing: true,
-      modal: "Snippets",
+      modal: "Settings",
       updated: false
     };
     this._handlePlayToggle = this._handlePlayToggle.bind(this);
@@ -34,12 +34,7 @@ class Prototype extends Component {
   _renderModalContent() {
     switch (this.state.modal) {
       case "Settings":
-        return (
-          <Settings
-            updateStatusBadge={this._updateStatusBadge}
-            {...this.props}
-          />
-        );
+        return <Settings {...this.props} />;
       case "Prototypes":
         return (
           <PrototypesList

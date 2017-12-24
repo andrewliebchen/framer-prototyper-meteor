@@ -7,13 +7,14 @@ import { Flex, Box } from "reflexbox";
 
 import "../styles/Editor.css";
 
-import "brace/mode/jsx";
+import "brace/mode/javascript";
+import "brace/mode/coffee";
 import "../lib/tomorrow_night_eighties";
 
 const Editor = props => (
   <div className="Editor">
     <AceEditor
-      mode="jsx"
+      mode={props.prototype.syntax === "coffeescript" ? "coffee" : "javascript"}
       theme="tomorrow_night_eighties"
       name="editorCode"
       value={props.code}
@@ -25,10 +26,8 @@ const Editor = props => (
       highlightActiveLine={false}
       highlightGutterLine={false}
       onChange={event =>
-        Meteor.call("updateCode", {
-          id: props.prototype._id,
-          code: event,
-          updatedAt: Date.now()
+        Meteor.call("update", props.prototype._id, {
+          code: event
         })}
       editorProps={{
         $blockScrolling: true
