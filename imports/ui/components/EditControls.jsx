@@ -19,6 +19,11 @@ const EditControls = props => (
       tip="Settings"
       icon={<Settings />}
       handleClick={props.showSettings}
+      badge={
+        <div className="Badge">
+          {props.syntax === "javascript" ? "JS" : "CS"}
+        </div>
+      }
     />
     <Control
       tip={"Snippets"}
@@ -41,7 +46,8 @@ EditControls.propTypes = {
   playing: PropTypes.bool,
   showSettings: PropTypes.func,
   showSnippets: PropTypes.func,
-  showAll: PropTypes.func
+  showAll: PropTypes.func,
+  syntax: PropTypes.oneOf(["coffeescript", "javascript"])
 };
 
 export default EditControls;

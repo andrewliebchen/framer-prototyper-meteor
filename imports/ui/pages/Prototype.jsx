@@ -28,7 +28,6 @@ class Prototype extends Component {
       modal: false,
       updated: false
     };
-    this._handlePlayToggle = this._handlePlayToggle.bind(this);
   }
 
   _renderModalContent() {
@@ -47,10 +46,6 @@ class Prototype extends Component {
       default:
         return <div />;
     }
-  }
-
-  _handlePlayToggle() {
-    this.setState({ playing: !this.state.playing });
   }
 
   render() {
@@ -74,7 +69,8 @@ class Prototype extends Component {
             <Box auto style={{ position: "relative" }}>
               <Preview
                 full={false}
-                togglePlaying={this._handlePlayToggle}
+                togglePlaying={() =>
+                  this.setState({ playing: !this.state.playing })}
                 {...this.state}
                 {...this.props}
               />
@@ -86,7 +82,11 @@ class Prototype extends Component {
                   showAll={() => this.setState({ modal: "Prototypes" })}
                   showSettings={() => this.setState({ modal: "Settings" })}
                   showSnippets={() => this.setState({ modal: "Snippets" })}
-                  togglePlaying={this._handlePlayToggle}
+                  togglePlaying={() =>
+                    this.setState({
+                      playing: !this.state.playing
+                    })}
+                  syntax={this.props.prototype.syntax}
                   {...this.state}
                 />
               </Box>

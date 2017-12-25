@@ -1,20 +1,23 @@
+.ControlWrapper {
+  position: relative;
+  margin-bottom: 0.5em;
+}
+
 .Control,
 a.Control {
-  cursor: pointer;
-  height: 24px;
+  align-items: center;
   background-color: black;
-  height: var(--control-size);
-  width: var(--control-size);
-  text-align: center;
-  padding: 0 1em;
-  display: flex;
-  align-items: center;
   border-radius: var(--control-size);
-  transition: var(--transition);
-  margin-bottom: 0.5em;
-  align-items: center;
-  justify-content: center;
   color: white;
+  cursor: pointer;
+  display: flex;
+  height: 24px;
+  height: var(--control-size);
+  justify-content: center;
+  padding: 0 1em;
+  text-align: center;
+  transition: var(--transition);
+  width: var(--control-size);
 }
 
 .Control:hover,
@@ -34,4 +37,18 @@ a.PreviewControl:hover {
 .Icon svg {
   position: relative;
   top: 2px;
+}
+
+.Badge {
+  position: absolute;
+  padding: 0.5em;
+  letter-spacing: var(--letter-spacing);
+  background-color: var(--color-accent);
+  color: white;
+  font-weight: bold;
+  font-size: 0.8em;
+  border-radius: 3em;
+  bottom: -0.33em;
+  right: -0.33em;
+  z-index: 1;
 }
