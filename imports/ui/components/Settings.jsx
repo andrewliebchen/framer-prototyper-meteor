@@ -6,7 +6,13 @@ import { toast } from "react-toastify";
 
 import { deletePrototype } from "../lib/utils";
 
-import FormInput from "../components/FormInput.jsx";
+import FormInput from "./FormInput.jsx";
+import FormSelect from "./FormSelect.jsx";
+
+const syntaxOptions = [
+  { value: "javascript", label: "JavaScript" },
+  { value: "coffeescript", label: "CoffeeScript" }
+];
 
 const Settings = props => (
   <div>
@@ -31,32 +37,25 @@ const Settings = props => (
             }
           )}
       />
-      <div className="Form">
-        <label className="FormLabel">Syntax</label>
-        <p>
-          If you change syntax, your prototype may not run as you expect. be
-          sure to go back an manually convert necessary code.
-        </p>
-        <select
-          defaultValue={props.prototype.syntax}
-          onChange={event =>
-            Meteor.call(
-              "update",
-              props.prototype._id,
-              {
-                syntax: event.target.value
-              },
-              (err, success) => {
-                if (success) {
-                  toast("Syntax updated!");
-                }
+      <FormSelect
+        label="Syntax"
+        hint="If you change syntax, your prototype may not run as you expect. be sure to go back an manually convert necessary code."
+        defaultValue={props.prototype.syntax}
+        options={syntaxOptions}
+        onChange={event =>
+          Meteor.call(
+            "update",
+            props.prototype._id,
+            {
+              syntax: event.target.value
+            },
+            (err, success) => {
+              if (success) {
+                toast("Syntax updated!");
               }
-            )}
-        >
-          <option value="javascript">JavaScript</option>
-          <option value="coffeescript">CoffeeScript</option>
-        </select>
-      </div>
+            }
+          )}
+      />
       <FormInput
         label="URL"
         value={window.location.href}
@@ -82,7 +81,7 @@ const Settings = props => (
 
 Settings.propTypes = {
   prototype: PropTypes.object,
-  updateStatusBadge: PropTypes.func
+  changeRefresh: PropTypes.func
 };
 
 export default Settings;
