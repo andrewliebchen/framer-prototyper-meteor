@@ -57,7 +57,7 @@ class Prototype extends Component {
       <Loader />
     ) : (
       <div>
-        <PageComponents />
+        <PageComponents prototypeName={prototype.name} />
         <Modal
           show={this.state.modal ? true : false}
           close={() => this.setState({ modal: false, updated: false })}

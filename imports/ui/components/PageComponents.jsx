@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import ReactTooltip from "react-tooltip";
 import { ToastContainer, style } from "react-toastify";
@@ -7,19 +8,22 @@ import { css } from "glamor";
 const toastStyle = {
   fontFamily: "-apple-system, BlinkMacSystemFont, san-serif",
   fontSize: 16,
-  backgrounColor: "#f0f0f0",
-  color: "#111",
-  padding: "1.5em 2em"
+  backgroundColor: "rgba(0, 116, 217, 0.7)",
+  color: "white",
+  fontWeight: "500",
+  letterSpacing: "0.02em",
+  padding: "1.5em 2em",
+  textTransform: "uppercase"
 };
 
 const toastProgressStyle = {
-  background: "#0074d9"
+  background: "rgba(0, 0, 0, 0.4)"
 };
 
 const PageComponents = props => (
   <div>
     <Helmet>
-      <title>Framer Prototyper</title>
+      <title>Framer Science | {props.prototypeName}</title>
     </Helmet>
     <ReactTooltip place="bottom" offset={{ bottom: 10 }} className="Tooltip" />
     <ToastContainer
@@ -30,5 +34,9 @@ const PageComponents = props => (
     />
   </div>
 );
+
+PageComponents.PropTypes = {
+  prototypeName: PropTypes.string
+};
 
 export default PageComponents;
