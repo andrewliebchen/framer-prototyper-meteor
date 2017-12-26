@@ -7,13 +7,9 @@ import Transition from "react-transition-group/Transition";
 
 import PreviewControls from "../components/PreviewControls.jsx";
 
-import "../styles/Preview.css";
+import { initPreviewCode } from "../lib/utils";
 
-const uri = {
-  framer: "//builds.framerjs.com/version/latest/framer.js",
-  coffeescript:
-    "//cdnjs.cloudflare.com/ajax/libs/coffee-script/1.7.1/coffee-script.min.js"
-};
+import "../styles/Preview.css";
 
 const duration = 100;
 const defaultStyle = {
@@ -32,11 +28,6 @@ class Preview extends Component {
     this.state = {
       renderCount: Date.now()
     };
-    this._reRender = this._reRender.bind(this);
-  }
-
-  _reRender() {
-    this.setState({ renderCount: Date.now() });
   }
 
   shouldComponentUpdate(nextProps) {
@@ -52,7 +43,7 @@ class Preview extends Component {
         <ReactInterval
           timeout={1000}
           enabled={playing}
-          callback={this._reRender}
+          callback={() => this.setState({ renderCount: Date.now() })}
         />
         <Transition in={!playing} timeout={duration}>
           {state => (
@@ -80,32 +71,13 @@ class Preview extends Component {
               style={{
                 width: this.props.full ? "100vw" : "50vw"
               }}
-              initialContent={`
-                <!DOCTYPE html>
-                <html>
-                  <head>
-                    <style>
-                      body {
-                        height: 100vh;
-                        width: 100vw;
-                        margin: 0;
-                        position: relative;
-                      }
-
-                      .framerContext {
-                        height: 100vh;
-                        width: 100vw;
-                      }
-                    </style>
-                  </head>
-                  <body>
-                    <script src="${uri.framer}"></script>
-                    ${prototype.syntax === "coffeescript"
-                      ? `<script src="${uri.coffeescript}"></script>`
-                      : ""}
-                    <script type="text/${prototype.syntax}">${code}</script>
-                  </body>
-                </html>`}
+              initialContent={initPreviewCode({
+                framerURI: "//builds.framerjs.com/version/latest/framer.js",
+                coffeescriptURI:
+                  "//cdnjs.cloudflare.com/ajax/libs/coffee-script/1.7.1/coffee-script.min.js",
+                code: code,
+                syntax: prototype.syntax
+              })}
             />
           )}
         </div>

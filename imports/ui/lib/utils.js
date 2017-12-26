@@ -5,3 +5,31 @@ export const deletePrototype = id => {
     Meteor.call("deletePrototype", id);
   }
 };
+
+export const initPreviewCode = args => {
+  return `<!DOCTYPE html>
+    <html>
+      <head>
+        <style>
+          body {
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+            position: relative;
+          }
+
+          .framerContext {
+            height: 100vh;
+            width: 100vw;
+          }
+        </style>
+      </head>
+      <body>
+        <script src="${args.framerURI}"></script>
+        ${args.syntax === "coffeescript"
+          ? `<script src="${args.coffeescriptURI}"></script>`
+          : ""}
+        <script type="text/${args.syntax}">${args.code}</script>
+      </body>
+    </html>`;
+};
