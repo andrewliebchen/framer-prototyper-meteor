@@ -13,7 +13,7 @@ import LoginPage from "../imports/ui/pages/Login.jsx";
 import PrototypePage from "../imports/ui/pages/Prototype.jsx";
 import NewPrototypePage from "../imports/ui/pages/NewPrototype.jsx";
 import FullPreview from "../imports/ui/pages/FullPreview.jsx";
-// import NotFound from "../imports/ui/pages/NotFound.jsx";
+import NotFound from "../imports/ui/pages/NotFound.jsx";
 
 import "./index.css";
 
@@ -38,6 +38,7 @@ const RenderRoutes = () => (
             path="/:id"
             render={({ match }) => <PrototypePage id={match.params.id} />}
           />
+          <Route component={NotFound} />
         </Switch>
       ) : (
         <LoginPage />

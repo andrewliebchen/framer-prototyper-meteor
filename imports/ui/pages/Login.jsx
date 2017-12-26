@@ -9,7 +9,7 @@ const LoginPage = () => {
     return <Redirect to="/" />;
   } else {
     return (
-      <div className="Login">
+      <div className="Centered">
         <Accounts />
       </div>
     );

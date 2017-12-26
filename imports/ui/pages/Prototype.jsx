@@ -15,8 +15,11 @@ import EditControls from "../components/EditControls.jsx";
 import Settings from "../components/Settings.jsx";
 import PrototypesList from "../components/PrototypesList.jsx";
 import Snippets from "../components/Snippets.jsx";
+import _ from "lodash";
 
 import { Prototypes } from "../../api/prototypes";
+
+import NotFound from "../pages/NotFound.jsx";
 
 import "../styles/Prototype.css";
 
@@ -53,48 +56,54 @@ class Prototype extends Component {
     const code = prototype ? prototype.code : "";
     const canEdit = prototype && Meteor.userId() === prototype.owner;
 
-    return loading ? (
-      <Loader />
-    ) : (
-      <div>
-        <PageComponents prototypeName={prototype.name} />
-        <Modal
-          show={this.state.modal ? true : false}
-          close={() => this.setState({ modal: false, updated: false })}
-          title={this.state.modal ? this.state.modal : null}
-          content={this._renderModalContent()}
-          updated={this.state.updated}
-        >
-          <Flex className="App Underlay">
-            <Box auto style={{ position: "relative" }}>
-              <Preview
-                full={false}
-                togglePlaying={() =>
-                  this.setState({ playing: !this.state.playing })}
-                {...this.state}
-                {...this.props}
-              />
-            </Box>
-            {canEdit && (
-              <Box w={1 / 2} style={{ position: "relative" }}>
-                <Editor code={code} {...this.props} {...this.state} />
-                <EditControls
-                  showAll={() => this.setState({ modal: "Prototypes" })}
-                  showSettings={() => this.setState({ modal: "Settings" })}
-                  showSnippets={() => this.setState({ modal: "Snippets" })}
+    if (loading) {
+      return <Loader />;
+    }
+
+    if (_.isEmpty(prototype)) {
+      return <NotFound />;
+    } else {
+      return (
+        <div>
+          <PageComponents prototypeName={prototype.name} />
+          <Modal
+            show={this.state.modal ? true : false}
+            close={() => this.setState({ modal: false, updated: false })}
+            title={this.state.modal ? this.state.modal : null}
+            content={this._renderModalContent()}
+            updated={this.state.updated}
+          >
+            <Flex className="App Underlay">
+              <Box auto style={{ position: "relative" }}>
+                <Preview
+                  full={false}
                   togglePlaying={() =>
-                    this.setState({
-                      playing: !this.state.playing
-                    })}
-                  syntax={this.props.prototype.syntax}
+                    this.setState({ playing: !this.state.playing })}
                   {...this.state}
+                  {...this.props}
                 />
               </Box>
-            )}
-          </Flex>
-        </Modal>
-      </div>
-    );
+              {canEdit && (
+                <Box w={1 / 2} style={{ position: "relative" }}>
+                  <Editor code={code} {...this.props} {...this.state} />
+                  <EditControls
+                    showAll={() => this.setState({ modal: "Prototypes" })}
+                    showSettings={() => this.setState({ modal: "Settings" })}
+                    showSnippets={() => this.setState({ modal: "Snippets" })}
+                    togglePlaying={() =>
+                      this.setState({
+                        playing: !this.state.playing
+                      })}
+                    syntax={this.props.prototype.syntax}
+                    {...this.state}
+                  />
+                </Box>
+              )}
+            </Flex>
+          </Modal>
+        </div>
+      );
+    }
   }
 }
 
