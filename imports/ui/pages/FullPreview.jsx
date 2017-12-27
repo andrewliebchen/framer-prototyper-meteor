@@ -14,7 +14,7 @@ const FullPreview = props => {
     <Loader />
   ) : (
     <div>
-      <PageComponents />
+      <PageComponents pageName="Preview" />
       <Preview prototype={props.prototype} playing full />
     </div>
   );

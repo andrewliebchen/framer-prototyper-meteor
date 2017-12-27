@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 import ReactInterval from "react-interval";
 import Frame from "react-frame-component";
 import { Flex, Box } from "reflexbox";
@@ -39,7 +40,12 @@ class Preview extends Component {
     const code = prototype ? prototype.code : "";
 
     return (
-      <div className="Preview">
+      <div
+        className={classnames({
+          Preview: true,
+          Full: full
+        })}
+      >
         <ReactInterval
           timeout={1000}
           enabled={playing}

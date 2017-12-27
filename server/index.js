@@ -4,12 +4,6 @@ import CoffeeScript from "coffeescript";
 
 import { Prototypes } from "../imports/api/prototypes";
 
-// const test = js2coffee.build("const layer = new Layer();");
-// console.log(test.code);
-
-// const test = CoffeeScript.compile("layer = new Layer", { bare: true });
-// console.log(test);
-
 const initialCode = `const layerA = new Layer({
   x: Align.center,
   y: Align.center,

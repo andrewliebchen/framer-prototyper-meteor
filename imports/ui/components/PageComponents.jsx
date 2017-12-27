@@ -5,6 +5,8 @@ import ReactTooltip from "react-tooltip";
 import { ToastContainer, style } from "react-toastify";
 import { css } from "glamor";
 
+import Strings from "../lib/strings";
+
 style({
   colorDefault: "rgba(0, 116, 217, 0.7)",
   colorError: "rgba(255, 65, 54, 0.7)",
@@ -15,7 +17,9 @@ style({
 const PageComponents = props => (
   <div>
     <Helmet>
-      <title>Framer Science | {props.prototypeName}</title>
+      <title>
+        {Strings.appName} | {props.pageName}
+      </title>
     </Helmet>
     <ReactTooltip place="bottom" offset={{ bottom: 10 }} className="Tooltip" />
     <ToastContainer
@@ -35,7 +39,7 @@ const PageComponents = props => (
 );
 
 PageComponents.PropTypes = {
-  prototypeName: PropTypes.string
+  pageName: PropTypes.string.isRequired
 };
 
 export default PageComponents;

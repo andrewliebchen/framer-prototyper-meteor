@@ -2,6 +2,9 @@
   position: relative;
 }
 
+.Preview.Full {
+}
+
 .PreviewFrame {
   border: 0;
   background-color: white;

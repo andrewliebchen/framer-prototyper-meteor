@@ -65,7 +65,7 @@ class Prototype extends Component {
     } else {
       return (
         <div>
-          <PageComponents prototypeName={prototype.name} />
+          <PageComponents pageName={prototype.name || "New prototype"} />
           <Modal
             show={this.state.modal ? true : false}
             close={() => this.setState({ modal: false, updated: false })}
