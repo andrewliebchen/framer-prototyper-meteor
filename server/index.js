@@ -1,5 +1,14 @@
 import { Meteor } from "meteor/meteor";
+import js2coffee from "js2coffee";
+import CoffeeScript from "coffeescript";
+
 import { Prototypes } from "../imports/api/prototypes";
+
+// const test = js2coffee.build("const layer = new Layer();");
+// console.log(test.code);
+
+// const test = CoffeeScript.compile("layer = new Layer", { bare: true });
+// console.log(test);
 
 const initialCode = `const layerA = new Layer({
   x: Align.center,
@@ -30,6 +39,22 @@ Meteor.methods({
     return Prototypes.update(id, {
       $set: { ...args, updatedAt: Date.now() }
     });
+  },
+
+  updateSyntax(id, args) {
+    switch (args.syntax) {
+      case "coffeescript":
+        const csOutput = js2coffee.build(args.code);
+        args.code = csOutput.code;
+        break;
+      case "javascript":
+        args.code = CoffeeScript.compile(args.code, { bare: true });
+        break;
+      default:
+        args.code = args.code;
+    }
+
+    return Meteor.call("update", id, { ...args });
   },
 
   deletePrototype(id) {

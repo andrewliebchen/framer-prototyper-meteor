@@ -44,14 +44,18 @@ const Settings = props => (
         options={syntaxOptions}
         onChange={event =>
           Meteor.call(
-            "update",
+            "updateSyntax",
             props.prototype._id,
             {
-              syntax: event.target.value
+              syntax: event.target.value,
+              code: props.prototype.code
             },
             (err, success) => {
               if (success) {
                 toast("Syntax updated!");
+              }
+              if (err) {
+                toast("Whoops, there was a problem", { type: "error" });
               }
             }
           )}
