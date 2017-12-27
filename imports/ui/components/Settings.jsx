@@ -39,7 +39,7 @@ const Settings = props => (
       />
       <FormSelect
         label="Syntax"
-        hint="If you change syntax, your prototype may not run as you expect. be sure to go back an manually convert necessary code."
+        hint="If you change syntax, we'll automatically convert your code to the syntax you choose. Please double check the converted code, or your prototype may not run as you expect. "
         defaultValue={props.prototype.syntax}
         options={syntaxOptions}
         onChange={event =>
