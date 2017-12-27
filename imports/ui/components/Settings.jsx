@@ -34,6 +34,9 @@ const Settings = props => (
                   this.toastId = toast("Name has been updated!");
                 }
               }
+              if (err) {
+                toast("Whoops, there was a problem", { type: "error" });
+              }
             }
           )}
       />

@@ -5,20 +5,12 @@ import ReactTooltip from "react-tooltip";
 import { ToastContainer, style } from "react-toastify";
 import { css } from "glamor";
 
-const toastStyle = {
-  fontFamily: "-apple-system, BlinkMacSystemFont, san-serif",
-  fontSize: 16,
-  backgroundColor: "rgba(0, 116, 217, 0.7)",
-  color: "white",
-  fontWeight: "500",
-  letterSpacing: "0.02em",
-  padding: "1.5em 2em",
-  textTransform: "uppercase"
-};
-
-const toastProgressStyle = {
-  background: "rgba(0, 0, 0, 0.4)"
-};
+style({
+  colorDefault: "rgba(0, 116, 217, 0.7)",
+  colorError: "rgba(255, 65, 54, 0.7)",
+  colorProgressDefault: "rgba(0, 0, 0, 0.4)",
+  colorProgressError: "rgba(0, 0, 0, 0.4)"
+});
 
 const PageComponents = props => (
   <div>
@@ -29,8 +21,15 @@ const PageComponents = props => (
     <ToastContainer
       position="bottom-left"
       closeButton={false}
-      toastClassName={css(toastStyle)}
-      progressClassName={css(toastProgressStyle)}
+      toastClassName={css({
+        fontFamily: "-apple-system, BlinkMacSystemFont, san-serif",
+        fontSize: 16,
+        color: "white",
+        fontWeight: "500",
+        letterSpacing: "0.02em",
+        padding: "1.5em 2em",
+        textTransform: "uppercase"
+      })}
     />
   </div>
 );
