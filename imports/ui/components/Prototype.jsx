@@ -1,25 +1,20 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Flex, Box } from "reflexbox";
-import ReactTooltip from "react-tooltip";
-import { Helmet } from "react-helmet";
-import { withTracker } from "meteor/react-meteor-data";
-
-import PageComponents from "../components/PageComponents.jsx";
-import Loader from "../components/Loader.jsx";
-import Editor from "../components/Editor.jsx";
-import Preview from "../components/Preview.jsx";
-import Modal from "../components/Modal.jsx";
-import FormInput from "../components/FormInput.jsx";
-import EditControls from "../components/EditControls.jsx";
-import Settings from "../components/Settings.jsx";
-import PrototypesList from "../components/PrototypesList.jsx";
-import Snippets from "../components/Snippets.jsx";
 import _ from "lodash";
 
-import { Prototypes } from "../../api/prototypes";
+import PageComponents from "./PageComponents.jsx";
+import Loader from "./Loader.jsx";
+import Editor from "./Editor.jsx";
+import Preview from "./Preview.jsx";
+import Modal from "./Modal.jsx";
+import FormInput from "./FormInput.jsx";
+import EditControls from "./EditControls.jsx";
+import Settings from "./Settings.jsx";
+import PrototypesList from "./PrototypesList.jsx";
+import Snippets from "./Snippets.jsx";
 
-import NotFound from "../pages/NotFound.jsx";
+import NotFoundPage from "../pages/NotFoundPage.jsx";
 
 import "../styles/Prototype.css";
 
@@ -60,11 +55,6 @@ class Prototype extends Component {
     });
   }
 
-  componentWillUpdate() {
-    // Update the prototype owner if there is no owner
-    console.log(Meteor.userId());
-  }
-
   render() {
     const { prototype, loading } = this.props;
     const { canEdit } = this.state;
@@ -75,7 +65,7 @@ class Prototype extends Component {
     }
 
     if (_.isEmpty(prototype)) {
-      return <NotFound />;
+      return <NotFoundPage />;
     } else {
       return (
         <div>
@@ -128,23 +118,4 @@ Prototype.propTypes = {
   prototypeListLoaded: PropTypes.bool
 };
 
-export default withTracker(({ id }) => {
-  const prototypeHandle = Meteor.subscribe("prototype", id);
-  const loading = !prototypeHandle.ready();
-
-  let prototypeListLoaded = false;
-
-  if (Meteor.userId()) {
-    const prototypeListHandle = Meteor.subscribe("prototypes", Meteor.userId());
-    prototypeListLoaded = prototypeListHandle.ready();
-  }
-
-  return {
-    loading,
-    prototypeListLoaded,
-    prototype: loading ? {} : Prototypes.findOne(id),
-    prototypes: prototypeListLoaded
-      ? Prototypes.find({}, { sort: { updatedAt: -1 } }).fetch()
-      : []
-  };
-})(Prototype);
+export default Prototype;
