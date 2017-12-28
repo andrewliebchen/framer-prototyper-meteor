@@ -35,6 +35,7 @@ class FormInput extends Component {
             </div>
           )}
         </Box>
+        <small>{this.props.hint}</small>
       </Flex>
     );
   }
@@ -50,7 +51,8 @@ FormInput.propTypes = {
   placeholder: PropTypes.string,
   defaultValue: PropTypes.string,
   copy: PropTypes.string,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  hint: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
 };
 
 export default FormInput;

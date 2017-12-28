@@ -12,15 +12,11 @@ import NotFound from "../imports/ui/pages/NotFound.jsx";
 
 import "./index.css";
 
-// Could use the router instead of switch to overlay stuff here...
-// For instance overlay a login, if it has preview, don't show the code, etc.
-
-// Allow a prototype without a user account...
-
 const RenderRoutes = () => (
   <Router>
     <Switch>
       <Route path="/login" component={LoginPage} />
+      <Route path="/new" component={NewPrototypePage} />
       <Route
         path="/:id/preview"
         render={({ match }) => <FullPreview id={match.params.id} />}

@@ -2,15 +2,16 @@
   position: relative;
 }
 
-.Preview.Full {
-}
-
 .PreviewFrame {
   border: 0;
   background-color: white;
   height: 100vh;
   width: 50vw;
   overflow: hidden;
+}
+
+.PreviewFrame.Full {
+  width: 100vw;
 }
 
 .PreviewBannerWrapper {

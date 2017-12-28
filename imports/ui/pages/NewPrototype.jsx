@@ -32,7 +32,7 @@ class NewPrototypePage extends Component {
 
   render() {
     if (this.state.newId) {
-      return <Redirect to={`/p/${this.state.newId}`} />;
+      return <Redirect to={`/${this.state.newId}`} />;
     } else {
       return <Loader />;
     }

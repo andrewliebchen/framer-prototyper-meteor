@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
+import classnames from "classnames";
 import ReactInterval from "react-interval";
 import Frame from "react-frame-component";
 import { Flex, Box } from "reflexbox";
@@ -40,12 +40,7 @@ class Preview extends Component {
     const code = prototype ? prototype.code : "";
 
     return (
-      <div
-        className={classnames({
-          Preview: true,
-          Full: full
-        })}
-      >
+      <div className="Preview">
         <ReactInterval
           timeout={1000}
           enabled={playing}
@@ -68,7 +63,12 @@ class Preview extends Component {
             </Flex>
           )}
         </Transition>
-        <div className="PreviewFrame">
+        <div
+          className={classnames({
+            PreviewFrame: true,
+            Full: full
+          })}
+        >
           <PreviewControls {...this.props} />
           {code && (
             <Frame

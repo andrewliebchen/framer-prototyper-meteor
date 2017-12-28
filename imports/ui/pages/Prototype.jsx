@@ -29,7 +29,8 @@ class Prototype extends Component {
     this.state = {
       playing: true,
       modal: false,
-      updated: false
+      updated: false,
+      canEdit: false
     };
   }
 
@@ -51,10 +52,23 @@ class Prototype extends Component {
     }
   }
 
+  componentWillMount() {
+    const { prototype } = this.props;
+    this.setState({
+      canEdit:
+        !prototype.owner || (prototype && Meteor.userId() === prototype.owner)
+    });
+  }
+
+  componentWillUpdate() {
+    // Update the prototype owner if there is no owner
+    console.log(Meteor.userId());
+  }
+
   render() {
     const { prototype, loading } = this.props;
+    const { canEdit } = this.state;
     const code = prototype ? prototype.code : "";
-    const canEdit = prototype && Meteor.userId() === prototype.owner;
 
     if (loading) {
       return <Loader />;
@@ -76,7 +90,7 @@ class Prototype extends Component {
             <Flex className="App Underlay">
               <Box auto style={{ position: "relative" }}>
                 <Preview
-                  full={false}
+                  full={!canEdit}
                   togglePlaying={() =>
                     this.setState({ playing: !this.state.playing })}
                   {...this.state}
@@ -110,17 +124,27 @@ class Prototype extends Component {
 Prototype.propTypes = {
   prototype: PropTypes.object,
   prototypes: PropTypes.array,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+  prototypeListLoaded: PropTypes.bool
 };
 
 export default withTracker(({ id }) => {
-  const prototypeHandle = Meteor.subscribe("prototypes", Meteor.userId());
+  const prototypeHandle = Meteor.subscribe("prototype", id);
   const loading = !prototypeHandle.ready();
+
+  let prototypeListLoaded = false;
+
+  if (Meteor.userId()) {
+    const prototypeListHandle = Meteor.subscribe("prototypes", Meteor.userId());
+    prototypeListLoaded = prototypeListHandle.ready();
+  }
+
   return {
     loading,
+    prototypeListLoaded,
     prototype: loading ? {} : Prototypes.findOne(id),
-    prototypes: loading
-      ? []
-      : Prototypes.find({}, { sort: { updatedAt: -1 } }).fetch()
+    prototypes: prototypeListLoaded
+      ? Prototypes.find({}, { sort: { updatedAt: -1 } }).fetch()
+      : []
   };
 })(Prototype);
