@@ -62,8 +62,7 @@ Modal.propTypes = {
   show: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]).isRequired,
   content: PropTypes.element,
   close: PropTypes.func,
-  title: PropTypes.string,
-  updated: PropTypes.bool
+  title: PropTypes.string
 };
 
 export default Modal;

@@ -19,7 +19,7 @@ class FormInput extends Component {
         <Box>
           <label className="FormLabel">{this.props.label}</label>
         </Box>
-        <Box style={{ position: "relative" }}>
+        <Box className="FormInputWrapper">
           <input className="FormInput" {...this.props} />
           {this.props.copy && (
             <div className="FormCopy">
@@ -35,7 +35,7 @@ class FormInput extends Component {
             </div>
           )}
         </Box>
-        <small>{this.props.hint}</small>
+        <small className="FormHint">{this.props.hint}</small>
       </Flex>
     );
   }

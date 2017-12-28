@@ -4,12 +4,16 @@
 }
 
 .FormLabel {
-  font-size: 12px;
+  font-size: 14px;
   display: block;
   font-weight: bold;
   margin-bottom: 0.5em;
   letter-spacing: var(--letter-spacing);
   text-transform: uppercase;
+}
+
+.FormInputWrapper {
+  position: relative;
 }
 
 .FormCopy {
@@ -32,4 +36,8 @@
 .FormIcon {
   position: absolute;
   right: 0;
+}
+
+.FormHint {
+  padding-top: 0.5em;
 }

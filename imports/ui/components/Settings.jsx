@@ -1,25 +1,19 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
 import Accounts from "../components/Accounts.jsx";
 import { toast } from "react-toastify";
 
 import { deletePrototype } from "../lib/utils";
+import Strings from "../lib/strings";
 
 import FormInput from "./FormInput.jsx";
 import FormSelect from "./FormSelect.jsx";
 
-const syntaxOptions = [
-  { value: "javascript", label: "JavaScript" },
-  { value: "coffeescript", label: "CoffeeScript" }
-];
-
-const isLoggedIn = Meteor.userId() ? true : false;
-
 const Settings = props => (
   <div>
     <div className="ModalSection">
-      {isLoggedIn && (
+      {props.isLoggedIn && (
         <FormInput
           label="Prototype name"
           defaultValue={props.prototype.name}
@@ -46,9 +40,13 @@ const Settings = props => (
       )}
       <FormSelect
         label="Syntax"
-        hint="If you change syntax, we'll automatically convert your code to the syntax you choose. Please double check the converted code, or your prototype may not run as you expect. "
+        hint={Strings.settings.syntax}
         defaultValue={props.prototype.syntax}
-        options={syntaxOptions}
+        disabled={!props.canEdit}
+        options={[
+          { value: "javascript", label: "JavaScript" },
+          { value: "coffeescript", label: "CoffeeScript" }
+        ]}
         onChange={event =>
           Meteor.call(
             "updateSyntax",
@@ -72,38 +70,40 @@ const Settings = props => (
         value={window.location.href}
         copy={window.location.href}
         hint={
-          isLoggedIn
-            ? ""
-            : "Unless you're logged in, anyone with the prototype URL can edit it."
+          props.prototype.owner || props.isLoggedIn
+            ? Strings.settings.url.signedIn
+            : Strings.settings.url.signedOut
         }
         disabled
       />
     </div>
-    <div className="ModalSection">
-      <h2>Account</h2>
-      {isLoggedIn || (
-        <p>
-          Sign in with Google to save this prototype. Once you've saved a
-          prototype, only you can edit it.
-        </p>
-      )}
-      <Accounts />
-    </div>
-    <div className="ModalSection">
-      <h2>Danger zone</h2>
-      <button
-        className="negative block"
-        onClick={() => deletePrototype(props.prototype_id)}
-      >
-        Delete prototype
-      </button>
-    </div>
+    {props.canClaim && (
+      <div className="ModalSection">
+        <h2>Account</h2>
+        {props.isLoggedIn || <p>{Strings.settings.account.notLoggedIn}</p>}
+        <Accounts />
+      </div>
+    )}
+    {props.isOwner && (
+      <div className="ModalSection">
+        <h2>Danger zone</h2>
+        <button
+          className="negative block"
+          onClick={() => deletePrototype(props.prototype._id)}
+        >
+          Delete prototype
+        </button>
+      </div>
+    )}
   </div>
 );
 
 Settings.propTypes = {
   prototype: PropTypes.object,
-  changeRefresh: PropTypes.func
+  isLoggedIn: PropTypes.bool,
+  isOwner: PropTypes.bool,
+  canClaim: PropTypes.bool,
+  canEdit: PropTypes.bool
 };
 
 export default Settings;

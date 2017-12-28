@@ -21,10 +21,13 @@ import "../styles/Prototype.css";
 class Prototype extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       playing: true,
       modal: false,
-      updated: false,
+      isLoggedIn: Meteor.userId() ? true : false,
+      isOwner: false,
+      canClaim: false,
       canEdit: false
     };
   }
@@ -32,7 +35,7 @@ class Prototype extends Component {
   _renderModalContent() {
     switch (this.state.modal) {
       case "Settings":
-        return <Settings {...this.props} />;
+        return <Settings {...this.props} {...this.state} />;
       case "Prototypes":
         return (
           <PrototypesList
@@ -47,12 +50,19 @@ class Prototype extends Component {
     }
   }
 
-  componentWillMount() {
-    const { prototype } = this.props;
-    this.setState({
-      canEdit:
-        !prototype.owner || (prototype && Meteor.userId() === prototype.owner)
-    });
+  componentDidUpdate(prevProps) {
+    const { loading, prototype } = this.props;
+
+    if (prevProps !== this.props && !loading) {
+      const isOwner = Meteor.userId() === prototype.owner;
+      const canClaim = !prototype.owner;
+
+      this.setState({
+        isOwner: isOwner,
+        canClaim: canClaim,
+        canEdit: isOwner || canClaim
+      });
+    }
   }
 
   render() {
@@ -72,37 +82,33 @@ class Prototype extends Component {
           <PageComponents pageName={prototype.name || "New prototype"} />
           <Modal
             show={this.state.modal ? true : false}
-            close={() => this.setState({ modal: false, updated: false })}
+            close={() => this.setState({ modal: false })}
             title={this.state.modal ? this.state.modal : null}
             content={this._renderModalContent()}
-            updated={this.state.updated}
           >
             <Flex className="App Underlay">
               <Box auto style={{ position: "relative" }}>
                 <Preview
-                  full={!canEdit}
                   togglePlaying={() =>
                     this.setState({ playing: !this.state.playing })}
                   {...this.state}
                   {...this.props}
                 />
               </Box>
-              {canEdit && (
-                <Box w={1 / 2} style={{ position: "relative" }}>
-                  <Editor code={code} {...this.props} {...this.state} />
-                  <EditControls
-                    showAll={() => this.setState({ modal: "Prototypes" })}
-                    showSettings={() => this.setState({ modal: "Settings" })}
-                    showSnippets={() => this.setState({ modal: "Snippets" })}
-                    togglePlaying={() =>
-                      this.setState({
-                        playing: !this.state.playing
-                      })}
-                    syntax={this.props.prototype.syntax}
-                    {...this.state}
-                  />
-                </Box>
-              )}
+              <Box w={1 / 2} style={{ position: "relative" }}>
+                <Editor code={code} prototype={prototype} {...this.state} />
+                <EditControls
+                  showAll={() => this.setState({ modal: "Prototypes" })}
+                  showSettings={() => this.setState({ modal: "Settings" })}
+                  showSnippets={() => this.setState({ modal: "Snippets" })}
+                  togglePlaying={() =>
+                    this.setState({
+                      playing: !this.state.playing
+                    })}
+                  syntax={this.props.prototype.syntax}
+                  {...this.state}
+                />
+              </Box>
             </Flex>
           </Modal>
         </div>

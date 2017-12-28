@@ -13,7 +13,7 @@ const HomePage = () => (
     <p>{Strings.tagline}</p>
     <Accounts />
     <Link to="/new" className="Button" style={{ marginTop: "1em" }}>
-      New prototype
+      Create a new prototype
     </Link>
   </div>
 );

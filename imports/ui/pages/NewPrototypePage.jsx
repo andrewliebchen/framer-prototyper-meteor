@@ -16,6 +16,7 @@ class NewPrototypePage extends Component {
   }
 
   componentDidMount() {
+    console.log(Meteor.userId());
     Meteor.call(
       "newPrototype",
       {

@@ -3,7 +3,6 @@ import { Meteor } from "meteor/meteor";
 import AceEditor from "react-ace";
 import PropTypes from "prop-types";
 import { Flex, Box } from "reflexbox";
-// import { Link } from "react-router-dom";
 
 import "../styles/Editor.css";
 
@@ -14,6 +13,7 @@ import "../lib/tomorrow_night_eighties";
 const Editor = props => (
   <div className="Editor">
     <AceEditor
+      readOnly={!props.canEdit}
       mode={props.prototype.syntax === "coffeescript" ? "coffee" : "javascript"}
       theme="tomorrow_night_eighties"
       name="editorCode"
@@ -43,7 +43,8 @@ const Editor = props => (
 Editor.propTypes = {
   code: PropTypes.string,
   prototype: PropTypes.object,
-  playing: PropTypes.bool
+  playing: PropTypes.bool,
+  canEdit: PropTypes.bool
 };
 
 export default Editor;
