@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Flex, Box } from "reflexbox";
 import _ from "lodash";
+import queryString from "query-string";
+import { toast } from "react-toastify";
 
 import PageComponents from "./PageComponents.jsx";
 import Loader from "./Loader.jsx";
@@ -59,6 +61,18 @@ class Prototype extends Component {
         isOwner: isOwner,
         canEdit: isOwner || !prototype.owner
       });
+    }
+  }
+
+  componentDidMount() {
+    const action = queryString.parse(location.search).action;
+    switch (action) {
+      case "fork":
+        toast("Sweet, this is a forked prototype...");
+        break;
+      case "new":
+        toast("Cowabunga, new prototype created!");
+        break;
     }
   }
 

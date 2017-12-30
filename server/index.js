@@ -10,6 +10,7 @@ const initialCode = `const layerA = new Layer({
   backgroundColor: new Color('blue').alpha(0.5),
 });`;
 
+// Publications
 Meteor.publish("prototype", id => {
   return Prototypes.find({ _id: id });
 });
@@ -18,6 +19,7 @@ Meteor.publish("prototypes", userId => {
   return Prototypes.find({ owner: userId });
 });
 
+// Methods
 Meteor.methods({
   newPrototype(args) {
     return Prototypes.insert({
@@ -53,5 +55,18 @@ Meteor.methods({
 
   deletePrototype(id) {
     return Prototypes.remove(id);
+  },
+
+  forkPrototype(id, owner) {
+    let original = Prototypes.findOne({ _id: id });
+    console.log(original);
+
+    return Prototypes.insert({
+      code: original.code,
+      createdAt: original.createdAt,
+      updatedAt: Date.now(),
+      owner: owner,
+      syntax: original.syntax
+    });
   }
 });

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
+import { Redirect } from "react-router-dom";
 import Accounts from "../components/Accounts.jsx";
 import { toast } from "react-toastify";
 
@@ -61,7 +62,7 @@ const Settings = props => (
                 toast("Syntax updated!");
               }
               if (err) {
-                toast("Whoops, there was a problem", { type: "error" });
+                toast("Whoops, there was a problem...", { type: "error" });
               }
             }
           )}
@@ -83,7 +84,24 @@ const Settings = props => (
           <b>{props.isOwner ? "Only you" : "Anyone"}</b> can edit this
           prototype.
         </p>
-        <Button label="Fork this prototype" block />
+        <Button
+          label="Fork this prototype"
+          onClick={() =>
+            Meteor.call(
+              "forkPrototype",
+              props.prototype._id,
+              Meteor.userId(),
+              (err, id) => {
+                if (id) {
+                  window.location.replace(`/${id}?action=fork`);
+                }
+                if (err) {
+                  toast("Whoops, there was a problem...", { type: "error" });
+                }
+              }
+            )}
+          block
+        />
       </div>
     </div>
     <div className="ModalSection">
