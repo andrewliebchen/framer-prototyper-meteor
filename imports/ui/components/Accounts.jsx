@@ -4,6 +4,7 @@ import { Template } from "meteor/templating";
 import { Blaze } from "meteor/blaze";
 
 import "../styles/Accounts.css";
+import "../styles/Button.css";
 
 class Accounts extends Component {
   componentDidMount() {

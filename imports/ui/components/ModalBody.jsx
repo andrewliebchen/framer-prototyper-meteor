@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import Button from "./Button.jsx";
+
 const ModalBody = props => (
   <div className="ModalBody">
     <div className="ModalHeader">
       <h2>{props.title}</h2>
       {props.handleAction && (
-        <button onClick={props.handleAction}>{props.actionLabel}</button>
+        <Button onClick={props.handleAction} label={props.actionLabel} />
       )}
     </div>
     <div className="ModalContent">{props.children}</div>

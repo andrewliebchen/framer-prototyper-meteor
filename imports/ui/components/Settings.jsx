@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { deletePrototype } from "../lib/utils";
 import Strings from "../lib/strings";
 
+import Button from "./Button.jsx";
 import FormInput from "./FormInput.jsx";
 import FormSelect from "./FormSelect.jsx";
 
@@ -76,23 +77,29 @@ const Settings = props => (
         }
         disabled
       />
-    </div>
-    {props.canClaim && (
-      <div className="ModalSection">
-        <h2>Account</h2>
-        {props.isLoggedIn || <p>{Strings.settings.account.notLoggedIn}</p>}
-        <Accounts />
+      <div className="Form">
+        <label className="FormLabel">Permissions</label>
+        <p>
+          <b>{props.isOwner ? "Only you" : "Anyone"}</b> can edit this
+          prototype.
+        </p>
+        <Button label="Fork this prototype" block />
       </div>
-    )}
+    </div>
+    <div className="ModalSection">
+      <h2>Account</h2>
+      {props.isLoggedIn || <p>{Strings.settings.account.notLoggedIn}</p>}
+      <Accounts />
+    </div>
     {props.isOwner && (
       <div className="ModalSection">
         <h2>Danger zone</h2>
-        <button
-          className="negative block"
+        <Button
           onClick={() => deletePrototype(props.prototype._id)}
-        >
-          Delete prototype
-        </button>
+          label="Delete prototype"
+          negative
+          block
+        />
       </div>
     )}
   </div>
@@ -102,7 +109,6 @@ Settings.propTypes = {
   prototype: PropTypes.object,
   isLoggedIn: PropTypes.bool,
   isOwner: PropTypes.bool,
-  canClaim: PropTypes.bool,
   canEdit: PropTypes.bool
 };
 

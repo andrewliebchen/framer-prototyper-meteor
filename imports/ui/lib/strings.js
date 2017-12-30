@@ -1,3 +1,5 @@
+import React from "react";
+
 const Strings = {
   appName: "Framer Science",
   tagline:
@@ -7,13 +9,13 @@ const Strings = {
       "If you change syntax, we'll automatically convert your code to the syntax you choose. Please double check the converted code, or your prototype may not run as you expect.",
     url: {
       signedIn:
-        "Anyone you share with will see a read-only version of this prototype.",
+        "Anyone you share this URL with will see a read-only version of the prototype.",
       signedOut:
-        "Unless you're signed in, anyone with the prototype URL can edit it."
+        "Unless you've saved this prototype, anyone with this URL can edit it."
     },
     account: {
       notLoggedIn:
-        "Sign in with Google to save this prototype. Once you've saved a prototype, only you can edit it."
+        "Sign in with Google to fork and save prototypes. You can always create new prototypes without an account."
     }
   }
 };

@@ -7,6 +7,7 @@ import { Flex, Box } from "reflexbox";
 import classnames from "classnames";
 import { Link } from "react-router-dom";
 
+import Button from "./Button.jsx";
 import { deletePrototype } from "../lib/utils";
 
 import "../styles/PrototypesList.css";
@@ -15,16 +16,17 @@ const timeagoInstance = timeago();
 
 const PrototypesList = props => (
   <div>
-    <button
-      className="PrototypeListButton"
-      onClick={() =>
-        Meteor.call("newPrototype", {
-          createdAt: Date.now(),
-          owner: Meteor.userId()
-        })}
-    >
-      New Prototype
-    </button>
+    <div className="PrototypeListHeader">
+      <Button
+        onClick={() =>
+          Meteor.call("newPrototype", {
+            createdAt: Date.now(),
+            owner: Meteor.userId()
+          })}
+        label="New Prototype"
+        block
+      />
+    </div>
     {props.prototypes.map(prototype => {
       const isCurrent = prototype._id === props.prototype._id;
       return (

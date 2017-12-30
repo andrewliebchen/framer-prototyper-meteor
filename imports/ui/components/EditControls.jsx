@@ -10,11 +10,13 @@ import "../styles/Controls.css";
 
 const EditControls = props => (
   <Flex className="Controls" column>
-    <Control
-      tip="All prototypes"
-      icon={<Folder />}
-      handleClick={props.showAll}
-    />
+    {props.isLoggedIn && (
+      <Control
+        tip="All prototypes"
+        icon={<Folder />}
+        handleClick={props.showAll}
+      />
+    )}
     <Control
       tip="Settings"
       icon={<Settings />}
@@ -47,7 +49,8 @@ EditControls.propTypes = {
   showSettings: PropTypes.func,
   showSnippets: PropTypes.func,
   showAll: PropTypes.func,
-  syntax: PropTypes.oneOf(["coffeescript", "javascript"])
+  syntax: PropTypes.oneOf(["coffeescript", "javascript"]),
+  isLoggedIn: PropTypes.bool
 };
 
 export default EditControls;

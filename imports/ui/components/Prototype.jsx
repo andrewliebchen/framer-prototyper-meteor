@@ -27,7 +27,6 @@ class Prototype extends Component {
       modal: false,
       isLoggedIn: Meteor.userId() ? true : false,
       isOwner: false,
-      canClaim: false,
       canEdit: false
     };
   }
@@ -55,12 +54,10 @@ class Prototype extends Component {
 
     if (prevProps !== this.props && !loading) {
       const isOwner = Meteor.userId() === prototype.owner;
-      const canClaim = !prototype.owner;
 
       this.setState({
         isOwner: isOwner,
-        canClaim: canClaim,
-        canEdit: isOwner || canClaim
+        canEdit: isOwner || !prototype.owner
       });
     }
   }
