@@ -1,8 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Flex, Box } from "reflexbox";
-import { Folder, Settings, Play, Pause, Sun, Scissors } from "react-feather";
 import { Link } from "react-router-dom";
+import {
+  Folder,
+  Settings,
+  Play,
+  Pause,
+  Sun,
+  Scissors,
+  LogIn,
+  LogOut
+} from "react-feather";
 
 import Control from "./Control.jsx";
 
@@ -37,9 +46,28 @@ const EditControls = props => (
       icon={props.playing ? <Pause /> : <Play />}
       handleClick={props.togglePlaying}
     />
-    <Link className="Control PrimaryControl" to="/new" data-tip="New Prototype">
-      <Sun />
-    </Link>
+    <div className="ControlWrapper">
+      <Link
+        className="Control PrimaryControl"
+        to="/new"
+        data-tip="New Prototype"
+      >
+        <Sun />
+      </Link>
+    </div>
+    <Box style={{ marginTop: "auto" }}>
+      <Control
+        tip={`Sign ${props.isLoggedIn ? "out" : "in"}`}
+        icon={props.isLoggedIn ? <LogOut /> : <LogIn />}
+        handleClick={() => {
+          if (props.isLoggedIn) {
+            props.handleLogOut();
+          } else {
+            props.handleLogIn();
+          }
+        }}
+      />
+    </Box>
   </Flex>
 );
 
@@ -50,7 +78,9 @@ EditControls.propTypes = {
   showSnippets: PropTypes.func,
   showAll: PropTypes.func,
   syntax: PropTypes.oneOf(["coffeescript", "javascript"]),
-  isLoggedIn: PropTypes.bool
+  isLoggedIn: PropTypes.bool,
+  handleLogIn: PropTypes.func,
+  handleLogOut: PropTypes.func
 };
 
 export default EditControls;

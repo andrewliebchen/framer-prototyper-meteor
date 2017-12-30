@@ -51,6 +51,28 @@ class Prototype extends Component {
     }
   }
 
+  _handleLogOut() {
+    Meteor.logout(error => {
+      if (error) {
+        toast("Whoops, couldn't log you out...", { type: "error" });
+      } else {
+        this.setState({ isLoggedIn: false });
+        toast("See you later!");
+      }
+    });
+  }
+
+  _handleLogIn() {
+    Meteor.loginWithGoogle(error => {
+      if (error) {
+        toast("Whoops, couldn't log you in...", { type: "error" });
+      } else {
+        this.setState({ isLoggedIn: true });
+        toast("Great to see you!");
+      }
+    });
+  }
+
   componentDidUpdate(prevProps) {
     const { loading, prototype } = this.props;
 
@@ -117,6 +139,8 @@ class Prototype extends Component {
                       playing: !this.state.playing
                     })}
                   syntax={this.props.prototype.syntax}
+                  handleLogIn={this._handleLogIn.bind(this)}
+                  handleLogOut={this._handleLogOut.bind(this)}
                   {...this.state}
                 />
               </Box>
