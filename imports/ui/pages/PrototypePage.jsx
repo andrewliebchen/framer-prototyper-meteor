@@ -4,7 +4,7 @@ import { withTracker } from "meteor/react-meteor-data";
 
 import Prototype from "../components/Prototype.jsx";
 
-import { Prototypes } from "../../api/prototypes";
+import Prototypes from "../../api/Prototypes/Prototypes";
 
 const PrototypePage = props => <Prototype {...props} />;
 

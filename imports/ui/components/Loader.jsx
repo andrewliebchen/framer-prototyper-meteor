@@ -9,7 +9,7 @@ const LoaderSpinner = props => (
     name="ball-pulse-sync"
     className="Spinner"
     color={props.color}
-    fadeIn={0}
+    fadeIn="none"
   />
 );
 
