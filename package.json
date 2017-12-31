@@ -22,15 +22,14 @@
     "react-frame-component": "^2.0.0",
     "react-helmet": "^5.2.0",
     "react-interval": "^2.0.2",
-    "react-loading-animation": "^1.4.0",
     "react-router-dom": "^4.2.2",
     "react-search-input": "^0.11.3",
+    "react-spinkit": "^3.0.0",
     "react-toastify": "^3.2.1",
     "react-tooltip": "^3.4.0",
     "react-transition-group": "^2.2.1",
     "reflexbox": "^3.0.0-0",
-    "timeago.js": "^3.0.2",
-    "window-resize-listener-react": "^1.0.3"
+    "timeago.js": "^3.0.2"
   },
   "version": "1.0.0",
   "main": "index.js",

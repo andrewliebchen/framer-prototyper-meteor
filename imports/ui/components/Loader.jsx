@@ -1,18 +1,27 @@
 import React from "react";
-import Loading from "react-loading-animation";
+import { Flex, Box } from "reflexbox";
+import Spinner from "react-spinkit";
+
+import "../styles/Loader.css";
+
+const LoaderSpinner = props => (
+  <Spinner
+    name="ball-pulse-sync"
+    className="Spinner"
+    color={props.color}
+    fadeIn={0}
+  />
+);
 
 const Loader = () => (
-  <Loading
-    width="80px"
-    height="80px"
-    strokeWidth="3"
-    style={{
-      position: "fixed",
-      top: "50%",
-      left: "50%",
-      transform: "translate3d(-50%, -50%, 0)"
-    }}
-  />
+  <Flex className="App">
+    <Box auto className="LoaderLeft">
+      <LoaderSpinner color="#2d2d2d" />
+    </Box>
+    <Box auto className="LoaderRight">
+      <LoaderSpinner color="white" />
+    </Box>
+  </Flex>
 );
 
 export default Loader;

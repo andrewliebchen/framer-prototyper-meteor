@@ -1,0 +1,19 @@
+.LoaderContainer {
+}
+
+.LoaderLeft {
+  background-color: white;
+  position: relative;
+}
+
+.LoaderRight {
+  background-color: var(--color-gray-2);
+  position: relative;
+}
+
+.Spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
