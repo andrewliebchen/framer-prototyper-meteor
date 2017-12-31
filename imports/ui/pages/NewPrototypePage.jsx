@@ -24,6 +24,7 @@ class NewPrototypePage extends Component {
       },
       (err, id) => {
         if (id) {
+          console.log(`New prototype id: ${id}`);
           return this.setState({ newId: id });
         }
       }

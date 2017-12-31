@@ -3,7 +3,7 @@ import React from "react";
 const Strings = {
   appName: "Framer Science",
   tagline:
-    "Framer science is a great way to create and share small experiments in FramerJS.",
+    "Framer Science is a great way to create and share small experiments in FramerJS.",
   settings: {
     syntax:
       "If you change syntax, we'll automatically convert your code to the syntax you choose. Please double check the converted code, or your prototype may not run as you expect.",

@@ -3,21 +3,25 @@ import js2coffee from "js2coffee";
 import CoffeeScript from "coffeescript";
 
 import Prototypes from "./Prototypes";
+import Strings from "../../ui/lib/strings";
 
-const initialCode = `const layerA = new Layer({
-  x: Align.center,
-  y: Align.center,
-  backgroundColor: new Color('blue').alpha(0.5),
-});`;
+const initialCode = `
+# Welcome to Framer Science!
+# ${Strings.tagline}
+
+layerA = new Layer
+  x: Align.center
+  y: Align.center
+  backgroundColor: new Color('blue').alpha(0.5)`;
 
 Meteor.methods({
   newPrototype(args) {
     return Prototypes.insert({
-      code: initialCode,
+      code: Strings.initialCode,
       createdAt: args.createdAt,
       updatedAt: args.createdAt,
       owner: args.owner,
-      syntax: "javascript"
+      syntax: "coffeescript"
     });
   },
 
