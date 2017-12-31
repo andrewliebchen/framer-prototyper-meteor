@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import HomePage from "../imports/ui/pages/HomePage.jsx";
 import PrototypePage from "../imports/ui/pages/PrototypePage.jsx";
+import PreviewPage from "../imports/ui/pages/PreviewPage.jsx";
 import NewPrototypePage from "../imports/ui/pages/NewPrototypePage.jsx";
 import NotFoundPage from "../imports/ui/pages/NotFoundPage.jsx";
 
@@ -16,6 +17,10 @@ const Routes = () => (
     <Switch>
       <Route exact path="/" component={HomePage} />
       <Route path="/new" component={NewPrototypePage} />
+      <Route
+        path="/:id/preview"
+        render={({ match }) => <PreviewPage id={match.params.id} />}
+      />
       <Route
         path="/:id"
         render={({ match }) => <PrototypePage id={match.params.id} />}
