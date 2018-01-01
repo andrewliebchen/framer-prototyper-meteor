@@ -5,8 +5,7 @@ import CoffeeScript from "coffeescript";
 import Prototypes from "./Prototypes";
 import Strings from "../../ui/lib/strings";
 
-const initialCode = `
-# Welcome to Framer Science!
+const initialCode = `# Welcome to Framer Science!
 # ${Strings.tagline}
 
 layerA = new Layer
