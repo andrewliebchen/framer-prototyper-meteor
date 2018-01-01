@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Flex, Box } from "reflexbox";
 import Spinner from "react-spinkit";
 
@@ -13,15 +14,21 @@ const LoaderSpinner = props => (
   />
 );
 
-const Loader = () => (
+const Loader = props => (
   <Flex className="App">
     <Box auto className="LoaderLeft">
       <LoaderSpinner color="#2d2d2d" />
     </Box>
-    <Box auto className="LoaderRight">
-      <LoaderSpinner color="white" />
-    </Box>
+    {props.full || (
+      <Box auto className="LoaderRight">
+        <LoaderSpinner color="white" />
+      </Box>
+    )}
   </Flex>
 );
+
+Loader.propTypes = {
+  full: PropTypes.bool
+};
 
 export default Loader;

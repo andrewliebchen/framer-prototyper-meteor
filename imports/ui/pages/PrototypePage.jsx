@@ -3,10 +3,17 @@ import PropTypes from "prop-types";
 import { withTracker } from "meteor/react-meteor-data";
 
 import Prototype from "../components/Prototype.jsx";
+import Loader from "../components/Loader.jsx";
 
 import Prototypes from "../../api/Prototypes/Prototypes";
 
-const PrototypePage = props => <Prototype {...props} />;
+const PrototypePage = props => {
+  if (props.loading) {
+    return <Loader />;
+  } else {
+    return <Prototype {...props} />;
+  }
+};
 
 PrototypePage.propTypes = {
   prototype: PropTypes.object,
@@ -15,7 +22,8 @@ PrototypePage.propTypes = {
   prototypeListLoaded: PropTypes.bool
 };
 
-export default withTracker(({ id }) => {
+export default withTracker(props => {
+  const id = props.match.params.id;
   const prototypeHandle = Meteor.subscribe("prototype", id);
   const loading = !prototypeHandle.ready();
 

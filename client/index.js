@@ -17,14 +17,8 @@ const Routes = () => (
     <Switch>
       <Route exact path="/" component={HomePage} />
       <Route path="/new" component={NewPrototypePage} />
-      <Route
-        path="/:id/preview"
-        render={({ match }) => <PreviewPage id={match.params.id} />}
-      />
-      <Route
-        path="/:id"
-        render={({ match }) => <PrototypePage id={match.params.id} />}
-      />
+      <Route path="/:id/preview" component={PreviewPage} />
+      <Route path="/:id" component={PrototypePage} />
       <Route component={NotFoundPage} />
     </Switch>
   </Router>

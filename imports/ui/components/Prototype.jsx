@@ -6,7 +6,6 @@ import queryString from "query-string";
 import { toast } from "react-toastify";
 
 import PageComponents from "./PageComponents.jsx";
-import Loader from "./Loader.jsx";
 import Editor from "./Editor.jsx";
 import Preview from "./Preview.jsx";
 import Modal from "./Modal.jsx";
@@ -102,10 +101,6 @@ class Prototype extends Component {
     const { prototype, loading } = this.props;
     const { canEdit } = this.state;
     const code = prototype ? prototype.code : "";
-
-    if (loading) {
-      return <Loader />;
-    }
 
     if (_.isEmpty(prototype)) {
       return <NotFoundPage />;

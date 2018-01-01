@@ -17,7 +17,7 @@ layerA = new Layer
 Meteor.methods({
   newPrototype(args) {
     return Prototypes.insert({
-      code: Strings.initialCode,
+      code: initialCode,
       createdAt: args.createdAt,
       updatedAt: args.createdAt,
       owner: args.owner,
