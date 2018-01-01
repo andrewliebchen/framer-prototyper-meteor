@@ -1,4 +1,5 @@
 import React from "react";
+import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import ReactTooltip from "react-tooltip";
@@ -17,9 +18,13 @@ style({
 const PageComponents = props => (
   <div>
     <Helmet>
-      <title>
-        {Strings.appName} | {props.pageName}
-      </title>
+      {Meteor.isDesktop ? (
+        <title>{Strings.appName}</title>
+      ) : (
+        <title>
+          {Strings.appName} | {props.pageName}
+        </title>
+      )}
     </Helmet>
     <ReactTooltip place="bottom" offset={{ bottom: 10 }} className="Tooltip" />
     <ToastContainer
