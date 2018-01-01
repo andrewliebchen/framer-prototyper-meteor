@@ -1,4 +1,5 @@
 import React from "react";
+import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import { withTracker } from "meteor/react-meteor-data";
 
@@ -29,8 +30,15 @@ export default withTracker(props => {
 
   let prototypeListLoaded = false;
 
+  // Get a list of prototypes. If there's a user, get their Prototypes
+  // if this is the Electron client, get all local prototypes
   if (Meteor.userId()) {
     const prototypeListHandle = Meteor.subscribe("prototypes", Meteor.userId());
+    prototypeListLoaded = prototypeListHandle.ready();
+  }
+
+  if (Meteor.isDesktop) {
+    const prototypeListHandle = Meteor.subscribe("allPrototypes");
     prototypeListLoaded = prototypeListHandle.ready();
   }
 

@@ -15,7 +15,7 @@ import FormSelect from "./FormSelect.jsx";
 const Settings = props => (
   <div>
     <div className="ModalSection">
-      {props.isLoggedIn && (
+      {props.canEdit && (
         <FormInput
           label="Prototype name"
           defaultValue={props.prototype.name}
@@ -78,37 +78,41 @@ const Settings = props => (
         }
         disabled
       />
-      <div className="Form">
-        <label className="FormLabel">Permissions</label>
-        <p>
-          <b>{props.isOwner ? "Only you" : "Anyone"}</b> can edit this
-          prototype.
-        </p>
-        <Button
-          label="Fork this prototype"
-          onClick={() =>
-            Meteor.call(
-              "forkPrototype",
-              props.prototype._id,
-              Meteor.userId(),
-              (err, id) => {
-                if (id) {
-                  window.location.replace(`/${id}?action=fork`);
+      {props.isDesktop || (
+        <div className="Form">
+          <label className="FormLabel">Permissions</label>
+          <p>
+            <b>{props.isOwner ? "Only you" : "Anyone"}</b> can edit this
+            prototype.
+          </p>
+          <Button
+            label="Fork this prototype"
+            onClick={() =>
+              Meteor.call(
+                "forkPrototype",
+                props.prototype._id,
+                Meteor.userId(),
+                (err, id) => {
+                  if (id) {
+                    window.location.replace(`/${id}?action=fork`);
+                  }
+                  if (err) {
+                    toast("Whoops, there was a problem...", { type: "error" });
+                  }
                 }
-                if (err) {
-                  toast("Whoops, there was a problem...", { type: "error" });
-                }
-              }
-            )}
-          block
-        />
+              )}
+            block
+          />
+        </div>
+      )}
+    </div>
+    {props.isDesktop || (
+      <div className="ModalSection">
+        <h2>Account</h2>
+        {props.isLoggedIn || <p>{Strings.settings.account.notLoggedIn}</p>}
+        <Accounts />
       </div>
-    </div>
-    <div className="ModalSection">
-      <h2>Account</h2>
-      {props.isLoggedIn || <p>{Strings.settings.account.notLoggedIn}</p>}
-      <Accounts />
-    </div>
+    )}
     {props.isOwner && (
       <div className="ModalSection">
         <h2>Danger zone</h2>
@@ -124,10 +128,11 @@ const Settings = props => (
 );
 
 Settings.propTypes = {
-  prototype: PropTypes.object,
+  canEdit: PropTypes.bool,
+  isDesktop: PropTypes.bool,
   isLoggedIn: PropTypes.bool,
   isOwner: PropTypes.bool,
-  canEdit: PropTypes.bool
+  prototype: PropTypes.object
 };
 
 export default Settings;

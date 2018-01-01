@@ -19,7 +19,7 @@ import "../styles/Controls.css";
 
 const EditControls = props => (
   <Flex className="Controls" column>
-    {props.isLoggedIn && (
+    {props.canEdit && (
       <Control
         tip="All prototypes"
         icon={<Folder />}
@@ -55,32 +55,36 @@ const EditControls = props => (
         <Sun />
       </Link>
     </div>
-    <Box style={{ marginTop: "auto" }}>
-      <Control
-        tip={`Sign ${props.isLoggedIn ? "out" : "in"}`}
-        icon={props.isLoggedIn ? <LogOut /> : <LogIn />}
-        handleClick={() => {
-          if (props.isLoggedIn) {
-            props.handleLogOut();
-          } else {
-            props.handleLogIn();
-          }
-        }}
-      />
-    </Box>
+    {props.isDesktop || (
+      <Box style={{ marginTop: "auto" }}>
+        <Control
+          tip={`Sign ${props.isLoggedIn ? "out" : "in"}`}
+          icon={props.isLoggedIn ? <LogOut /> : <LogIn />}
+          handleClick={() => {
+            if (props.isLoggedIn) {
+              props.handleLogOut();
+            } else {
+              props.handleLogIn();
+            }
+          }}
+        />
+      </Box>
+    )}
   </Flex>
 );
 
 EditControls.propTypes = {
-  togglePlaying: PropTypes.func,
+  canEdit: PropTypes.bool,
+  handleLogIn: PropTypes.func,
+  handleLogOut: PropTypes.func,
+  isDesktop: PropTypes.bool,
+  isLoggedIn: PropTypes.bool,
   playing: PropTypes.bool,
+  showAll: PropTypes.func,
   showSettings: PropTypes.func,
   showSnippets: PropTypes.func,
-  showAll: PropTypes.func,
   syntax: PropTypes.oneOf(["coffeescript", "javascript"]),
-  isLoggedIn: PropTypes.bool,
-  handleLogIn: PropTypes.func,
-  handleLogOut: PropTypes.func
+  togglePlaying: PropTypes.func
 };
 
 export default EditControls;

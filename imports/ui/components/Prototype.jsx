@@ -24,11 +24,12 @@ class Prototype extends Component {
     super(props);
 
     this.state = {
-      playing: true,
-      modal: false,
+      canEdit: false,
+      isDesktop: Meteor.isDesktop,
       isLoggedIn: Meteor.userId() ? true : false,
       isOwner: false,
-      canEdit: false
+      modal: false,
+      playing: true
     };
   }
 
@@ -79,8 +80,8 @@ class Prototype extends Component {
       const isOwner = Meteor.userId() === prototype.owner;
 
       this.setState({
-        isOwner: isOwner,
-        canEdit: isOwner || !prototype.owner
+        canEdit: isOwner || !prototype.owner || Meteor.isDesktop,
+        isOwner: isOwner || Meteor.isDesktop
       });
     }
   }
