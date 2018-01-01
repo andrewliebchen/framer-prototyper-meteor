@@ -19,13 +19,13 @@ import "../styles/Controls.css";
 
 const EditControls = props => (
   <Flex className="Controls" column>
-    {props.canEdit && (
-      <Control
-        tip="All prototypes"
-        icon={<Folder />}
-        handleClick={props.showAll}
-      />
-    )}
+    {(props.isDesktop || props.canEdit) && (
+        <Control
+          tip="All prototypes"
+          icon={<Folder />}
+          handleClick={props.showAll}
+        />
+      )}
     <Control
       tip="Settings"
       icon={<Settings />}

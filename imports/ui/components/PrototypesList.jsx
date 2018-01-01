@@ -28,7 +28,8 @@ const PrototypesList = props => (
       />
     </div>
     {props.prototypes.map(prototype => {
-      const isCurrent = prototype._id === props.prototype._id;
+      const isCurrent =
+        props.prototype && prototype._id === props.prototype._id;
       return (
         <Link to={`/${prototype._id}`} key={prototype._id}>
           <Flex
@@ -48,13 +49,15 @@ const PrototypesList = props => (
                 className="PrototypeItemAction"
                 onClick={props.showSettings}
               />
-              <Trash2
-                className="PrototypeItemAction Delete"
-                onClick={event => {
-                  event.preventDefault();
-                  deletePrototype(prototype._id);
-                }}
-              />
+              {isCurrent || (
+                <Trash2
+                  className="PrototypeItemAction Delete"
+                  onClick={event => {
+                    event.preventDefault();
+                    deletePrototype(prototype._id);
+                  }}
+                />
+              )}
             </Box>
           </Flex>
         </Link>

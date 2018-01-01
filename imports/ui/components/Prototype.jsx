@@ -23,11 +23,13 @@ class Prototype extends Component {
   constructor(props) {
     super(props);
 
+    // Can this be better?
+    const isOwner = Meteor.userId() === this.props.prototype.owner;
     this.state = {
-      canEdit: false,
+      canEdit: Meteor.isDesktop || isOwner || !this.props.prototype.owner,
       isDesktop: Meteor.isDesktop,
       isLoggedIn: Meteor.userId() ? true : false,
-      isOwner: false,
+      isOwner: isOwner,
       modal: false,
       playing: true
     };
@@ -73,18 +75,16 @@ class Prototype extends Component {
     });
   }
 
-  componentDidUpdate(prevProps) {
-    const { loading, prototype } = this.props;
-
-    if (prevProps !== this.props && !loading) {
-      const isOwner = Meteor.userId() === prototype.owner;
-
-      this.setState({
-        canEdit: isOwner || !prototype.owner || Meteor.isDesktop,
-        isOwner: isOwner || Meteor.isDesktop
-      });
-    }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   const { loading, prototype } = this.props;
+  //   if (prevProps != this.props) {
+  //     const isOwner = Meteor.userId() === prototype.owner;
+  //     this.setState({
+  //       canEdit: Meteor.isDesktop || isOwner || !prototype.owner,
+  //       isOwner: isOwner || Meteor.isDesktop
+  //     });
+  //   }
+  // }
 
   componentDidMount() {
     const action = queryString.parse(location.search).action;
@@ -99,6 +99,8 @@ class Prototype extends Component {
   }
 
   render() {
+    console.log(this.state);
+
     const { prototype, loading } = this.props;
     const { canEdit } = this.state;
     const code = prototype ? prototype.code : "";
@@ -150,9 +152,7 @@ class Prototype extends Component {
 
 Prototype.propTypes = {
   prototype: PropTypes.object,
-  prototypes: PropTypes.array,
-  loading: PropTypes.bool,
-  prototypeListLoaded: PropTypes.bool
+  loading: PropTypes.bool
 };
 
 export default Prototype;
