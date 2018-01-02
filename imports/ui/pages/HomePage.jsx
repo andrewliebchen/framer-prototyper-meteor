@@ -12,19 +12,20 @@ import PrototypesList from "../components/PrototypesList";
 import Strings from "../lib/strings";
 import Prototypes from "../../api/Prototypes/Prototypes";
 
+import "../styles/Home.css";
+
 const HomePage = props => (
-  <div className="Home">
+  <div>
     <PageComponents pageName="Login" />
-    <Flex>
-      <Box w={1 / 3} style={{ color: "white", padding: "3em" }}>
-        <h1>{Strings.appName}</h1>
-        <p>{Strings.tagline}</p>
-        {Meteor.isDesktop || <Accounts />}
-        <Link to="/new" className="Button" style={{ marginTop: "1em" }}>
-          Create a new prototype
-        </Link>
-      </Box>
-      <Box w={2 / 3} style={{ backgroundColor: "white", padding: "3em" }}>
+    <Flex className="Home App">
+      <Flex auto className="HomeLeft" align="center">
+        <Box>
+          <h1>{Strings.appName}</h1>
+          <p>{Strings.tagline}</p>
+          {Meteor.isDesktop || <Accounts />}
+        </Box>
+      </Flex>
+      <Box className="HomeRight Modal">
         <PrototypesList {...props} />
       </Box>
     </Flex>

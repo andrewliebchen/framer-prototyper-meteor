@@ -1,0 +1,11 @@
+.HomeLeft {
+  background-color: var(--color-gray-2);
+  color: white;
+  padding: 3em;
+  position: relative;
+}
+
+.HomeRight {
+  background-color: white;
+  padding: 3em;
+}

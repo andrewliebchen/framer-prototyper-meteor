@@ -37,6 +37,10 @@ p {
   margin-bottom: 1em;
 }
 
+h1 {
+  letter-spacing: var(--letter-spacing);
+}
+
 a {
   text-decoration: none;
 }
