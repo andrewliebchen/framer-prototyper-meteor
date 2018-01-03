@@ -5,7 +5,9 @@ import SearchInput, { createFilter } from "react-search-input";
 
 import ListItem from "./ListItem.jsx";
 
-import snippets from "../lib/snippets";
+import { settings, device, components, layers } from "../lib/snippets";
+
+const snippetSections = [settings, device, components, layers];
 
 class Snippets extends Component {
   constructor(props) {
@@ -16,29 +18,30 @@ class Snippets extends Component {
   }
 
   render() {
-    const filteredSnippets = snippets.filter(
-      createFilter(this.state.searchTerm, ["name"])
-    );
+    const { prototype } = this.props;
 
     return (
       <div>
-        <SearchInput
-          className="Search"
-          onChange={term => this.setState({ searchTerm: term })}
-        />
-        {filteredSnippets.map((snippet, i) => (
-          <ListItem
-            key={i}
-            primary={snippet.name}
-            secondary={snippet.description}
-            onClick={() =>
-              Meteor.call("updateCode", {
-                id: props.prototype._id,
-                code: `${props.prototype.code}\n${snippet.code}`,
-                updatedAt: Date.now()
-              })}
-          />
-        ))}
+        {snippetSections.map(section => {
+          return (
+            <div key={section.title} className="ModalSection">
+              <h2>{section.title}</h2>
+              {section.snippets.map((snippet, i) => (
+                <ListItem
+                  key={i}
+                  secondary={snippet.name}
+                  onClick={() =>
+                    Meteor.call("update", prototype._id, {
+                      code: `${prototype.code}\n\n${snippet.code[
+                        prototype.syntax
+                      ]}`,
+                      updatedAt: Date.now()
+                    })}
+                />
+              ))}
+            </div>
+          );
+        })}
       </div>
     );
   }
@@ -49,3 +52,25 @@ Snippets.propTypes = {
 };
 
 export default Snippets;
+
+// FIXME: Make this work...
+// const filteredSnippets = snippets.filter(
+//   createFilter(this.state.searchTerm, ["name"])
+// );
+/* <SearchInput
+  className="Search"
+  onChange={term => this.setState({ searchTerm: term })}
+/>
+{filteredSnippets.map((snippet, i) => (
+  <ListItem
+    key={i}
+    primary={snippet.name}
+    secondary={snippet.description}
+    onClick={() =>
+      Meteor.call("updateCode", {
+        id: prototype._id,
+        code: `${props.prototype.code}\n${snippet.code}`,
+        updatedAt: Date.now()
+      })}
+  />
+))} */

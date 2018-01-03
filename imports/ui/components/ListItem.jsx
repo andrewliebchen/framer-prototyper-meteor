@@ -15,8 +15,8 @@ const ListItem = props => (
     onClick={props.onClick}
   >
     <Box className="ListItemContent">
-      <h3>{props.primary}</h3>
-      <div>{props.secondary}</div>
+      {props.primary && <h3>{props.primary}</h3>}
+      {props.secondary && <div>{props.secondary}</div>}
     </Box>
     {props.actions && <Box className="ListItemActions">{props.actions}</Box>}
   </Flex>
