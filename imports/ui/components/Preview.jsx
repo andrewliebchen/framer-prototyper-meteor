@@ -82,7 +82,8 @@ class Preview extends Component {
                 coffeescriptURI:
                   "//cdnjs.cloudflare.com/ajax/libs/coffee-script/1.7.1/coffee-script.min.js",
                 code: code,
-                syntax: prototype.syntax
+                syntax: prototype.syntax,
+                background: prototype.background
               })}
             />
           )}

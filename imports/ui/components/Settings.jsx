@@ -41,6 +41,28 @@ const Settings = props => (
         />
       )}
       <FormSelect
+        label="Background color"
+        defaultValue={props.prototype.background}
+        options={[
+          { value: "light", label: "Light" },
+          { value: "dark", label: "Dark" }
+        ]}
+        onChange={event =>
+          Meteor.call(
+            "update",
+            props.prototype._id,
+            { background: event.target.value },
+            (err, success) => {
+              if (success) {
+                toast("Background color updated!");
+              }
+              if (err) {
+                toast("Whoops, there was a problem...", { type: "error" });
+              }
+            }
+          )}
+      />
+      <FormSelect
         label="Syntax"
         hint={Strings.settings.syntax}
         defaultValue={props.prototype.syntax}

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Flex } from "reflexbox";
 import { Link } from "react-router-dom";
 import { Maximize, Minimize } from "react-feather";
+import classnames from "classnames";
 
 import "../styles/Controls.css";
 
@@ -27,7 +28,11 @@ class PreviewControls extends Component {
       <Flex className="Controls" column>
         <div onMouseEnter={event => event.stopPropagation()}>
           <Link
-            className="Control PreviewControl"
+            className={classnames({
+              Control: true,
+              PreviewControl: true,
+              Dark: prototype.background === "dark"
+            })}
             to={full ? `/${prototype._id}` : `/${prototype._id}/preview`}
             data-tip={full ? "Minimize" : "Maximize"}
             style={{

@@ -7,6 +7,11 @@ export const deletePrototype = id => {
 };
 
 export const initPreviewCode = args => {
+  const bgColor = "white";
+  if (args.background === "dark") {
+    bgColor = "#111";
+  }
+
   return `<!DOCTYPE html>
     <html>
       <head>
@@ -29,6 +34,7 @@ export const initPreviewCode = args => {
         ${args.syntax === "coffeescript"
           ? `<script src="${args.coffeescriptURI}"></script>`
           : ""}
+        <script>bg = new BackgroundLayer({backgroundColor: "${bgColor}"})</script>
         <script type="text/${args.syntax}">${args.code}</script>
       </body>
     </html>`;

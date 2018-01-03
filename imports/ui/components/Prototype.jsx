@@ -23,7 +23,6 @@ class Prototype extends Component {
   constructor(props) {
     super(props);
 
-    // Can this be better?
     const isOwner = Meteor.userId() === this.props.prototype.owner;
     this.state = {
       canEdit: Meteor.isDesktop || isOwner || !this.props.prototype.owner,

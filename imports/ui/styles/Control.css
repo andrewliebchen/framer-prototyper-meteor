@@ -4,7 +4,8 @@
 }
 
 .Control,
-a.Control {
+a.Control,
+a.PreviewControl.Dark {
   align-items: center;
   background-color: black;
   border-radius: var(--control-size);
@@ -22,7 +23,8 @@ a.Control {
 }
 
 .Control:hover,
-a.Control:hover {
+a.Control:hover,
+a.PreviewControl.Dark:hover {
   box-shadow: 0 0 0 2px var(--color-accent);
 }
 

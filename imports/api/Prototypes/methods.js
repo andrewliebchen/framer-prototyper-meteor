@@ -20,7 +20,8 @@ Meteor.methods({
       createdAt: args.createdAt,
       updatedAt: args.createdAt,
       owner: args.owner,
-      syntax: "coffeescript"
+      syntax: "coffeescript",
+      background: "light"
     });
   },
 
