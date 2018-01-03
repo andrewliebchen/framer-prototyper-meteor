@@ -8,6 +8,8 @@ import classnames from "classnames";
 import { Link } from "react-router-dom";
 
 import Button from "./Button.jsx";
+import Badge from "./Badge.jsx";
+
 import { deletePrototype } from "../lib/utils";
 
 import "../styles/PrototypesList.css";
@@ -35,14 +37,31 @@ const PrototypesList = props => (
           <Flex
             className={classnames({
               PrototypeItem: true,
+              ListItem: true,
               Current: isCurrent
             })}
             justify="space-between"
           >
             <Box>
-              <h3>{prototype.name || "Untitled"}</h3>
-              <div>Created {timeagoInstance.format(prototype.createdAt)}</div>
-              <div>Updated {timeagoInstance.format(prototype.updatedAt)}</div>
+              <Flex>
+                <Box className="PrototypeItemTitle">
+                  <Badge
+                    label={prototype.syntax === "javascript" ? "js" : "cs"}
+                  />
+                </Box>
+                <Box>
+                  <h3>{prototype.name || "Untitled"}</h3>
+                </Box>
+              </Flex>
+              <div>
+                Created <b>{timeagoInstance.format(prototype.createdAt)}</b>
+              </div>
+              <div>
+                Updated <b>{timeagoInstance.format(prototype.updatedAt)}</b>
+              </div>
+              <div>
+                Permissions {prototype.owner ? <b>Only you</b> : <b>Public</b>}
+              </div>
             </Box>
             <Box className="PrototypeItemActions">
               {isCurrent || (

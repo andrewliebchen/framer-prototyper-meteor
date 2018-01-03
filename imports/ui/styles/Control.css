@@ -42,18 +42,10 @@ a.PreviewControl:hover {
   top: 2px;
 }
 
-.Badge {
+.Control + .Badge {
   position: absolute;
-  padding: 0.5em;
-  letter-spacing: var(--letter-spacing);
-  background-color: var(--color-accent);
-  color: white;
-  font-weight: bold;
-  font-size: 0.75em;
-  border-radius: 3em;
   top: 50%;
   left: 0;
   z-index: 1;
-  text-align: center;
   transform: translate3d(-50%, -50%, 0);
 }

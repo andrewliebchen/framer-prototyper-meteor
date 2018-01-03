@@ -27,7 +27,8 @@ ListItem.propTypes = {
   primary: PropTypes.string,
   secondary: PropTypes.node,
   actions: PropTypes.node,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  badge: PropTypes.string
 };
 
 export default ListItem;

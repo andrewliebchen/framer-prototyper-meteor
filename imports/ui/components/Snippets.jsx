@@ -25,7 +25,7 @@ class Snippets extends Component {
         {snippetSections.map(section => {
           return (
             <div key={section.title} className="ModalSection">
-              <h2>{section.title}</h2>
+              <h3>{section.title}</h3>
               {section.snippets.map((snippet, i) => (
                 <ListItem
                   key={i}

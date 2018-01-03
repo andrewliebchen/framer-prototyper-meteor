@@ -2,22 +2,8 @@
   margin-bottom: 1em;
 }
 
-.PrototypeItem {
-  border: 1px solid var(--color-gray-3);
-  padding: 1em;
-  margin-bottom: 1em;
-  cursor: pointer;
-  user-select: none;
-  color: var(--color-gray-1);
-}
-
-.PrototypeItem:hover,
-.PrototypeItem.Current {
-  border-color: var(--color-accent);
-}
-
-.PrototypeItem.Current {
-  box-shadow: var(--outline-focus);
+.PrototypeItemTitle {
+  margin-bottom: 0.5em;
 }
 
 .PrototypeItemActions {

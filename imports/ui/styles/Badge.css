@@ -1,0 +1,16 @@
+.Badge {
+  --size: 2.25em;
+
+  width: var(--size);
+  height: var(--size);
+  letter-spacing: var(--letter-spacing);
+  background-color: var(--color-accent);
+  color: white;
+  font-weight: bold;
+  font-size: 0.75em;
+  border-radius: var(--size);
+  text-align: center;
+  display: inline-block;
+  line-height: var(--size);
+  text-transform: uppercase;
+}

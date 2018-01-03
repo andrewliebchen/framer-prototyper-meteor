@@ -14,6 +14,7 @@ import {
 } from "react-feather";
 
 import Control from "./Control.jsx";
+import Badge from "./Badge.jsx";
 
 import "../styles/Controls.css";
 
@@ -30,11 +31,7 @@ const EditControls = props => (
       tip="Settings"
       icon={<Settings />}
       handleClick={props.showSettings}
-      badge={
-        <div className="Badge">
-          {props.syntax === "javascript" ? "JS" : "CS"}
-        </div>
-      }
+      badge={<Badge label={props.syntax === "javascript" ? "JS" : "CS"} />}
     />
     <Control
       tip={"Snippets"}

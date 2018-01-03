@@ -15,3 +15,7 @@
 .ListItem.Current {
   box-shadow: var(--outline-focus);
 }
+
+.ListItem .Badge {
+  margin-right: 0.5em;
+}
