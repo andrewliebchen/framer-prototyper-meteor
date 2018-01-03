@@ -1,26 +1,55 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import { Template } from "meteor/templating";
-import { Blaze } from "meteor/blaze";
+import { Meteor } from "meteor/meteor";
+import PropTypes from "prop-types";
+
+import Button from "./Button";
 
 import "../styles/Accounts.css";
-import "../styles/Button.css";
 
 class Accounts extends Component {
-  componentDidMount() {
-    // Use Meteor Blaze to render login buttons
-    this.view = Blaze.render(
-      Template.loginButtons,
-      ReactDOM.findDOMNode(this.refs.container)
-    );
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoggedIn: Meteor.userId()
+    };
+
+    this._handleLogin = this._handleLogin.bind(this);
+    this._handleLogout = this._handleLogout.bind(this);
   }
-  componentWillUnmount() {
-    // Clean up Blaze view
-    Blaze.remove(this.view);
+
+  _handleLogin() {
+    Meteor.loginWithGoogle(err => {
+      if (!err) {
+        this.setState({ isLoggedIn: true });
+      }
+    });
   }
+
+  _handleLogout() {
+    Meteor.logout(err => {
+      if (!err) {
+        this.setState({ isLoggedIn: false });
+      }
+    });
+  }
+
   render() {
-    // Just render a placeholder container that will be filled in
-    return <div className="Accounts" ref="container" />;
+    const { isLoggedIn } = this.state;
+    return (
+      <div className="Accounts">
+        {Meteor.user() && (
+          <p>
+            You're signed in as <b>{Meteor.user().profile.name}</b>
+          </p>
+        )}
+        <Button
+          block
+          label={isLoggedIn ? "Sign out" : "Sign in with Google"}
+          onClick={() =>
+            isLoggedIn ? this._handleLogout() : this._handleLogin()}
+        />
+      </div>
+    );
   }
 }
 

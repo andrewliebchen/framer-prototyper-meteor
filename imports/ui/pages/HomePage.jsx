@@ -5,14 +5,16 @@ import { Flex, Box } from "reflexbox";
 import { Link } from "react-router-dom";
 import { withTracker } from "meteor/react-meteor-data";
 
-import Accounts from "../components/Accounts.jsx";
 import PageComponents from "../components/PageComponents";
 import PrototypesList from "../components/PrototypesList";
+import Accounts from "../components/Accounts";
 
 import Strings from "../lib/strings";
 import Prototypes from "../../api/Prototypes/Prototypes";
 
 import "../styles/Home.css";
+
+const isLoggedIn = Meteor.userId();
 
 const HomePage = props => (
   <div>
@@ -22,7 +24,7 @@ const HomePage = props => (
         <Box>
           <h1>{Strings.appName}</h1>
           <p>{Strings.tagline}</p>
-          {Meteor.isDesktop || <Accounts />}
+          <Accounts />
         </Box>
       </Flex>
       <Box className="HomeRight Modal">
