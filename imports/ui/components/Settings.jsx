@@ -30,7 +30,7 @@ const Settings = props => (
               (err, success) => {
                 if (success) {
                   if (!toast.isActive(this.toastId)) {
-                    this.toastId = toast("Name has been updated!");
+                    this.toastId = toast("Prototype name has been updated!");
                   }
                 }
                 if (err) {

@@ -11,8 +11,10 @@ import Strings from "../lib/strings";
 style({
   colorDefault: "rgba(0, 116, 217, 0.7)",
   colorError: "rgba(255, 65, 54, 0.7)",
+  colorSuccess: "rgba(46, 204, 64, 0.7)",
   colorProgressDefault: "rgba(0, 0, 0, 0.4)",
-  colorProgressError: "rgba(0, 0, 0, 0.4)"
+  colorProgressError: "rgba(0, 0, 0, 0.4)",
+  colorProgressSuccess: "rgba(0, 0, 0, 0.4)"
 });
 
 const PageComponents = props => (
@@ -35,9 +37,7 @@ const PageComponents = props => (
         fontSize: 16,
         color: "white",
         fontWeight: "500",
-        letterSpacing: "0.02em",
-        padding: "1.5em 2em",
-        textTransform: "uppercase"
+        padding: "1.5em 2em"
       })}
     />
   </div>

@@ -32,6 +32,8 @@ class Prototype extends Component {
       modal: false,
       playing: true
     };
+
+    this._handleTogglePlaying = this._handleTogglePlaying.bind(this);
   }
 
   _renderModalContent() {
@@ -74,6 +76,12 @@ class Prototype extends Component {
     });
   }
 
+  _handleTogglePlaying() {
+    const { playing } = this.state;
+    this.setState({ playing: !playing });
+    toast(`Preview is ${playing ? "paused" : "reloading automatically"}`);
+  }
+
   componentDidMount() {
     const action = queryString.parse(location.search).action;
     switch (action) {
@@ -114,8 +122,7 @@ class Prototype extends Component {
             <Flex className="App Underlay">
               <Box auto style={{ position: "relative" }}>
                 <Preview
-                  togglePlaying={() =>
-                    this.setState({ playing: !this.state.playing })}
+                  togglePlaying={this._handleTogglePlaying}
                   {...this.state}
                   {...this.props}
                 />
@@ -126,10 +133,7 @@ class Prototype extends Component {
                   showAll={() => this.setState({ modal: "Prototypes" })}
                   showSettings={() => this.setState({ modal: "Settings" })}
                   showSnippets={() => this.setState({ modal: "Snippets" })}
-                  togglePlaying={() =>
-                    this.setState({
-                      playing: !this.state.playing
-                    })}
+                  togglePlaying={this._handleTogglePlaying}
                   syntax={this.props.prototype.syntax}
                   handleLogIn={this._handleLogIn.bind(this)}
                   handleLogOut={this._handleLogOut.bind(this)}

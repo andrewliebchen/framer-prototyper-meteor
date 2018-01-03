@@ -13,24 +13,3 @@
 .PreviewFrame.Full {
   width: 100vw;
 }
-
-.PreviewBannerWrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-
-.PreviewBanner {
-  padding: 0 2em;
-  height: var(--control-size);
-  line-height: var(--control-size);
-  background-color: rgba(0, 116, 217, 0.7);
-  color: white;
-  letter-spacing: var(--letter-spacing);
-  text-transform: uppercase;
-  font-weight: 500;
-  border-radius: 100px;
-  margin-top: 1em;
-  cursor: pointer;
-}

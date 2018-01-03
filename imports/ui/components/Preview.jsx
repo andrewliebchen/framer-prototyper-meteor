@@ -4,24 +4,12 @@ import classnames from "classnames";
 import ReactInterval from "react-interval";
 import Frame from "react-frame-component";
 import { Flex, Box } from "reflexbox";
-import Transition from "react-transition-group/Transition";
 
 import PreviewControls from "../components/PreviewControls.jsx";
 
 import { initPreviewCode } from "../lib/utils";
 
 import "../styles/Preview.css";
-
-const duration = 100;
-const defaultStyle = {
-  transform: "translateY(-100%)",
-  transition: `${duration}ms cubic-bezier(0.445,  0.050, 0.550, 0.950)`
-};
-const transitionStyles = {
-  entered: {
-    transform: "translateY(0%)"
-  }
-};
 
 class Preview extends Component {
   constructor(props) {
@@ -46,23 +34,6 @@ class Preview extends Component {
           enabled={playing}
           callback={() => this.setState({ renderCount: Date.now() })}
         />
-        <Transition in={!playing} timeout={duration}>
-          {state => (
-            <Flex
-              className="PreviewBannerWrapper"
-              align="center"
-              justify="center"
-              style={{
-                ...defaultStyle,
-                ...transitionStyles[state]
-              }}
-            >
-              <Box className="PreviewBanner" onClick={togglePlaying}>
-                Reload is paused
-              </Box>
-            </Flex>
-          )}
-        </Transition>
         <div
           className={classnames({
             PreviewFrame: true,
