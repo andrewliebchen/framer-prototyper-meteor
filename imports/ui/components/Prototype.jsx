@@ -88,8 +88,6 @@ class Prototype extends Component {
   }
 
   render() {
-    console.log(this.state);
-
     const { prototype, loading } = this.props;
     const { canEdit } = this.state;
     const code = prototype ? prototype.code : "";
