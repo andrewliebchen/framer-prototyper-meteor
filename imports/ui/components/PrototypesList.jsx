@@ -45,10 +45,6 @@ const PrototypesList = props => (
               <div>Updated {timeagoInstance.format(prototype.updatedAt)}</div>
             </Box>
             <Box className="PrototypeItemActions">
-              <Settings
-                className="PrototypeItemAction"
-                onClick={props.showSettings}
-              />
               {isCurrent || (
                 <Trash2
                   className="PrototypeItemAction Delete"
@@ -58,6 +54,10 @@ const PrototypesList = props => (
                   }}
                 />
               )}
+              <Settings
+                className="PrototypeItemAction"
+                onClick={props.showSettings}
+              />
             </Box>
           </Flex>
         </Link>

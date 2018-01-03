@@ -75,17 +75,6 @@ class Prototype extends Component {
     });
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   const { loading, prototype } = this.props;
-  //   if (prevProps != this.props) {
-  //     const isOwner = Meteor.userId() === prototype.owner;
-  //     this.setState({
-  //       canEdit: Meteor.isDesktop || isOwner || !prototype.owner,
-  //       isOwner: isOwner || Meteor.isDesktop
-  //     });
-  //   }
-  // }
-
   componentDidMount() {
     const action = queryString.parse(location.search).action;
     switch (action) {

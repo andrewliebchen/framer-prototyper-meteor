@@ -6,6 +6,7 @@ import Button from "./Button";
 
 import "../styles/Accounts.css";
 
+// This should maybe move up the the prototype layer
 class Accounts extends Component {
   constructor(props) {
     super(props);
@@ -45,8 +46,7 @@ class Accounts extends Component {
         <Button
           block
           label={isLoggedIn ? "Sign out" : "Sign in with Google"}
-          onClick={() =>
-            isLoggedIn ? this._handleLogout() : this._handleLogin()}
+          onClick={isLoggedIn ? this._handleLogout : this._handleLogin}
         />
       </div>
     );

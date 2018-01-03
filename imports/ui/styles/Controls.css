@@ -5,3 +5,12 @@
   top: 1em;
   bottom: 1em;
 }
+
+.ControlsTrigger {
+  cursor: pointer;
+  position: absolute;
+  right: -1em;
+  top: -1em;
+  bottom: -1em;
+  width: 5em;
+}

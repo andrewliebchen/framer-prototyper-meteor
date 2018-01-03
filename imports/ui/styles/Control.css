@@ -18,6 +18,7 @@ a.Control {
   text-align: center;
   transition: var(--transition);
   width: var(--control-size);
+  z-index: 1;
 }
 
 .Control:hover,

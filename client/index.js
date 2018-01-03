@@ -4,7 +4,6 @@ import { render } from "react-dom";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import HomePage from "../imports/ui/pages/HomePage.jsx";
 import PrototypePage from "../imports/ui/pages/PrototypePage.jsx";
 import PreviewPage from "../imports/ui/pages/PreviewPage.jsx";
 import NewPrototypePage from "../imports/ui/pages/NewPrototypePage.jsx";
@@ -15,7 +14,7 @@ import "./index.css";
 const Routes = () => (
   <Router>
     <Switch>
-      <Route exact path="/" component={HomePage} />
+      <Route exact path="/" component={NewPrototypePage} />
       <Route path="/new" component={NewPrototypePage} />
       <Route path="/:id/preview" component={PreviewPage} />
       <Route path="/:id" component={PrototypePage} />
