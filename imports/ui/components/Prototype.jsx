@@ -87,6 +87,14 @@ class Prototype extends Component {
     }
   }
 
+  componentWillUnmount() {
+    const { prototype } = this.props;
+    // If there's no difference between the created and updated time, delete it
+    if (prototype.updatedAt === prototype.createdAt) {
+      Meteor.call("deletePrototype", prototype._id);
+    }
+  }
+
   render() {
     const { prototype, loading } = this.props;
     const { canEdit } = this.state;
