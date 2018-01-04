@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const FormSelect = props => (
   <div className="Form">
-    <label className="FormLabel">{props.label}</label>
+    {props.label && <label className="FormLabel">{props.label}</label>}
     {props.hint && <p>{props.hint}</p>}
     <select
       defaultValue={props.defaultValue}

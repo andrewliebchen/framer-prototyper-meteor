@@ -48,7 +48,7 @@ class Prototype extends Component {
           />
         );
       case "Utilities":
-        return <Utilities prototype={this.props.prototype} />;
+        return <Utilities {...this.props} />;
       default:
         return <div />;
     }
@@ -150,6 +150,7 @@ class Prototype extends Component {
 
 Prototype.propTypes = {
   prototype: PropTypes.object,
+  data: PropTypes.array,
   loading: PropTypes.bool
 };
 

@@ -7,6 +7,7 @@ import Prototype from "../components/Prototype.jsx";
 import Loader from "../components/Loader.jsx";
 
 import Prototypes from "../../api/Prototypes/Prototypes";
+import Data from "../../api/Data/Data";
 
 const PrototypePage = props => {
   if (props.loading) {
@@ -20,7 +21,8 @@ PrototypePage.propTypes = {
   prototype: PropTypes.object,
   prototypes: PropTypes.array,
   loading: PropTypes.bool,
-  prototypeListLoaded: PropTypes.bool
+  prototypeListLoading: PropTypes.bool,
+  dataLoading: PropTypes.bool
 };
 
 export default withTracker(props => {
@@ -28,26 +30,31 @@ export default withTracker(props => {
   const prototypeHandle = Meteor.subscribe("prototype", id);
   const loading = !prototypeHandle.ready();
 
-  let prototypeListLoaded = false;
+  const dataHandle = Meteor.subscribe("data", id);
+  const dataLoading = !dataHandle.ready();
+
+  let prototypeListLoading = true;
 
   // Get a list of prototypes. If there's a user, get their Prototypes
   // if this is the Electron client, get all local prototypes
   if (Meteor.userId()) {
     const prototypeListHandle = Meteor.subscribe("prototypes", Meteor.userId());
-    prototypeListLoaded = prototypeListHandle.ready();
+    prototypeListLoading = !prototypeListHandle.ready();
   }
 
   if (Meteor.isDesktop) {
     const prototypeListHandle = Meteor.subscribe("allPrototypes");
-    prototypeListLoaded = prototypeListHandle.ready();
+    prototypeListLoading = !prototypeListHandle.ready();
   }
 
   return {
     loading,
-    prototypeListLoaded,
+    dataLoading,
+    prototypeListLoading,
     prototype: loading ? {} : Prototypes.findOne(id),
-    prototypes: prototypeListLoaded
-      ? Prototypes.find({}, { sort: { updatedAt: -1 } }).fetch()
-      : []
+    prototypes: prototypeListLoading
+      ? []
+      : Prototypes.find({}, { sort: { updatedAt: -1 } }).fetch(),
+    data: dataLoading ? [] : Data.find({ prototype: id }).fetch()
   };
 })(PrototypePage);

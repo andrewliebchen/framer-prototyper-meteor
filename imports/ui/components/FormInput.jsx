@@ -49,7 +49,7 @@ FormInput.propTypes = {
   label: PropTypes.string,
   type: PropTypes.oneOf(["text", "number"]),
   placeholder: PropTypes.string,
-  defaultValue: PropTypes.string,
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   copy: PropTypes.string,
   disabled: PropTypes.bool,
   hint: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])

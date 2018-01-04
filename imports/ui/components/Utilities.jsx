@@ -8,20 +8,21 @@ import DataInspector from "./DataInspector.jsx";
 const Utilities = props => (
   <Tabs>
     <TabList>
-      <Tab>Snippets</Tab>
       <Tab>Data</Tab>
+      <Tab>Snippets</Tab>
     </TabList>
     <TabPanel>
-      <Snippets {...props} />
+      <DataInspector {...props} />
     </TabPanel>
     <TabPanel>
-      <DataInspector />
+      <Snippets {...props} />
     </TabPanel>
   </Tabs>
 );
 
 Utilities.propTypes = {
-  prototype: PropTypes.object
+  prototype: PropTypes.object,
+  data: PropTypes.array
 };
 
 export default Utilities;

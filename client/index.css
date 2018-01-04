@@ -13,6 +13,8 @@
 
   --control-size: 4.5em;
   --transition: 0.1s ease-in-out;
+
+  --width-modal: 32em;
 }
 
 * {
@@ -46,6 +48,8 @@ h3 {
 
 a {
   text-decoration: none;
+  color: var(--color-accent);
+  cursor: pointer;
 }
 
 a:visited {

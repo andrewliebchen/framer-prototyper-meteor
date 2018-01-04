@@ -1,0 +1,15 @@
+.DataGroup {
+  margin-bottom: 1em;
+}
+
+.DataGroupFields {
+  border: 1px solid var(--color-gray-3);
+}
+
+.DataGroupRow {
+  padding: 1em;
+}
+
+.DataGroupRow + .DataGroupRow {
+  border-top: 1px solid var(--color-gray-4);
+}

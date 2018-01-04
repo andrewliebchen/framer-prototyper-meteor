@@ -6,7 +6,7 @@
   right: 0;
   bottom: 0;
   padding: 2em;
-  width: 32em;
+  width: var(--width-modal);
   z-index: 9999;
   overflow: auto;
   will-change: transform;
