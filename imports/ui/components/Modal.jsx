@@ -46,10 +46,6 @@ const Modal = props => (
             ...modalTransitionStyles[state]
           }}
         >
-          <Flex className="ModalHeader" justify="space-between" align="center">
-            <h2 className="ModalTitle">{props.title}</h2>
-            <X className="ModalClose" onClick={props.close} />
-          </Flex>
           {props.content}
         </div>
       )}

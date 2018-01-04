@@ -21,13 +21,12 @@
   position: relative;
 }
 
-.ModalTitle {
-  margin: 0;
-}
-
 .ModalClose {
   cursor: pointer;
   color: var(--color-gray-3);
+  position: absolute;
+  top: 1em;
+  right: 1em;
 }
 
 .ModalClose:hover {

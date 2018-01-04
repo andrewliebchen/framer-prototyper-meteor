@@ -111,3 +111,36 @@ select {
   transform: translate3d(-50%, -50%, 0);
   text-align: center;
 }
+
+.react-tabs {
+}
+
+.react-tabs__tab-list {
+  list-style: none;
+  display: flex;
+  margin-bottom: 2em;
+}
+
+.react-tabs__tab {
+  flex: 1;
+  display: block;
+  cursor: pointer;
+  text-align: center;
+  line-height: 3;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  font-weight: bold;
+  letter-spacing: var(--letter-spacing);
+  text-transform: uppercase;
+}
+
+.react-tabs__tab:hover {
+  background-color: var(--color-gray-4);
+}
+
+.react-tabs__tab--selected,
+.react-tabs__tab--selected:hover {
+  border-color: var(--color-accent);
+  color: white;
+  background-color: var(--color-accent);
+}

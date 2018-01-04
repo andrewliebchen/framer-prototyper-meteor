@@ -14,6 +14,7 @@ import FormSelect from "./FormSelect.jsx";
 
 const Settings = props => (
   <div>
+    <h2>Settings</h2>
     <div className="ModalSection">
       {props.canEdit && (
         <FormInput

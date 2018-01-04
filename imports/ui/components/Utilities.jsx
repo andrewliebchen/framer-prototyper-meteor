@@ -8,12 +8,12 @@ import DataInspector from "./DataInspector.jsx";
 const Utilities = props => (
   <Tabs>
     <TabList>
-      {/* <Tab>Snippets</Tab> */}
+      <Tab>Snippets</Tab>
       <Tab>Data</Tab>
     </TabList>
-    {/* <TabPanel>
-        <Snippetsd {...props}/>
-      </TabPanel> */}
+    <TabPanel>
+      <Snippets {...props} />
+    </TabPanel>
     <TabPanel>
       <DataInspector />
     </TabPanel>

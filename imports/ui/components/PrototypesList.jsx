@@ -8,7 +8,6 @@ import classnames from "classnames";
 import { Link } from "react-router-dom";
 
 import Button from "./Button.jsx";
-import Badge from "./Badge.jsx";
 
 import { deletePrototype } from "../lib/utils";
 
@@ -43,24 +42,12 @@ const PrototypesList = props => (
             justify="space-between"
           >
             <Box>
-              <Flex>
-                <Box className="PrototypeItemTitle">
-                  <Badge
-                    label={prototype.syntax === "javascript" ? "js" : "cs"}
-                  />
-                </Box>
-                <Box>
-                  <h3>{prototype.name || "Untitled"}</h3>
-                </Box>
-              </Flex>
+              <h3>{prototype.name || "Untitled"}</h3>
               <div>
                 Created <b>{timeagoInstance.format(prototype.createdAt)}</b>
               </div>
               <div>
                 Updated <b>{timeagoInstance.format(prototype.updatedAt)}</b>
-              </div>
-              <div>
-                Permissions {prototype.owner ? <b>Only you</b> : <b>Public</b>}
               </div>
             </Box>
             <Box className="PrototypeItemActions">
