@@ -13,7 +13,7 @@ import FormInput from "./FormInput.jsx";
 import EditControls from "./EditControls.jsx";
 import Settings from "./Settings.jsx";
 import PrototypesList from "./PrototypesList.jsx";
-import Snippets from "./Snippets.jsx";
+import Utilities from "./Utilities.jsx";
 
 import NotFoundPage from "../pages/NotFoundPage.jsx";
 
@@ -29,7 +29,7 @@ class Prototype extends Component {
       isDesktop: Meteor.isDesktop,
       isLoggedIn: Meteor.userId() ? true : false,
       isOwner: isOwner,
-      modal: false,
+      modal: "Utilities",
       playing: true
     };
 
@@ -47,8 +47,8 @@ class Prototype extends Component {
             {...this.props}
           />
         );
-      case "Snippets":
-        return <Snippets prototype={this.props.prototype} />;
+      case "Utilities":
+        return <Utilities prototype={this.props.prototype} />;
       default:
         return <div />;
     }
@@ -132,7 +132,7 @@ class Prototype extends Component {
                 <EditControls
                   showAll={() => this.setState({ modal: "Prototypes" })}
                   showSettings={() => this.setState({ modal: "Settings" })}
-                  showSnippets={() => this.setState({ modal: "Snippets" })}
+                  showUtilities={() => this.setState({ modal: "Utilities" })}
                   togglePlaying={this._handleTogglePlaying}
                   syntax={this.props.prototype.syntax}
                   handleLogIn={this._handleLogIn.bind(this)}

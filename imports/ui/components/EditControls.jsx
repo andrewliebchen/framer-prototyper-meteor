@@ -8,7 +8,7 @@ import {
   Play,
   Pause,
   Sun,
-  Scissors,
+  Zap,
   LogIn,
   LogOut
 } from "react-feather";
@@ -33,11 +33,7 @@ const EditControls = props => (
       handleClick={props.showSettings}
       badge={<Badge label={props.syntax === "javascript" ? "JS" : "CS"} />}
     />
-    <Control
-      tip={"Snippets"}
-      icon={<Scissors />}
-      handleClick={props.showSnippets}
-    />
+    <Control tip="Utilities" icon={<Zap />} handleClick={props.showUtilities} />
     <Control
       tip={props.playing ? "Pause" : "Play"}
       icon={props.playing ? <Pause /> : <Play />}
@@ -79,7 +75,7 @@ EditControls.propTypes = {
   playing: PropTypes.bool,
   showAll: PropTypes.func,
   showSettings: PropTypes.func,
-  showSnippets: PropTypes.func,
+  showUtilities: PropTypes.func,
   syntax: PropTypes.oneOf(["coffeescript", "javascript"]),
   togglePlaying: PropTypes.func
 };

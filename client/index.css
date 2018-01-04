@@ -40,6 +40,10 @@ h1 {
   letter-spacing: var(--letter-spacing);
 }
 
+h3 {
+  margin-bottom: 0.5em;
+}
+
 a {
   text-decoration: none;
 }
