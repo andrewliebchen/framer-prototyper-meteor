@@ -53,7 +53,6 @@ Meteor.methods({
 
   forkPrototype(id, owner) {
     let original = Prototypes.findOne({ _id: id });
-    console.log(original);
 
     return Prototypes.insert({
       code: original.code,

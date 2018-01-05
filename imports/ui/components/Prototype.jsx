@@ -30,7 +30,8 @@ class Prototype extends Component {
       isLoggedIn: Meteor.userId() ? true : false,
       isOwner: isOwner,
       modal: "Utilities",
-      playing: true
+      playing: true,
+      dataSample: []
     };
 
     this._handleTogglePlaying = this._handleTogglePlaying.bind(this);
@@ -48,7 +49,7 @@ class Prototype extends Component {
           />
         );
       case "Utilities":
-        return <Utilities {...this.props} />;
+        return <Utilities {...this.props} {...this.state} />;
       default:
         return <div />;
     }
@@ -83,6 +84,7 @@ class Prototype extends Component {
   }
 
   componentDidMount() {
+    // Page action toasts
     const action = queryString.parse(location.search).action;
     switch (action) {
       case "fork":
@@ -92,6 +94,16 @@ class Prototype extends Component {
         toast("Cowabunga, new prototype created!");
         break;
     }
+
+    // Sample data
+    const { data } = this.props;
+    Meteor.call(
+      "getValues",
+      { fields: data[0].fields, count: data[0].count },
+      (err, data) => {
+        this.setState({ dataSample: data });
+      }
+    );
   }
 
   componentWillUnmount() {

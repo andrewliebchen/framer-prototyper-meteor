@@ -3,13 +3,16 @@
 }
 
 .DataGroupFields {
+  padding-top: 0.5em;
   border: 1px solid var(--color-gray-3);
 }
 
 .DataGroupRow {
-  padding: 1em;
+  padding: 0.5em 1em;
 }
 
-.DataGroupRow + .DataGroupRow {
-  border-top: 1px solid var(--color-gray-4);
+.DataGroupRowAction {
+  padding: 1em;
+  border-top: 1px solid var(--color-gray-3);
+  margin-top: 0.5em;
 }

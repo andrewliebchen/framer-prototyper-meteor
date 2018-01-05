@@ -1,24 +1,21 @@
-import React from "react";
+import React, { Component } from "react";
 import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import AceEditor from "react-ace";
 import { Flex, Box } from "reflexbox";
 import { Trash2 } from "react-feather";
+import stringify from "json-stringify-pretty-compact";
 
 import FormInput from "./FormInput.jsx";
 import FormSelect from "./FormSelect.jsx";
 import Button from "./Button.jsx";
 
+import fakerFields from "../lib/fakerFields";
+
 import "../styles/DataInspector.css";
 
 import "brace/mode/javascript";
 import "../lib/tomorrow_night_eighties";
-
-const dataSample = `{
-  users: [
-    { name: "Andrew Liebchen" }
-  ]
-}`;
 
 const DataGroup = props => (
   <div className="DataGroup">
@@ -46,17 +43,34 @@ const DataGroup = props => (
         />
       </Box>
       <Box style={{ marginLeft: "1em" }} data-tip="Delete group">
-        <Trash2 onClick={() => Meteor.call("deteteDataGroup", props.data.id)} />
+        <Trash2
+          onClick={() => Meteor.call("deteteDataGroup", props.data._id)}
+        />
       </Box>
     </Flex>
     <div className="Form">
       <label className="FormLabel">Fields</label>
       <div className="DataGroupFields">
-        {props.data.fields.map((field, i) => (
-          <Flex align="center" className="DataGroupRow" key={i}>
+        {props.data.fields.map(field => (
+          <Flex align="center" className="DataGroupRow" key={field.id}>
             <Box auto>
-              <select>
-                <option value="1">This</option>
+              <select
+                defaultValue={field.name}
+                onChange={event =>
+                  Meteor.call("updateField", props.data._id, {
+                    id: field.id,
+                    name: event.target.value
+                  })}
+              >
+                {fakerFields.map(group => (
+                  <optgroup key={group.name} label={group.name}>
+                    {group.options.map(option => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </optgroup>
+                ))}
               </select>
             </Box>
             <Box style={{ marginLeft: "1em" }} data-tip="Delete field">
@@ -64,9 +78,11 @@ const DataGroup = props => (
             </Box>
           </Flex>
         ))}
-        <Flex justify="center" className="DataGroupRow">
+        <Flex justify="center" className="DataGroupRowAction">
           <Box>
-            <a>Add a field</a>
+            <a onClick={() => Meteor.call("newField", props.data._id)}>
+              Add a field
+            </a>
           </Box>
         </Flex>
       </div>
@@ -76,15 +92,14 @@ const DataGroup = props => (
 
 const DataInspector = props => (
   <div>
-    {console.log(props.data)}
     <div className="ModalSection">
       <label className="FormLabel">Sample</label>
       <div className="Form">
         <AceEditor
           mode="javascript"
           theme="tomorrow_night_eighties"
-          name={dataSample}
-          value={dataSample}
+          name="dataSample"
+          value={`${props.data[0].name} = ${stringify(props.dataSample)}`}
           width="390px"
           maxLines={5}
           tabSize={2}
@@ -109,7 +124,11 @@ const DataInspector = props => (
         style={{ fontFamily: "monospace" }}
         disabled
       />
-      <Button label="Refresh" block />
+      <Button
+        label="Refresh"
+        block
+        onClick={() => Meteor.call("refreshData", props.data._id)}
+      />
     </div>
     <div className="ModalSection">
       <h3>Configure data</h3>
@@ -129,7 +148,8 @@ const DataInspector = props => (
 
 DataInspector.propTypes = {
   data: PropTypes.array,
-  prototype: PropTypes.object
+  prototype: PropTypes.object,
+  dataSample: PropTypes.array
 };
 
 export default DataInspector;
