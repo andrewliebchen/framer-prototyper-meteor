@@ -65,8 +65,8 @@ const DataGroup = props => (
                 {fakerFields.map(group => (
                   <optgroup key={group.name} label={group.name}>
                     {group.options.map(option => (
-                      <option key={option} value={option}>
-                        {option}
+                      <option key={option.value} value={option.value}>
+                        {option.name}
                       </option>
                     ))}
                   </optgroup>
@@ -99,7 +99,11 @@ const DataInspector = props => (
           mode="javascript"
           theme="tomorrow_night_eighties"
           name="dataSample"
-          value={`${props.data[0].name} = ${stringify(props.dataSample)}`}
+          value={
+            props.dataSample
+              ? `${props.data[0].name} = ${stringify(props.dataSample)}`
+              : "0"
+          }
           width="390px"
           maxLines={5}
           tabSize={2}

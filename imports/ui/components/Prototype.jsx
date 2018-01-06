@@ -97,13 +97,15 @@ class Prototype extends Component {
 
     // Sample data
     const { data } = this.props;
-    Meteor.call(
-      "getValues",
-      { fields: data[0].fields, count: data[0].count },
-      (err, data) => {
-        this.setState({ dataSample: data });
-      }
-    );
+    if (data.length > 0) {
+      Meteor.call(
+        "getValues",
+        { fields: data[0].fields, count: data[0].count },
+        (err, data) => {
+          this.setState({ dataSample: data });
+        }
+      );
+    }
   }
 
   componentWillUnmount() {
