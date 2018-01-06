@@ -23,7 +23,7 @@ const Utilities = props => (
 Utilities.propTypes = {
   prototype: PropTypes.object,
   data: PropTypes.array,
-  dataSample: PropTypes.array
+  sampleData: PropTypes.array
 };
 
 export default Utilities;

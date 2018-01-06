@@ -48,7 +48,7 @@ const SampleDataGroup = props => (
           defaultValue={props.sampleData.name}
           placeholder="Descriptive name, no spaces!"
           onChange={event =>
-            Meteor.call("updateSampleSampleDataGroup", props.sampleData._id, {
+            Meteor.call("updateSampleDataGroup", props.sampleData._id, {
               name: event.target.value
             })}
         />
@@ -59,7 +59,7 @@ const SampleDataGroup = props => (
           defaultValue={props.sampleData.count || 0}
           type="number"
           onChange={event =>
-            Meteor.call("updateSampleSampleDataGroup", props.sampleData._id, {
+            Meteor.call("updateSampleDataGroup", props.sampleData._id, {
               count: event.target.value
             })}
         />
@@ -87,7 +87,7 @@ const SampleDataGroup = props => (
 );
 
 SampleDataGroup.propTypes = {
-  sampleData: PropTypes.array
+  sampleData: PropTypes.object
 };
 
 export default SampleDataGroup;

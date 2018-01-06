@@ -97,7 +97,6 @@ class Prototype extends Component {
 
     // Sample data
     const { sampleData } = this.props;
-    console.log(sampleData);
     if (sampleData.length > 0) {
       Meteor.call(
         "getSampleDataValues",

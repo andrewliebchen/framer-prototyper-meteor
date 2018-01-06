@@ -62,7 +62,7 @@ const SampleDataInspector = props => (
         pariatur sunt et sint.
       </p>
       {props.sampleData.map(data => (
-        <SampleDataGroup key={data._id} data={data} />
+        <SampleDataGroup key={data._id} sampleData={data} />
       ))}
       <Button
         label="Add a group"

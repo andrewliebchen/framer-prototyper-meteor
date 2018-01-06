@@ -11,7 +11,6 @@ Meteor.methods({
       createdAt: Date.now(),
       prototype: id,
       fields: [],
-      value: [],
       count: 0
     });
   },
