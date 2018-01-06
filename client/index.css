@@ -148,3 +148,17 @@ select {
   color: white;
   background-color: var(--color-accent);
 }
+
+.ActionIcon {
+  color: var(--color-gray-2);
+  margin-left: 0.5em;
+  cursor: pointer;
+}
+
+.ActionIcon:hover {
+  color: var(--color-accent);
+}
+
+.ActionIcon.Delete:hover {
+  color: var(--color-red);
+}

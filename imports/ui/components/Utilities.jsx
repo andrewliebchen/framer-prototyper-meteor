@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 
 import Snippets from "./Snippets.jsx";
-import DataInspector from "./DataInspector.jsx";
+import SampleDataInspector from "./SampleDataInspector.jsx";
 
 const Utilities = props => (
   <Tabs>
@@ -12,7 +12,7 @@ const Utilities = props => (
       <Tab>Snippets</Tab>
     </TabList>
     <TabPanel>
-      <DataInspector {...props} />
+      <SampleDataInspector {...props} />
     </TabPanel>
     <TabPanel>
       <Snippets {...props} />

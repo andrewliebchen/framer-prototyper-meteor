@@ -13,16 +13,3 @@
 .PrototypeItem:hover .PrototypeItemActions {
   display: block;
 }
-
-.PrototypeItemAction {
-  color: var(--color-gray-2);
-  margin-left: 0.5em;
-}
-
-.PrototypeItemAction:hover {
-  color: var(--color-accent);
-}
-
-.PrototypeItemAction.Delete:hover {
-  color: var(--color-red);
-}

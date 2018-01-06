@@ -31,7 +31,7 @@ class Prototype extends Component {
       isOwner: isOwner,
       modal: "Utilities",
       playing: true,
-      dataSample: []
+      prototypeSampleData: []
     };
 
     this._handleTogglePlaying = this._handleTogglePlaying.bind(this);
@@ -96,13 +96,14 @@ class Prototype extends Component {
     }
 
     // Sample data
-    const { data } = this.props;
-    if (data.length > 0) {
+    const { sampleData } = this.props;
+    console.log(sampleData);
+    if (sampleData.length > 0) {
       Meteor.call(
-        "getValues",
-        { fields: data[0].fields, count: data[0].count },
+        "getSampleDataValues",
+        { fields: sampleData[0].fields, count: sampleData[0].count },
         (err, data) => {
-          this.setState({ dataSample: data });
+          this.setState({ prototypeSampleData: data });
         }
       );
     }
@@ -164,7 +165,7 @@ class Prototype extends Component {
 
 Prototype.propTypes = {
   prototype: PropTypes.object,
-  data: PropTypes.array,
+  sampleData: PropTypes.array,
   loading: PropTypes.bool
 };
 

@@ -3,25 +3,11 @@ import { Random } from "meteor/random";
 import faker from "faker";
 import _ from "lodash";
 
-import Data from "./Data";
-
-// console.log(faker.fake("{{name.firstName}} {{name.lastName}} {{name.suffix}}"));
-
-// const getData = new Promise((resolve, reject) => {
-//   Meteor.call(
-//     "getValues",
-//     { fields: ["lastName", "firstName"], count: 5 },
-//     (err, data) => {
-//       resolve(data);
-//     }
-//   );
-// });
-//
-// getData.then(data => console.log(data));
+import SampleData from "./SampleData";
 
 Meteor.methods({
-  newData(id) {
-    return Data.insert({
+  newSampleData(id) {
+    return SampleData.insert({
       createdAt: Date.now(),
       prototype: id,
       fields: [],
@@ -30,8 +16,8 @@ Meteor.methods({
     });
   },
 
-  updateData(id, args) {
-    return Data.update(id, {
+  updateSampleDataGroup(id, args) {
+    return SampleData.update(id, {
       $set: {
         ...args,
         updatedAt: Date.now()
@@ -39,12 +25,12 @@ Meteor.methods({
     });
   },
 
-  deteteDataGroup(id) {
-    return Data.remove(id);
+  deteteSampleDataGroup(id) {
+    return SampleData.remove(id);
   },
 
-  newField(id) {
-    return Data.update(id, {
+  newSampleDataField(id) {
+    return SampleData.update(id, {
       $push: {
         fields: {
           id: Random.id(),
@@ -54,8 +40,8 @@ Meteor.methods({
     });
   },
 
-  updateField(id, args) {
-    return Data.update(
+  updateSampleDataField(id, args) {
+    return SampleData.update(
       { _id: id, "fields.id": args.id },
       {
         $set: {
@@ -67,7 +53,7 @@ Meteor.methods({
     );
   },
 
-  getValues(args) {
+  getSampleDataValues(args) {
     let values = [];
     let count = args.count || 1;
 

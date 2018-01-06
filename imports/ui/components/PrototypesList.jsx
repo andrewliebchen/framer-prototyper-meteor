@@ -53,17 +53,14 @@ const PrototypesList = props => (
             <Box className="PrototypeItemActions">
               {isCurrent || (
                 <Trash2
-                  className="PrototypeItemAction Delete"
+                  className="ActionIcon Delete"
                   onClick={event => {
                     event.preventDefault();
                     deletePrototype(prototype._id);
                   }}
                 />
               )}
-              <Settings
-                className="PrototypeItemAction"
-                onClick={props.showSettings}
-              />
+              <Settings className="ActionIcon" onClick={props.showSettings} />
             </Box>
           </Flex>
         </Link>
