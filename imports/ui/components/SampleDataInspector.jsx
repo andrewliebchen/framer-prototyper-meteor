@@ -20,13 +20,13 @@ const SampleDataInspector = props => (
           mode="javascript"
           theme="tomorrow_night_eighties"
           name="dataSample"
-          // value={
-          //   props.prototypeSampleData.length > 0
-          //     ? `${props.data[0].name} = ${stringify(props.prototypeSampleData)}`
-          //     : "No sample data"
-          // }
-          width="390px"
-          maxLines={5}
+          value={
+            props.prototypeSampleData
+              ? stringify(props.prototypeSampleData)
+              : "No sample data"
+          }
+          width="448px"
+          maxLines={10}
           tabSize={2}
           softTabs={false}
           showInvisibles
@@ -76,7 +76,7 @@ const SampleDataInspector = props => (
 SampleDataInspector.propTypes = {
   sampleData: PropTypes.array,
   prototype: PropTypes.object,
-  prototypeSampleData: PropTypes.array
+  prototypeSampleData: PropTypes.object
 };
 
 export default SampleDataInspector;

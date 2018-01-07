@@ -29,9 +29,9 @@ class Prototype extends Component {
       isDesktop: Meteor.isDesktop,
       isLoggedIn: Meteor.userId() ? true : false,
       isOwner: isOwner,
-      modal: "Utilities",
+      modal: false,
       playing: true,
-      prototypeSampleData: []
+      prototypeSampleData: {}
     };
 
     this._handleTogglePlaying = this._handleTogglePlaying.bind(this);
@@ -96,15 +96,28 @@ class Prototype extends Component {
     }
 
     // Sample data
+    // Get the sample data from Faker and write it to state...
     const { sampleData } = this.props;
+
     if (sampleData.length > 0) {
-      Meteor.call(
-        "getSampleDataValues",
-        { fields: sampleData[0].fields, count: sampleData[0].count },
-        (err, data) => {
-          this.setState({ prototypeSampleData: data });
-        }
-      );
+      let prototypeSampleData = {};
+
+      // Need to do this as promise
+      sampleData.map(data => {
+        const getData = new Promise((resolve, reject) => {
+          Meteor.call(
+            "getSampleDataValues",
+            { fields: data.fields, count: data.count },
+            (err, response) => {
+              resolve(response);
+            }
+          );
+        });
+
+        getData.then(response => (prototypeSampleData[data.name] = response));
+      });
+
+      this.setState({ prototypeSampleData: prototypeSampleData });
     }
   }
 

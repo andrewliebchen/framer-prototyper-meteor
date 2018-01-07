@@ -34,7 +34,15 @@ export const initPreviewCode = args => {
         ${args.syntax === "coffeescript"
           ? `<script src="${args.coffeescriptURI}"></script>`
           : ""}
-        <script>bg = new BackgroundLayer({backgroundColor: "${bgColor}"})</script>
+        <script>
+          ${args.syntax === "coffeescript"
+            ? `DATA = ${JSON.stringify(args.sampleData)}`
+            : `const DATA = ${JSON.stringify(args.sampleData)};`}
+
+          ${args.syntax === "coffeescript"
+            ? `bg = new BackgroundLayer({backgroundColor: "${bgColor}"})`
+            : `const bg = new BackgroundLayer({backgroundColor: "${bgColor}"});`}
+        </script>
         <script type="text/${args.syntax}">${args.code}</script>
       </body>
     </html>`;

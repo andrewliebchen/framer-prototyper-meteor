@@ -24,7 +24,13 @@ class Preview extends Component {
   }
 
   render() {
-    const { prototype, playing, full, togglePlaying } = this.props;
+    const {
+      prototype,
+      playing,
+      full,
+      togglePlaying,
+      prototypeSampleData
+    } = this.props;
     const code = prototype ? prototype.code : "";
 
     return (
@@ -54,7 +60,8 @@ class Preview extends Component {
                   "//cdnjs.cloudflare.com/ajax/libs/coffee-script/1.7.1/coffee-script.min.js",
                 code: code,
                 syntax: prototype.syntax,
-                background: prototype.background
+                background: prototype.background,
+                sampleData: prototypeSampleData
               })}
             />
           )}
@@ -72,7 +79,8 @@ Preview.propTypes = {
   prototype: PropTypes.object,
   playing: PropTypes.bool,
   full: PropTypes.bool,
-  togglePlaying: PropTypes.func
+  togglePlaying: PropTypes.func,
+  prototypeSampleData: PropTypes.object
 };
 
 export default Preview;
