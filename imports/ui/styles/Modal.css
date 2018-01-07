@@ -58,7 +58,7 @@
 }
 
 .Underlay.showModal {
-  /* transform: scale(0.9); */
+  transform: scale(0.9);
   opacity: 0.2;
   box-shadow: 0 0 0 1px var(--color-gray-2);
 }

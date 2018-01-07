@@ -43,16 +43,19 @@ const SampleDataInspector = props => (
         />
       </div>
       <FormInput
-        label="Code sample"
-        value={"print DATA"}
-        copy={"print DATA"}
+        label="Include in your prototype"
+        value={
+          props.prototype.syntax === "coffeescript"
+            ? "print DATA"
+            : "print(Data);"
+        }
+        copy={
+          props.prototype.syntax === "coffeescript"
+            ? "print DATA"
+            : "print(Data);"
+        }
         style={{ fontFamily: "monospace" }}
         disabled
-      />
-      <Button
-        label="Refresh"
-        block
-        onClick={() => Meteor.call("refreshSampleData", props.sampleData._id)}
       />
     </div>
     <div className="ModalSection">
