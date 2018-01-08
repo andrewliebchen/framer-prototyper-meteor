@@ -6,7 +6,7 @@ import queryString from "query-string";
 import { toast } from "react-toastify";
 
 import PageComponents from "./PageComponents.jsx";
-import Editor from "./Editor.jsx";
+import FramerEditor from "./FramerEditor.jsx";
 import Preview from "./Preview.jsx";
 import Modal from "./Modal.jsx";
 import FormInput from "./FormInput.jsx";
@@ -155,7 +155,11 @@ class Prototype extends Component {
                 />
               </Box>
               <Box w={1 / 2} style={{ position: "relative" }}>
-                <Editor code={code} prototype={prototype} {...this.state} />
+                <FramerEditor
+                  code={code}
+                  prototype={prototype}
+                  {...this.state}
+                />
                 <EditControls
                   showAll={() => this.setState({ modal: "Prototypes" })}
                   showSettings={() => this.setState({ modal: "Settings" })}

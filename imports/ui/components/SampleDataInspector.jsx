@@ -7,6 +7,7 @@ import stringify from "json-stringify-pretty-compact";
 import FormInput from "./FormInput.jsx";
 import Button from "./Button.jsx";
 import SampleDataGroup from "./SampleDataGroup.jsx";
+import Editor from "./Editor.jsx";
 
 import "brace/mode/javascript";
 import "../lib/tomorrow_night_eighties";
@@ -18,7 +19,6 @@ const SampleDataInspector = props => (
       <div className="Form">
         <AceEditor
           mode="javascript"
-          theme="tomorrow_night_eighties"
           name="dataSample"
           value={
             props.prototypeSampleData
@@ -27,19 +27,7 @@ const SampleDataInspector = props => (
           }
           width="448px"
           maxLines={10}
-          tabSize={2}
-          softTabs={false}
-          showInvisibles
           readOnly
-          highlightActiveLine={false}
-          highlightGutterLine={false}
-          editorProps={{
-            $blockScrolling: true
-          }}
-          style={{
-            fontSize: "16px",
-            lineHeight: "28px"
-          }}
         />
       </div>
       <FormInput

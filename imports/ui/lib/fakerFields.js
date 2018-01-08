@@ -1,5 +1,74 @@
 const fakerFields = [
   {
+    name: "name",
+    options: [
+      { name: "firstName", value: "name.firstName" },
+      { name: "lastName", value: "name.lastName" },
+      { name: "findName", value: "name.findName" },
+      { name: "jobTitle", value: "name.jobTitle" },
+      { name: "prefix", value: "name.prefix" },
+      { name: "suffix", value: "name.suffix" },
+      { name: "title", value: "name.title" },
+      { name: "jobDescriptor", value: "name.jobDescriptor" },
+      { name: "jobArea", value: "name.jobArea" },
+      { name: "jobType", value: "name.jobType" }
+    ]
+  },
+  {
+    name: "lorem",
+    options: [
+      { name: "word", value: "lorem.word" },
+      { name: "words", value: "lorem.words" },
+      { name: "sentence", value: "lorem.sentence" },
+      { name: "slug", value: "lorem.slug" },
+      { name: "sentences", value: "lorem.sentences" },
+      { name: "paragraph", value: "lorem.paragraph" },
+      { name: "paragraphs", value: "lorem.paragraphs" },
+      { name: "text", value: "lorem.text" },
+      { name: "lines", value: "lorem.lines" }
+    ]
+  },
+
+  {
+    name: "random",
+    options: [
+      { name: "number", value: "random.number" },
+      { name: "arrayElement", value: "random.arrayElement" },
+      { name: "objectElement", value: "random.objectElement" },
+      { name: "uuid", value: "random.uuid" },
+      { name: "boolean", value: "random.boolean" },
+      { name: "word", value: "random.word" },
+      { name: "words", value: "random.words" },
+      { name: "image", value: "random.image" },
+      { name: "locale", value: "random.locale" },
+      { name: "alphaNumeric", value: "random.alphaNumeric" },
+      { name: "hexaDecimal", value: "random.hexaDecimal" }
+    ]
+  },
+
+  {
+    name: "image",
+    options: [
+      { name: "image", value: "image.image" },
+      { name: "avatar", value: "image.avatar" },
+      { name: "imageUrl", value: "image.imageUrl" },
+      { name: "abstract", value: "image.abstract" },
+      { name: "animals", value: "image.animals" },
+      { name: "business", value: "image.business" },
+      { name: "cats", value: "image.cats" },
+      { name: "city", value: "image.city" },
+      { name: "food", value: "image.food" },
+      { name: "nightlife", value: "image.nightlife" },
+      { name: "fashion", value: "image.fashion" },
+      { name: "people", value: "image.people" },
+      { name: "nature", value: "image.nature" },
+      { name: "sports", value: "image.sports" },
+      { name: "technics", value: "image.technics" },
+      { name: "transport", value: "image.transport" },
+      { name: "dataUri", value: "image.dataUri" }
+    ]
+  },
+  {
     name: "address",
     options: [
       { name: "zipCode", value: "address.zipCode" },
@@ -18,6 +87,26 @@ const fakerFields = [
       { name: "stateAbbr", value: "address.stateAbbr" },
       { name: "latitude", value: "address.latitude" },
       { name: "longitude", value: "address.longitude" }
+    ]
+  },
+  {
+    name: "phone",
+    options: [
+      { name: "phoneNumber", value: "phone.phoneNumber" },
+      { name: "phoneNumberFormat", value: "phone.phoneNumberFormat" },
+      { name: "phoneFormats", value: "phone.phoneFormat" }
+    ]
+  },
+  {
+    name: "date",
+    options: [
+      { name: "past", value: "date.past" },
+      { name: "future", value: "date.future" },
+      { name: "between", value: "date.between" },
+      { name: "recent", value: "date.recent" },
+      { name: "soon", value: "date.soon" },
+      { name: "month", value: "date.month" },
+      { name: "weekday", value: "date.weekday" }
     ]
   },
   {
@@ -57,18 +146,7 @@ const fakerFields = [
       { name: "engine", value: "database.engine" }
     ]
   },
-  {
-    name: "date",
-    options: [
-      { name: "past", value: "date.past" },
-      { name: "future", value: "date.future" },
-      { name: "between", value: "date.between" },
-      { name: "recent", value: "date.recent" },
-      { name: "soon", value: "date.soon" },
-      { name: "month", value: "date.month" },
-      { name: "weekday", value: "date.weekday" }
-    ]
-  },
+
   {
     name: "finance",
     options: [
@@ -97,28 +175,7 @@ const fakerFields = [
       { name: "phrase", value: "hacker.phrase" }
     ]
   },
-  {
-    name: "image",
-    options: [
-      { name: "image", value: "image.image" },
-      { name: "avatar", value: "image.avatar" },
-      { name: "imageUrl", value: "image.imageUrl" },
-      { name: "abstract", value: "image.abstract" },
-      { name: "animals", value: "image.animals" },
-      { name: "business", value: "image.business" },
-      { name: "cats", value: "image.cats" },
-      { name: "city", value: "image.city" },
-      { name: "food", value: "image.food" },
-      { name: "nightlife", value: "image.nightlife" },
-      { name: "fashion", value: "image.fashion" },
-      { name: "people", value: "image.people" },
-      { name: "nature", value: "image.nature" },
-      { name: "sports", value: "image.sports" },
-      { name: "technics", value: "image.technics" },
-      { name: "transport", value: "image.transport" },
-      { name: "dataUri", value: "image.dataUri" }
-    ]
-  },
+
   {
     name: "internet",
     options: [
@@ -139,59 +196,7 @@ const fakerFields = [
       { name: "password", value: "internet.password" }
     ]
   },
-  {
-    name: "lorem",
-    options: [
-      { name: "word", value: "lorem.word" },
-      { name: "words", value: "lorem.words" },
-      { name: "sentence", value: "lorem.sentence" },
-      { name: "slug", value: "lorem.slug" },
-      { name: "sentences", value: "lorem.sentences" },
-      { name: "paragraph", value: "lorem.paragraph" },
-      { name: "paragraphs", value: "lorem.paragraphs" },
-      { name: "text", value: "lorem.text" },
-      { name: "lines", value: "lorem.lines" }
-    ]
-  },
-  {
-    name: "name",
-    options: [
-      { name: "firstName", value: "name.firstName" },
-      { name: "lastName", value: "name.lastName" },
-      { name: "findName", value: "name.findName" },
-      { name: "jobTitle", value: "name.jobTitle" },
-      { name: "prefix", value: "name.prefix" },
-      { name: "suffix", value: "name.suffix" },
-      { name: "title", value: "name.title" },
-      { name: "jobDescriptor", value: "name.jobDescriptor" },
-      { name: "jobArea", value: "name.jobArea" },
-      { name: "jobType", value: "name.jobType" }
-    ]
-  },
-  {
-    name: "phone",
-    options: [
-      { name: "phoneNumber", value: "phone.phoneNumber" },
-      { name: "phoneNumberFormat", value: "phone.phoneNumberFormat" },
-      { name: "phoneFormats", value: "phone.phoneFormat" }
-    ]
-  },
-  {
-    name: "random",
-    options: [
-      { name: "number", value: "random.number" },
-      { name: "arrayElement", value: "random.arrayElement" },
-      { name: "objectElement", value: "random.objectElement" },
-      { name: "uuid", value: "random.uuid" },
-      { name: "boolean", value: "random.boolean" },
-      { name: "word", value: "random.word" },
-      { name: "words", value: "random.words" },
-      { name: "image", value: "random.image" },
-      { name: "locale", value: "random.locale" },
-      { name: "alphaNumeric", value: "random.alphaNumeric" },
-      { name: "hexaDecimal", value: "random.hexaDecimal" }
-    ]
-  },
+
   {
     name: "system",
     options: [
