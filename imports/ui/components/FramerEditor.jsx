@@ -34,7 +34,7 @@ class FramerEditor extends Component {
           width={`${this.state.width}px`}
           height="100vh"
           onChange={event =>
-            Meteor.call("update", this.props.prototype._id, {
+            Meteor.call("updatePrototype", this.props.prototype._id, {
               code: event
             })}
         />

@@ -25,7 +25,7 @@ Meteor.methods({
     });
   },
 
-  update(id, args) {
+  updatePrototype(id, args) {
     return Prototypes.update(id, {
       $set: { ...args, updatedAt: Date.now() }
     });
@@ -44,7 +44,7 @@ Meteor.methods({
         args.code = args.code;
     }
 
-    return Meteor.call("update", id, { ...args });
+    return Meteor.call("updatePrototype", id, { ...args });
   },
 
   deletePrototype(id) {

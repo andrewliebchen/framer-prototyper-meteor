@@ -19,7 +19,7 @@ const Snippets = props => (
               key={i}
               secondary={snippet.name}
               onClick={() =>
-                Meteor.call("update", props.prototype._id, {
+                Meteor.call("updatePrototype", props.prototype._id, {
                   code: `${props.prototype.code}\n\n${snippet.code[
                     props.prototype.syntax
                   ]}`,
