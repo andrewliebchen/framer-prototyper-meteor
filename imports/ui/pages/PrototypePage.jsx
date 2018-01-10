@@ -36,16 +36,10 @@ export default withTracker(props => {
   const sampleDataLoading = !sampleDataHandle.ready();
 
   // Get a list of prototypes. If there's a user, get their Prototypes
-  // if this is the Electron client, get all local prototypes
   let prototypeListLoading = true;
 
   if (Meteor.userId()) {
     const prototypeListHandle = Meteor.subscribe("prototypes", Meteor.userId());
-    prototypeListLoading = !prototypeListHandle.ready();
-  }
-
-  if (Meteor.isDesktop) {
-    const prototypeListHandle = Meteor.subscribe("allPrototypes");
     prototypeListLoading = !prototypeListHandle.ready();
   }
 

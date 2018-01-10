@@ -20,13 +20,9 @@ style({
 const PageComponents = props => (
   <div>
     <Helmet>
-      {Meteor.isDesktop ? (
-        <title>{Strings.appName}</title>
-      ) : (
-        <title>
-          {Strings.appName} | {props.pageName}
-        </title>
-      )}
+      <title>
+        {Strings.appName} | {props.pageName}
+      </title>
     </Helmet>
     <ReactTooltip place="bottom" offset={{ bottom: 10 }} className="Tooltip" />
     <ToastContainer

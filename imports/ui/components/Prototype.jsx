@@ -25,8 +25,7 @@ class Prototype extends Component {
 
     const isOwner = Meteor.userId() === this.props.prototype.owner;
     this.state = {
-      canEdit: Meteor.isDesktop || isOwner || !this.props.prototype.owner,
-      isDesktop: Meteor.isDesktop,
+      canEdit: isOwner || !this.props.prototype.owner,
       isLoggedIn: Meteor.userId() ? true : false,
       isOwner: isOwner,
       modal: false,
