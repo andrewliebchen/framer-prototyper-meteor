@@ -8,50 +8,35 @@ import FormInput from "./FormInput.jsx";
 import Button from "./Button.jsx";
 import SampleDataGroup from "./SampleDataGroup.jsx";
 import Editor from "./Editor.jsx";
+import Toggle from "./Toggle.jsx";
 
 import "brace/mode/javascript";
 import "../lib/tomorrow_night_eighties";
 
+const disabledStyle = {
+  opacity: 0.6,
+  filter: "blur(5px)",
+  pointerEvents: "none"
+};
+
 const SampleDataInspector = props => (
   <div>
     <div className="ModalSection">
-      <label className="FormLabel">Sample</label>
-      <div className="Form">
-        <AceEditor
-          mode="javascript"
-          name="dataSample"
-          value={
-            props.prototypeSampleData
-              ? stringify(props.prototypeSampleData)
-              : "No sample data"
-          }
-          width="448px"
-          maxLines={10}
-          readOnly
-        />
-      </div>
-      <FormInput
-        label="Include in your prototype"
-        value={
-          props.prototype.syntax === "coffeescript"
-            ? "print DATA"
-            : "print(Data);"
-        }
-        copy={
-          props.prototype.syntax === "coffeescript"
-            ? "print DATA"
-            : "print(Data);"
-        }
-        style={{ fontFamily: "monospace" }}
-        disabled
-      />
-    </div>
-    <div className="ModalSection">
-      <h3>Configure data</h3>
+      <h3>Sample data</h3>
       <p>
         Exercitation officia irure mollit adipisicing laboris culpa. In veniam
         pariatur sunt et sint.
       </p>
+      <Toggle
+        on={props.prototypeSampleData}
+        label="Include sample data in prototype"
+        onToggle={props.toggleSampleData}
+      />
+    </div>
+    <div
+      className="ModalSection"
+      style={props.prototypeSampleData ? {} : disabledStyle}
+    >
       {props.sampleData.map(data => (
         <SampleDataGroup key={data._id} sampleData={data} />
       ))}
@@ -67,7 +52,8 @@ const SampleDataInspector = props => (
 SampleDataInspector.propTypes = {
   sampleData: PropTypes.array,
   prototype: PropTypes.object,
-  prototypeSampleData: PropTypes.object
+  prototypeSampleData: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+  toggleSampleData: PropTypes.func
 };
 
 export default SampleDataInspector;

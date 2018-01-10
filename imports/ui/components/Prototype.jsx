@@ -30,7 +30,7 @@ class Prototype extends Component {
       isOwner: isOwner,
       modal: false,
       playing: true,
-      prototypeSampleData: {}
+      prototypeSampleData: false
     };
 
     this._handleTogglePlaying = this._handleTogglePlaying.bind(this);
@@ -48,7 +48,17 @@ class Prototype extends Component {
           />
         );
       case "Utilities":
-        return <Utilities {...this.props} {...this.state} />;
+        return (
+          <Utilities
+            toggleSampleData={() =>
+              this.setState({
+                prototypeSampleData: !this.state.prototypeSampleData
+              })
+            }
+            {...this.props}
+            {...this.state}
+          />
+        );
       default:
         return <div />;
     }
@@ -92,31 +102,6 @@ class Prototype extends Component {
       case "new":
         toast("Cowabunga, new prototype created!");
         break;
-    }
-
-    // Sample data
-    // Get the sample data from Faker and write it to state...
-    const { sampleData } = this.props;
-
-    if (sampleData.length > 0) {
-      let prototypeSampleData = {};
-
-      // Need to do this as promise
-      sampleData.map(data => {
-        const getData = new Promise((resolve, reject) => {
-          Meteor.call(
-            "getSampleDataValues",
-            { fields: data.fields, count: data.count },
-            (err, response) => {
-              resolve(response);
-            }
-          );
-        });
-
-        getData.then(response => (prototypeSampleData[data.name] = response));
-      });
-
-      this.setState({ prototypeSampleData: prototypeSampleData });
     }
   }
 

@@ -1,5 +1,5 @@
 .ToggleContainer {
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 }
 
 .Toggle {
@@ -32,6 +32,14 @@
 .isOn .ToggleHandle {
   border-color: black;
   transform: translate3d(1.75em, -50%, 0);
+}
+
+.ToggleLabel {
+  line-height: 2em;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: var(--letter-spacing);
+  text-transform: uppercase;
 }
 
 .ToggleHint {

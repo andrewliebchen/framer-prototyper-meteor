@@ -80,7 +80,7 @@ Preview.propTypes = {
   playing: PropTypes.bool,
   full: PropTypes.bool,
   togglePlaying: PropTypes.func,
-  prototypeSampleData: PropTypes.object
+  prototypeSampleData: PropTypes.oneOfType([PropTypes.bool, PropTypes.object])
 };
 
 export default Preview;

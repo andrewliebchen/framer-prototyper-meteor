@@ -24,7 +24,8 @@ Utilities.propTypes = {
   prototype: PropTypes.object,
   data: PropTypes.array,
   sampleData: PropTypes.array,
-  prototypeSampleData: PropTypes.object
+  prototypeSampleData: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+  toggleSampleData: PropTypes.func
 };
 
 export default Utilities;
