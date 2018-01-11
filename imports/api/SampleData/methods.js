@@ -1,17 +1,22 @@
 import { Meteor } from "meteor/meteor";
-import { Random } from "meteor/random";
 import faker from "faker";
 import _ from "lodash";
 
 import SampleData from "./SampleData";
+
+const initialCode = `{
+  firstName: faker.fake('name.firstName'),
+  lastName: faker.fake('name.lastName')
+}`;
 
 Meteor.methods({
   newSampleData(id) {
     return SampleData.insert({
       createdAt: Date.now(),
       prototype: id,
-      fields: [],
-      count: 0
+      count: 0,
+      code: initialCode,
+      values: []
     });
   },
 
@@ -24,32 +29,8 @@ Meteor.methods({
     });
   },
 
-  deteteSampleDataGroup(id) {
+  deleteSampleDataGroup(id) {
     return SampleData.remove(id);
-  },
-
-  newSampleDataField(id) {
-    return SampleData.update(id, {
-      $push: {
-        fields: {
-          id: Random.id(),
-          name: "name"
-        }
-      }
-    });
-  },
-
-  updateSampleDataField(id, args) {
-    return SampleData.update(
-      { _id: id, "fields.id": args.id },
-      {
-        $set: {
-          "fields.$": {
-            ...args
-          }
-        }
-      }
-    );
   },
 
   getSampleDataValues(args) {

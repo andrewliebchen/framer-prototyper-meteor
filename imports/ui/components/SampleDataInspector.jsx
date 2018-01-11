@@ -14,8 +14,7 @@ import "brace/mode/javascript";
 import "../lib/tomorrow_night_eighties";
 
 const disabledStyle = {
-  opacity: 0.6,
-  filter: "blur(5px)",
+  opacity: 0.2,
   pointerEvents: "none"
 };
 

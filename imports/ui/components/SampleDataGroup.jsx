@@ -2,55 +2,30 @@ import React from "react";
 import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import { Flex, Box } from "reflexbox";
-import { Trash2 } from "react-feather";
 
 import FormSelect from "./FormSelect.jsx";
 import FormInput from "./FormInput.jsx";
+import Editor from "./Editor.jsx";
+import Button from "./Button.jsx";
 
 import fakerFields from "../lib/fakerFields";
 
 import "../styles/SampleDataGroup.css";
-
-const SampleDataGroupRow = props => (
-  <Flex align="center" className="SampleDataGroupRow">
-    <Box auto>
-      <select
-        defaultValue={props.field.name}
-        onChange={event =>
-          Meteor.call("updateSampleDataField", props.sampleData._id, {
-            id: props.field.id,
-            name: event.target.value
-          })}
-      >
-        {fakerFields.map(group => (
-          <optgroup key={group.name} label={group.name}>
-            {group.options.map(option => (
-              <option key={option.value} value={option.value}>
-                {option.name}
-              </option>
-            ))}
-          </optgroup>
-        ))}
-      </select>
-    </Box>
-    <Box data-tip="Delete field">
-      <Trash2 className="ActionIcon Delete" />
-    </Box>
-  </Flex>
-);
 
 const SampleDataGroup = props => (
   <div className="SampleDataGroup">
     <Flex justify="space-around">
       <Box auto>
         <FormInput
-          label="Group name"
+          label="name"
           defaultValue={props.sampleData.name}
           placeholder="Descriptive name, no spaces!"
+          style={{ fontFamily: "monospace" }}
           onChange={event =>
             Meteor.call("updateSampleDataGroup", props.sampleData._id, {
               name: event.target.value
-            })}
+            })
+          }
         />
       </Box>
       <Box w={1 / 4} style={{ paddingLeft: "1em" }}>
@@ -61,28 +36,39 @@ const SampleDataGroup = props => (
           onChange={event =>
             Meteor.call("updateSampleDataGroup", props.sampleData._id, {
               count: event.target.value
-            })}
+            })
+          }
         />
       </Box>
     </Flex>
     <div className="Form">
-      <label className="FormLabel">Fields</label>
-      <div className="SampleDataGroupFields">
-        {props.sampleData.fields.map(field => (
-          <SampleDataGroupRow field={field} key={field.id} {...props} />
-        ))}
-        <Flex justify="center" className="SampleDataGroupRowAction">
-          <Box>
-            <a
-              onClick={() =>
-                Meteor.call("newSampleDataField", props.sampleData._id)}
-            >
-              Add a field
-            </a>
-          </Box>
-        </Flex>
-      </div>
+      <Editor
+        mode="javascript"
+        name="dataSample"
+        value={props.sampleData.code}
+        width="418px"
+        maxLines={10}
+        setOptions={{ useWorker: false }}
+        readOnly
+      />
     </div>
+    <Flex>
+      <Box w={1 / 4}>
+        <a
+          className="SampleDataGroupDelete"
+          onClick={() => {
+            if (window.confirm("Are you sure you want to delete this group?")) {
+              Meteor.call("deleteSampleDataGroup", props.sampleData._id);
+            }
+          }}
+        >
+          Delete
+        </a>
+      </Box>
+      <Box auto>
+        <Button label="Refresh" block disabled={!props.sampleData.name} />
+      </Box>
+    </Flex>
   </div>
 );
 

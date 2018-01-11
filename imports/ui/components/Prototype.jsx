@@ -28,9 +28,9 @@ class Prototype extends Component {
       canEdit: isOwner || !this.props.prototype.owner,
       isLoggedIn: Meteor.userId() ? true : false,
       isOwner: isOwner,
-      modal: false,
+      modal: "Utilities",
       playing: true,
-      prototypeSampleData: false
+      prototypeSampleData: true
     };
 
     this._handleTogglePlaying = this._handleTogglePlaying.bind(this);

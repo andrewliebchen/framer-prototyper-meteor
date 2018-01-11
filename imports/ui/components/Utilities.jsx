@@ -8,14 +8,18 @@ import SampleDataInspector from "./SampleDataInspector.jsx";
 const Utilities = props => (
   <Tabs>
     <TabList>
-      <Tab>Snippets</Tab>
       <Tab>Data</Tab>
+      <Tab>Styles</Tab>
+      <Tab>Snippets</Tab>
     </TabList>
     <TabPanel>
-      <Snippets {...props} />
+      <SampleDataInspector {...props} />
     </TabPanel>
     <TabPanel>
-      <SampleDataInspector {...props} />
+      <div>Styles</div>
+    </TabPanel>
+    <TabPanel>
+      <Snippets {...props} />
     </TabPanel>
   </Tabs>
 );
