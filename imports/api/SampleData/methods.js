@@ -34,18 +34,15 @@ Meteor.methods({
   },
 
   refreshSampleData(sampleData) {
-    let values = {};
     let data = [];
 
     _.times(sampleData.count, () => {
       data.push(eval(`${sampleData.name} = ${sampleData.code}`));
     });
 
-    values[sampleData.name] = data;
-    console.log(values);
-
+    console.log(data);
     return Meteor.call("updateSampleDataGroup", {
-      values: values
+      values: data
     });
   }
 
