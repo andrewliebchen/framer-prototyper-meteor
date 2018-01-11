@@ -1,12 +1,12 @@
 import { Meteor } from "meteor/meteor";
-import faker from "faker";
+import sample from "faker";
 import _ from "lodash";
 
 import SampleData from "./SampleData";
 
 const initialCode = `{
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName()
+  firstName: sample.name.firstName(),
+  lastName: sample.name.lastName()
 }`;
 
 Meteor.methods({
@@ -34,11 +34,19 @@ Meteor.methods({
   },
 
   refreshSampleData(sampleData) {
-    const getData = new Promise((resolve, reject) => {
-      resolve(eval(`${sampleData.name} = ${sampleData.code}`));
+    let values = {};
+    let data = [];
+
+    _.times(sampleData.count, () => {
+      data.push(eval(`${sampleData.name} = ${sampleData.code}`));
     });
 
-    getData.then(response => console.log(response));
+    values[sampleData.name] = data;
+    console.log(values);
+
+    return Meteor.call("updateSampleDataGroup", {
+      values: values
+    });
   }
 
   // getSampleDataValues(args) {

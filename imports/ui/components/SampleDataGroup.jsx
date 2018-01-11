@@ -2,6 +2,7 @@ import React from "react";
 import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import { Flex, Box } from "reflexbox";
+import { toast } from "react-toastify";
 
 import FormSelect from "./FormSelect.jsx";
 import FormInput from "./FormInput.jsx";
@@ -73,7 +74,18 @@ const SampleDataGroup = props => (
           label="Refresh"
           block
           disabled={!props.sampleData.name}
-          onClick={() => Meteor.call("refreshSampleData", props.sampleData)}
+          onClick={() =>
+            Meteor.call(
+              "refreshSampleData",
+              props.sampleData,
+              (err, success) => {
+                // Not sure why success generates 0...but whatever
+                if (success === 0) {
+                  toast("New sample data was generated!");
+                }
+              }
+            )
+          }
         />
       </Box>
     </Flex>
