@@ -29,7 +29,6 @@ const Editor = props => (
 Editor.propTypes = {
   theme: PropTypes.string,
   name: PropTypes.string,
-  value: PropTypes.string,
   width: PropTypes.string,
   height: PropTypes.string,
   onChange: PropTypes.func,

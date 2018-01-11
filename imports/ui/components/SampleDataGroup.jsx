@@ -44,12 +44,15 @@ const SampleDataGroup = props => (
     <div className="Form">
       <Editor
         mode="javascript"
-        name="dataSample"
         value={props.sampleData.code}
         width="418px"
         maxLines={10}
         setOptions={{ useWorker: false }}
-        readOnly
+        onChange={event =>
+          Meteor.call("updateSampleDataGroup", props.sampleData._id, {
+            code: event
+          })
+        }
       />
     </div>
     <Flex>
@@ -66,7 +69,12 @@ const SampleDataGroup = props => (
         </a>
       </Box>
       <Box auto>
-        <Button label="Refresh" block disabled={!props.sampleData.name} />
+        <Button
+          label="Refresh"
+          block
+          disabled={!props.sampleData.name}
+          onClick={() => Meteor.call("refreshSampleData", props.sampleData)}
+        />
       </Box>
     </Flex>
   </div>
