@@ -41,27 +41,8 @@ Meteor.methods({
     });
 
     console.log(data);
-    return Meteor.call("updateSampleDataGroup", {
+    return Meteor.call("updateSampleDataGroup", sampleData._id, {
       values: data
     });
   }
-
-  // getSampleDataValues(args) {
-  //   let values = [];
-  //   let count = args.count || 1;
-  //
-  //   _.times(count, () => {
-  //     let element = {};
-  //
-  //     args.fields.map(field => {
-  //       let name = field.name;
-  //
-  //       element[name] = faker.fake(`{{${name}}}`);
-  //     });
-  //
-  //     values.push(element);
-  //   });
-  //
-  //   return values;
-  // }
 });

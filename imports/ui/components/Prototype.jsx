@@ -24,13 +24,19 @@ class Prototype extends Component {
     super(props);
 
     const isOwner = Meteor.userId() === this.props.prototype.owner;
+
+    const prototypeSampleData = {};
+    this.props.sampleData.map(sampleData => {
+      prototypeSampleData[sampleData.name] = sampleData.values;
+    });
+
     this.state = {
       canEdit: isOwner || !this.props.prototype.owner,
       isLoggedIn: Meteor.userId() ? true : false,
       isOwner: isOwner,
       modal: "Utilities",
       playing: true,
-      prototypeSampleData: true
+      prototypeSampleData: prototypeSampleData
     };
 
     this._handleTogglePlaying = this._handleTogglePlaying.bind(this);
