@@ -1,6 +1,6 @@
 import { Meteor } from "meteor/meteor";
 import { Mongo } from "meteor/mongo";
 
-const Data = new Mongo.Collection("data");
+const SampleData = new Mongo.Collection("sampleData");
 
-export default Data;
+export default SampleData;
