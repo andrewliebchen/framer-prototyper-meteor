@@ -5,8 +5,8 @@ import { Redirect } from "react-router-dom";
 import Accounts from "../components/Accounts.jsx";
 import { toast } from "react-toastify";
 
-import { deletePrototype } from "../lib/utils";
-import Strings from "../lib/strings";
+import { deletePrototype } from "../../lib/utils";
+import Strings from "../../lib/strings";
 
 import Button from "./Button.jsx";
 import FormInput from "./FormInput.jsx";
@@ -38,7 +38,8 @@ const Settings = props => (
                   toast("Whoops, there was a problem", { type: "error" });
                 }
               }
-            )}
+            )
+          }
         />
       )}
       <FormSelect
@@ -61,7 +62,8 @@ const Settings = props => (
                 toast("Whoops, there was a problem...", { type: "error" });
               }
             }
-          )}
+          )
+        }
       />
       <FormSelect
         label="Syntax"
@@ -88,7 +90,8 @@ const Settings = props => (
                 toast("Whoops, there was a problem...", { type: "error" });
               }
             }
-          )}
+          )
+        }
       />
       <FormInput
         label="URL"
@@ -123,7 +126,8 @@ const Settings = props => (
                     toast("Whoops, there was a problem...", { type: "error" });
                   }
                 }
-              )}
+              )
+            }
             block
           />
         </div>

@@ -7,7 +7,7 @@ import { Flex, Box } from "reflexbox";
 
 import PreviewControls from "../components/PreviewControls.jsx";
 
-import { initPreviewCode } from "../lib/utils";
+import { initPreviewCode } from "../../lib/utils";
 
 import "../styles/Preview.css";
 

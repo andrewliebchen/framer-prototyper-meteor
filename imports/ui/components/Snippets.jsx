@@ -4,7 +4,7 @@ import { Meteor } from "meteor/meteor";
 
 import ListItem from "./ListItem.jsx";
 
-import { settings, device, components, layers } from "../lib/snippets";
+import { settings, device, components, layers } from "../../lib/snippets";
 
 const snippetSections = [settings, device, components, layers];
 
@@ -20,11 +20,12 @@ const Snippets = props => (
               secondary={snippet.name}
               onClick={() =>
                 Meteor.call("updatePrototype", props.prototype._id, {
-                  code: `${props.prototype.code}\n\n${snippet.code[
-                    props.prototype.syntax
-                  ]}`,
+                  code: `${props.prototype.code}\n\n${
+                    snippet.code[props.prototype.syntax]
+                  }`,
                   updatedAt: Date.now()
-                })}
+                })
+              }
             />
           ))}
         </div>

@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 import Button from "./Button.jsx";
 
-import { deletePrototype } from "../lib/utils";
+import { deletePrototype } from "../../lib/utils";
 
 import "../styles/PrototypesList.css";
 
@@ -23,7 +23,8 @@ const PrototypesList = props => (
           Meteor.call("newPrototype", {
             createdAt: Date.now(),
             owner: Meteor.userId()
-          })}
+          })
+        }
         label="New Prototype"
         block
       />

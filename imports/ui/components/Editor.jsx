@@ -4,7 +4,7 @@ import AceEditor from "react-ace";
 
 import "brace/mode/javascript";
 import "brace/mode/coffee";
-import "../lib/tomorrow_night_eighties";
+import "../../lib/tomorrow_night_eighties";
 
 const Editor = props => (
   <AceEditor

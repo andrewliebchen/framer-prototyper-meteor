@@ -7,7 +7,7 @@ import Button from "./Button.jsx";
 import CodeElement from "./CodeElement.jsx";
 
 import "brace/mode/javascript";
-import "../lib/tomorrow_night_eighties";
+import "../../lib/tomorrow_night_eighties";
 
 const SampleDataInspector = props => (
   <div className="ModalSection">

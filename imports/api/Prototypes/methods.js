@@ -3,7 +3,7 @@ import js2coffee from "js2coffee";
 import CoffeeScript from "coffeescript";
 
 import Prototypes from "./Prototypes";
-import Strings from "../../ui/lib/strings";
+import Strings from "../../lib/strings";
 
 const initialCode = `# Welcome to Framer Science!
 # ${Strings.tagline}

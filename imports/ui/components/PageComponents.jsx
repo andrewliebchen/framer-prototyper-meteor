@@ -6,7 +6,7 @@ import ReactTooltip from "react-tooltip";
 import { ToastContainer, style } from "react-toastify";
 import { css } from "glamor";
 
-import Strings from "../lib/strings";
+import Strings from "../../lib/strings";
 
 style({
   colorDefault: "rgba(0, 116, 217, 0.7)",
