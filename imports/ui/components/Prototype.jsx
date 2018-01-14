@@ -1,18 +1,17 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { Flex, Box } from "reflexbox";
 import _ from "lodash";
-import queryString from "query-string";
+import { Flex, Box } from "reflexbox";
 import { toast } from "react-toastify";
+import PropTypes from "prop-types";
+import queryString from "query-string";
 
-import PageComponents from "./PageComponents.jsx";
-import FramerEditor from "./FramerEditor.jsx";
-import Preview from "./Preview.jsx";
-import Modal from "./Modal.jsx";
-import FormInput from "./FormInput.jsx";
 import EditControls from "./EditControls.jsx";
-
+import FormInput from "./FormInput.jsx";
+import FramerEditor from "./FramerEditor.jsx";
+import Modal from "./Modal.jsx";
 import NotFoundPage from "../pages/NotFoundPage.jsx";
+import PageComponents from "./PageComponents.jsx";
+import Preview from "./Preview.jsx";
 
 import "../styles/Prototype.css";
 
@@ -144,9 +143,9 @@ class Prototype extends Component {
 }
 
 Prototype.propTypes = {
+  loading: PropTypes.bool,
   prototype: PropTypes.object,
-  sampleData: PropTypes.array,
-  loading: PropTypes.bool
+  sampleData: PropTypes.array
 };
 
 export default Prototype;
