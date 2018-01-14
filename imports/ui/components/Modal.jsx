@@ -1,9 +1,12 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import Transition from "react-transition-group/Transition";
-import { X } from "react-feather";
 import { Flex } from "reflexbox";
+
+import Utilities from "./Utilities.jsx";
+import Settings from "./Settings.jsx";
+import PrototypesList from "./PrototypesList.jsx";
 
 import "../styles/Modal.css";
 
@@ -27,36 +30,71 @@ const modalTransitionStyles = {
   }
 };
 
-const Modal = props => (
-  <div>
-    <div
-      className={classNames({
-        Underlay: true,
-        showModal: props.show
-      })}
-    >
-      {props.children}
-    </div>
-    <Transition in={props.show} timeout={modalDuration}>
-      {state => (
+class Modal extends Component {
+  _renderModalContent() {
+    switch (this.props.modal) {
+      case "Settings":
+        return <Settings {...this.props} />;
+      case "Prototypes":
+        return (
+          <PrototypesList
+            showSettings={() => this.setState({ modal: "Settings" })}
+            {...this.props}
+          />
+        );
+      case "Utilities":
+        return (
+          <Utilities
+            toggleSampleData={() =>
+              this.setState({
+                prototypeSampleData: !this.props.prototypeSampleData
+              })
+            }
+            {...this.props}
+          />
+        );
+      default:
+        return <div />;
+    }
+  }
+
+  render() {
+    return (
+      <div>
         <div
-          className="Modal"
-          style={{
-            ...modalDefaultStyle,
-            ...modalTransitionStyles[state]
-          }}
+          className={classNames({
+            Underlay: true,
+            showModal: this.props.show
+          })}
         >
-          {props.content}
+          {this.props.children}
         </div>
-      )}
-    </Transition>
-    {props.show && <div className="ModalBackground" onClick={props.close} />}
-  </div>
-);
+        <Transition in={this.props.show ? true : false} timeout={modalDuration}>
+          {state => (
+            <div
+              className="Modal"
+              style={{
+                ...modalDefaultStyle,
+                ...modalTransitionStyles[state]
+              }}
+            >
+              {this._renderModalContent()}
+            </div>
+          )}
+        </Transition>
+        {this.props.show && (
+          <div className="ModalBackground" onClick={this.props.close} />
+        )}
+      </div>
+    );
+  }
+}
 
 Modal.propTypes = {
-  show: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]).isRequired,
-  content: PropTypes.element,
+  show: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(["Settings", "Prototypes", "Utilities"])
+  ]),
   close: PropTypes.func,
   title: PropTypes.string
 };
