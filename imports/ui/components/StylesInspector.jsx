@@ -19,3 +19,14 @@ const StylesInspector = props => (
 StylesInspector.propTypes = {};
 
 export default StylesInspector;
+
+// collection: PropTypes.object,
+// defaultNameValue: PropTypes.string,
+// handleNameUpdate: PropTypes.func,
+// count: PropTypes.number,
+// handleCountUpdate: PropTypes.func,
+// code: PropTypes.string,
+// handleCodeUpdate: PropTypes.func,
+// handleDelete: PropTypes.func,
+// disabled: PropTypes.bool,
+// handleRefresh: PropTypes.func

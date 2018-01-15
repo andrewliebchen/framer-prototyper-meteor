@@ -145,7 +145,8 @@ class Prototype extends Component {
 Prototype.propTypes = {
   loading: PropTypes.bool,
   prototype: PropTypes.object,
-  sampleData: PropTypes.array
+  sampleData: PropTypes.array,
+  styles: PropTypes.array
 };
 
 export default Prototype;

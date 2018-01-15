@@ -23,7 +23,9 @@ PrototypePage.propTypes = {
   loading: PropTypes.bool,
   prototypeListLoading: PropTypes.bool,
   sampleDataLoading: PropTypes.bool,
-  sampleData: PropTypes.array
+  sampleData: PropTypes.array,
+  stylesLoading: PropTypes.bool,
+  styles: PropTypes.array
 };
 
 export default withTracker(props => {
@@ -35,6 +37,9 @@ export default withTracker(props => {
   const sampleDataHandle = Meteor.subscribe("sampleData", id);
   const sampleDataLoading = !sampleDataHandle.ready();
 
+  const stylesHandle = Meteor.subscribe("styles", id);
+  const stylesLoading = !stylesHandle.ready();
+
   // Get a list of prototypes. If there's a user, get their Prototypes
   let prototypeListLoading = true;
 
@@ -45,14 +50,16 @@ export default withTracker(props => {
 
   return {
     loading,
-    sampleDataLoading,
     prototypeListLoading,
+    sampleDataLoading,
+    stylesLoading,
     prototype: loading ? {} : Prototypes.findOne(id),
     prototypes: prototypeListLoading
       ? []
       : Prototypes.find({}, { sort: { updatedAt: -1 } }).fetch(),
     sampleData: sampleDataLoading
       ? []
-      : SampleData.find({ prototype: id }).fetch()
+      : SampleData.find({ prototype: id }).fetch(),
+    styles: stylesLoading ? [] : Styles.find({ prototype: id }).fetch()
   };
 })(PrototypePage);
