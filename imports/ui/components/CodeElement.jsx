@@ -64,7 +64,7 @@ CodeElement.propTypes = {
   collection: PropTypes.object,
   defaultNameValue: PropTypes.string,
   handleNameUpdate: PropTypes.func,
-  count: PropTypes.number,
+  // count: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
   handleCountUpdate: PropTypes.func,
   code: PropTypes.string,
   handleCodeUpdate: PropTypes.func,

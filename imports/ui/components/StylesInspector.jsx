@@ -11,22 +11,42 @@ const StylesInspector = props => (
       Reprehenderit adipisicing dolor do non exercitation adipisicing laboris
       amet adipisicing dolore.
     </p>
-    <CodeElement />
-    <Button block label="Add new style" />
+    {props.styles.map(style => (
+      <CodeElement
+        key={style._id}
+        collection={style}
+        defaultNameValue={style.name}
+        handleNameUpdate={event =>
+          Meteor.call("updateStyle", style._id, {
+            name: event.target.value
+          })
+        }
+        code={style.code}
+        handleCodeUpdate={event =>
+          Meteor.call("updateStyle", style._id, {
+            code: event
+          })
+        }
+        handleDelete={() => {
+          if (window.confirm("Are you sure you want to delete this style?")) {
+            Meteor.call("deleteStyle", style._id);
+          }
+        }}
+        handleRefresh={() => console.log("refresh?")}
+        disabled={!style.name}
+      />
+    ))}
+    <Button
+      block
+      label="Add new style"
+      onClick={() => Meteor.call("newStyle", props.prototype._id)}
+    />
   </div>
 );
 
-StylesInspector.propTypes = {};
+StylesInspector.propTypes = {
+  styles: PropTypes.array,
+  prototype: PropTypes.object
+};
 
 export default StylesInspector;
-
-// collection: PropTypes.object,
-// defaultNameValue: PropTypes.string,
-// handleNameUpdate: PropTypes.func,
-// count: PropTypes.number,
-// handleCountUpdate: PropTypes.func,
-// code: PropTypes.string,
-// handleCodeUpdate: PropTypes.func,
-// handleDelete: PropTypes.func,
-// disabled: PropTypes.bool,
-// handleRefresh: PropTypes.func

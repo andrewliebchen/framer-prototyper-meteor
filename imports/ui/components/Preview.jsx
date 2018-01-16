@@ -29,7 +29,8 @@ class Preview extends Component {
       playing,
       full,
       togglePlaying,
-      prototypeSampleData
+      prototypeSampleData,
+      prototypeStypes
     } = this.props;
     const code = prototype ? prototype.code : "";
 
@@ -61,7 +62,8 @@ class Preview extends Component {
                 code: code,
                 syntax: prototype.syntax,
                 background: prototype.background,
-                sampleData: prototypeSampleData
+                sampleData: prototypeSampleData,
+                styles: prototypeStypes
               })}
             />
           )}
@@ -80,7 +82,8 @@ Preview.propTypes = {
   playing: PropTypes.bool,
   full: PropTypes.bool,
   togglePlaying: PropTypes.func,
-  prototypeSampleData: PropTypes.oneOfType([PropTypes.bool, PropTypes.object])
+  prototypeSampleData: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+  prototypeStypes: PropTypes.object
 };
 
 export default Preview;

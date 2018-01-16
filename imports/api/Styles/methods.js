@@ -2,14 +2,16 @@ import { Meteor } from "meteor/meteor";
 
 import Styles from "./Styles";
 
-const initialCode = `size: 200
-backgroundColor: new Color(blue).alpha(0.5)`;
+const initialCode = `{
+  backgroundColor: new Color('blue').alpha(0.5)
+  borderRadius: 5
+}`;
 
 Meteor.methods({
-  newStyle(id) {
+  newStyle(prototypeId) {
     return Styles.insert({
       createdAt: Date.now(),
-      prototype: id,
+      prototype: prototypeId,
       code: initialCode
     });
   },
@@ -21,5 +23,9 @@ Meteor.methods({
         updatedAt: Date.now()
       }
     });
+  },
+
+  deleteStyle(id) {
+    return SampleData.remove(id);
   }
 });

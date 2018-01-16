@@ -10,10 +10,10 @@ const initialCode = `{
 }`;
 
 Meteor.methods({
-  newSampleData(id) {
+  newSampleData(prototypeId) {
     return SampleData.insert({
       createdAt: Date.now(),
-      prototype: id,
+      prototype: prototypeId,
       count: 0,
       code: initialCode,
       values: []

@@ -26,13 +26,20 @@ class Prototype extends Component {
       prototypeSampleData[sampleData.name] = sampleData.values;
     });
 
+    const prototypeStyles = {};
+    this.props.styles.map(style => {
+      console.log(style.code);
+      prototypeStyles[style.name] = style.code;
+    });
+
     this.state = {
       canEdit: isOwner || !this.props.prototype.owner,
       isLoggedIn: Meteor.userId() ? true : false,
       isOwner: isOwner,
-      modal: "Utilities",
+      modal: false,
       playing: true,
-      prototypeSampleData: prototypeSampleData
+      prototypeSampleData: prototypeSampleData,
+      prototypeStypes: prototypeStyles
     };
 
     this._handleTogglePlaying = this._handleTogglePlaying.bind(this);

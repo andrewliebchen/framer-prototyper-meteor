@@ -8,6 +8,7 @@ import Loader from "../components/Loader.jsx";
 
 import Prototypes from "../../api/Prototypes/Prototypes";
 import SampleData from "../../api/SampleData/SampleData";
+import Styles from "../../api/Styles/Styles";
 
 const PrototypePage = props => {
   if (props.loading) {

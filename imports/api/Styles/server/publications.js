@@ -1,6 +1,6 @@
 import { Meteor } from "meteor/meteor";
 import Styles from "../Styles";
 
-Meteor.publish("sampleData", id => {
+Meteor.publish("styles", id => {
   return Styles.find({ prototype: id });
 });
