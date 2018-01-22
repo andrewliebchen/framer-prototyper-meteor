@@ -32,6 +32,7 @@
     "react-tooltip": "^3.4.0",
     "react-transition-group": "^2.2.1",
     "reflexbox": "^3.0.0-0",
+    "styled-components": "^2.4.0",
     "timeago.js": "^3.0.2"
   },
   "version": "1.0.0",
