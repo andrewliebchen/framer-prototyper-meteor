@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Flex, Box } from "reflexbox";
-import { Link } from "react-router-dom";
+import { Box } from "reflexbox";
+import styled from "styled-components";
 import {
   Folder,
   Settings,
@@ -13,57 +13,61 @@ import {
   LogOut
 } from "react-feather";
 
+import Controls from "./Controls.jsx";
 import Control from "./Control.jsx";
 import Badge from "./Badge.jsx";
 
-import "../styles/Controls.css";
+const BadgeWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 1;
+  transform: translate3d(-50%, -50%, 0);
+`;
 
 const EditControls = props => (
-  <Flex className="Controls" column>
+  <Controls>
     {(props.isDesktop || props.canEdit) && (
-        <Control
-          tip="All prototypes"
-          icon={<Folder />}
-          handleClick={props.showAll}
-        />
-      )}
-    <Control
-      tip="Settings"
-      icon={<Settings />}
-      handleClick={props.showSettings}
-      badge={<Badge label={props.syntax === "javascript" ? "JS" : "CS"} />}
-    />
-    <Control tip="Utilities" icon={<Zap />} handleClick={props.showUtilities} />
-    <Control
-      tip={props.playing ? "Pause" : "Play"}
-      icon={props.playing ? <Pause /> : <Play />}
-      handleClick={props.togglePlaying}
-    />
-    <div className="ControlWrapper">
-      <Link
-        className="Control PrimaryControl"
-        to="/new"
-        data-tip="New Prototype"
-      >
-        <Sun />
-      </Link>
-    </div>
-    {props.isDesktop || (
-      <Box style={{ marginTop: "auto" }}>
-        <Control
-          tip={`Sign ${props.isLoggedIn ? "out" : "in"}`}
-          icon={props.isLoggedIn ? <LogOut /> : <LogIn />}
-          handleClick={() => {
-            if (props.isLoggedIn) {
-              props.handleLogOut();
-            } else {
-              props.handleLogIn();
-            }
-          }}
-        />
-      </Box>
+      <Control data-tip="All prototypes" onClick={props.showAll}>
+        <Folder />
+      </Control>
     )}
-  </Flex>
+    <Control data-tip="Settings" onClick={props.showSettings}>
+      <Settings />
+      <BadgeWrapper>
+        <Badge label={props.syntax === "javascript" ? "JS" : "CS"} />
+      </BadgeWrapper>
+    </Control>
+    <Control data-tip="Utilities" onClick={props.showUtilities}>
+      <Zap />
+    </Control>
+    <Control
+      data-tip={props.playing ? "Pause" : "Play"}
+      onClick={props.togglePlaying}
+    >
+      {props.playing ? <Pause /> : <Play />}
+    </Control>
+    <Control
+      data-tip="New Prototype"
+      onClick={() => props.history.push("/new")}
+    >
+      <Sun />
+    </Control>
+    <Box style={{ marginTop: "auto" }}>
+      <Control
+        data-tip={`Sign ${props.isLoggedIn ? "out" : "in"}`}
+        onClick={() => {
+          if (props.isLoggedIn) {
+            props.handleLogOut();
+          } else {
+            props.handleLogIn();
+          }
+        }}
+      >
+        {props.isLoggedIn ? <LogOut /> : <LogIn />}
+      </Control>
+    </Box>
+  </Controls>
 );
 
 EditControls.propTypes = {

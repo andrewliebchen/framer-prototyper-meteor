@@ -1,32 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classnames from "classnames";
 import styled from "styled-components";
-
-import "../styles/Button.css";
 
 const Element = styled.button`
   appearance: none;
   background-color: transparent;
-  border: 1px solid;
   border-color: ${props =>
     props.negative ? "var(--color-red)" : "var(--color-accent)"};
+  border-radius: 3em;
+  border: 1px solid;
   color: ${props =>
     props.negative ? "var(--color-red)" : "var(--color-accent)"};
-  display: inline-block;
-  line-height: 3em;
-  font-weight: 500;
-  text-align: center;
-  border-radius: 3em;
-  padding: 0 1em;
+  cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
+  display: ${props => (props.block ? "block" : "inline-block")};
   font-size: 1em;
-  cursor: pointer;
-  text-transform: uppercase;
+  font-weight: 500;
   letter-spacing: var(--letter-spacing);
+  line-height: 3em;
+  padding: 0 1em;
+  text-align: center;
+  text-transform: uppercase;
   user-select: none;
+  width: ${props => (props.block ? "100%" : "auto")};
 
   &:hover {
-    background-color: var(--color-accent);
+    background-color: ${props =>
+      props.negative ? "var(--color-red)" : "var(--color-accent)"};
     color: white;
   }
 
@@ -34,19 +33,15 @@ const Element = styled.button`
     outline: none;
     box-shadow: var(--outline-focus);
   }
+
+  &:disabled {
+    color: var(--color-accent);
+    background-color: transparent;
+  }
 `;
 
 const Button = props => (
-  <Element
-    className={classnames({
-      Button: true,
-      Block: props.block,
-      Negative: props.negative,
-      Disabled: props.disabled
-    })}
-    onClick={props.onClick}
-    disabled={props.disabled}
-  >
+  <Element onClick={props.onClick} disabled={props.disabled} {...props}>
     {props.label}
   </Element>
 );

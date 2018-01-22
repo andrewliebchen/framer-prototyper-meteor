@@ -1,11 +1,20 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Flex } from "reflexbox";
-import { Link } from "react-router-dom";
 import { Maximize, Minimize } from "react-feather";
 import classnames from "classnames";
+import styled from "styled-components";
 
-import "../styles/Controls.css";
+import Controls from "./Controls.jsx";
+import Control from "./Control.jsx";
+
+const ControlsTrigger = styled.div`
+  cursor: pointer;
+  position: absolute;
+  right: -1em;
+  top: -1em;
+  bottom: -1em;
+  width: 5em;
+`;
 
 class PreviewControls extends Component {
   constructor(props) {
@@ -24,32 +33,32 @@ class PreviewControls extends Component {
   render() {
     const { prototype, full } = this.props;
     const { show } = this.state;
+
     return (
-      <Flex className="Controls" column>
+      <Controls>
         <div onMouseEnter={event => event.stopPropagation()}>
-          <Link
-            className={classnames({
-              Control: true,
-              PreviewControl: true,
-              Dark: prototype.background === "dark"
-            })}
-            to={full ? `/${prototype._id}` : `/${prototype._id}/preview`}
+          <Control
+            dark={prototype.background === "dark"}
             data-tip={full ? "Minimize" : "Maximize"}
+            onClick={() =>
+              this.props.history.push(
+                full ? `/${prototype._id}` : `/${prototype._id}/preview`
+              )
+            }
             style={{
               transform: `translateX(${show ? 0 : "6em"})`
             }}
           >
             {full ? <Minimize /> : <Maximize />}
-          </Link>
+          </Control>
         </div>
         {full && (
-          <div
-            className="ControlsTrigger"
+          <ControlsTrigger
             onMouseEnter={this._controlToggle}
             onMouseLeave={this._controlToggle}
           />
         )}
-      </Flex>
+      </Controls>
     );
   }
 }
