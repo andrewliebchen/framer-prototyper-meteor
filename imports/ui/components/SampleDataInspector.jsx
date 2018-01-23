@@ -55,10 +55,11 @@ const SampleDataInspector = props => (
       />
     ))}
     <Button
-      label="Add a group"
       block
       onClick={() => Meteor.call("newSampleData", props.prototype._id)}
-    />
+    >
+      Add a group
+    </Button>
   </div>
 );
 

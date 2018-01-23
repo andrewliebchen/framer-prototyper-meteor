@@ -25,9 +25,10 @@ const PrototypesList = props => (
             owner: Meteor.userId()
           })
         }
-        label="New Prototype"
         block
-      />
+      >
+        New Prototype
+      </Button>
     </div>
     {props.prototypes.map(prototype => {
       const isCurrent =

@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import FormLabel from "./FormLabel.jsx";
+
 const FormSelect = props => (
   <div className="Form">
-    {props.label && <label className="FormLabel">{props.label}</label>}
+    {props.label && <FormLabel>{props.label}</FormLabel>}
     {props.hint && <p>{props.hint}</p>}
     <select
       defaultValue={props.defaultValue}

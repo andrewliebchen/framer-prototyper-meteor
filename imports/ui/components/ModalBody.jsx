@@ -8,7 +8,7 @@ const ModalBody = props => (
     <div className="ModalHeader">
       <h2>{props.title}</h2>
       {props.handleAction && (
-        <Button onClick={props.handleAction} label={props.actionLabel} />
+        <Button onClick={props.handleAction}>{props.actionLabel}</Button>
       )}
     </div>
     <div className="ModalContent">{props.children}</div>

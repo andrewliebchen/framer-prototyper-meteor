@@ -36,11 +36,9 @@ const StylesInspector = props => (
         disabled={!style.name}
       />
     ))}
-    <Button
-      block
-      label="Add new style"
-      onClick={() => Meteor.call("newStyle", props.prototype._id)}
-    />
+    <Button block onClick={() => Meteor.call("newStyle", props.prototype._id)}>
+      Add new style
+    </Button>
   </div>
 );
 

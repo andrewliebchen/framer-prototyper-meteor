@@ -45,9 +45,10 @@ class Accounts extends Component {
         )}
         <Button
           block
-          label={isLoggedIn ? "Sign out" : "Sign in with Google"}
           onClick={isLoggedIn ? this._handleLogout : this._handleLogin}
-        />
+        >
+          {isLoggedIn ? "Sign out" : "Sign in with Google"}
+        </Button>
       </div>
     );
   }

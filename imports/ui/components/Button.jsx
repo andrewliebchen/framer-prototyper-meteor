@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const Element = styled.button`
+const Button = styled.button`
   appearance: none;
   background-color: transparent;
   border-color: ${props =>
@@ -40,18 +40,9 @@ const Element = styled.button`
   }
 `;
 
-const Button = props => (
-  <Element onClick={props.onClick} disabled={props.disabled} {...props}>
-    {props.label}
-  </Element>
-);
-
 Button.propTypes = {
   block: PropTypes.bool,
-  label: PropTypes.string,
-  onClick: PropTypes.func,
-  negative: PropTypes.bool,
-  disabled: PropTypes.bool
+  negative: PropTypes.bool
 };
 
 export default Button;

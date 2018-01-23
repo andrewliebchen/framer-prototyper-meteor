@@ -49,12 +49,9 @@ const CodeElement = props => (
         </a>
       </Box>
       <Box auto>
-        <Button
-          label="Refresh"
-          block
-          disabled={props.disabled}
-          onClick={props.handleRefresh}
-        />
+        <Button block disabled={props.disabled} onClick={props.handleRefresh}>
+          Refresh
+        </Button>
       </Box>
     </Flex>
   </div>

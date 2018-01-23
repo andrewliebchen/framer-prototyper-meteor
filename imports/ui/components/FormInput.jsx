@@ -2,8 +2,39 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Flex, Box } from "reflexbox";
 import CopyToClipboard from "react-copy-to-clipboard";
+import styled from "styled-components";
 
-import "../styles/FormInput.css";
+import FormLabel from "./FormLabel.jsx";
+
+const Form = styled(Flex)`
+  margin-bottom: 1em;
+  position: relative;
+`;
+
+const InputWrapper = styled(Box)`
+  position: relative;
+`;
+
+const Copy = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 1px;
+  transform: translate3d(0, -50%, 0);
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    var(--color-gray-4) 50%
+  );
+  cursor: pointer;
+  padding: 0 0.5em 0 3em;
+  letter-spacing: var(--letter-spacing);
+  text-transform: uppercase;
+  color: var(--color-accent);
+`;
+
+const Hint = styled.small`
+  padding-top: 0.5em;
+`;
 
 class FormInput extends Component {
   constructor(props) {
@@ -14,17 +45,32 @@ class FormInput extends Component {
   }
 
   render() {
+    const {
+      label,
+      type,
+      placeholder,
+      defaultValue,
+      copy,
+      disabled,
+      hint
+    } = this.props;
     return (
-      <Flex className="Form" column>
+      <Form column>
         <Box>
-          <label className="FormLabel">{this.props.label}</label>
+          <FormLabel>{label}</FormLabel>
         </Box>
-        <Box className="FormInputWrapper">
-          <input className="FormInput" {...this.props} />
-          {this.props.copy && (
-            <div className="FormCopy">
+        <InputWrapper>
+          <input
+            className="FormInput"
+            type={type}
+            placeholder={placeholder}
+            defaultValue={defaultValue}
+            disabled={disabled}
+          />
+          {copy && (
+            <Copy>
               <CopyToClipboard
-                text={this.props.copy}
+                text={copy}
                 onCopy={() => {
                   this.setState({ copied: true });
                   setTimeout(() => this.setState({ copied: false }), 4000);
@@ -32,11 +78,11 @@ class FormInput extends Component {
               >
                 <span>{this.state.copied ? "Copied!" : "Copy"}</span>
               </CopyToClipboard>
-            </div>
+            </Copy>
           )}
-        </Box>
-        <small className="FormHint">{this.props.hint}</small>
-      </Flex>
+        </InputWrapper>
+        <Hint>{hint}</Hint>
+      </Form>
     );
   }
 }

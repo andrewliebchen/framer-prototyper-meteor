@@ -11,6 +11,7 @@ import Strings from "../../lib/strings";
 import Button from "./Button.jsx";
 import FormInput from "./FormInput.jsx";
 import FormSelect from "./FormSelect.jsx";
+import FormLabel from "./FormInput.jsx";
 
 const Settings = props => (
   <div>
@@ -106,13 +107,13 @@ const Settings = props => (
       />
       {props.isDesktop || (
         <div className="Form">
-          <label className="FormLabel">Permissions</label>
+          <FormLabel>Permissions</FormLabel>
           <p>
             <b>{props.isOwner ? "Only you" : "Anyone"}</b> can edit this
             prototype.
           </p>
           <Button
-            label="Fork this prototype"
+            block
             onClick={() =>
               Meteor.call(
                 "forkPrototype",
@@ -128,8 +129,9 @@ const Settings = props => (
                 }
               )
             }
-            block
-          />
+          >
+            Fork this prototype
+          </Button>
         </div>
       )}
     </div>
@@ -145,10 +147,11 @@ const Settings = props => (
         <h2>Danger zone</h2>
         <Button
           onClick={() => deletePrototype(props.prototype._id)}
-          label="Delete prototype"
           negative
           block
-        />
+        >
+          Delete prototype
+        </Button>
       </div>
     )}
   </div>
