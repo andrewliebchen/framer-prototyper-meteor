@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
+import Form from "./Form.jsx";
 import FormLabel from "./FormLabel.jsx";
 
 const FormSelect = props => (
-  <div className="Form">
+  <Form>
     {props.label && <FormLabel>{props.label}</FormLabel>}
     {props.hint && <p>{props.hint}</p>}
     <select
@@ -18,7 +20,7 @@ const FormSelect = props => (
         </option>
       ))}
     </select>
-  </div>
+  </Form>
 );
 
 FormSelect.propTypes = {

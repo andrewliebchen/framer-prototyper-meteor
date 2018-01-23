@@ -3,13 +3,44 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import Transition from "react-transition-group/Transition";
 import { Flex } from "reflexbox";
+import styled from "styled-components";
 
 import Utilities from "./Utilities.jsx";
 import Settings from "./Settings.jsx";
 import PrototypesList from "./PrototypesList.jsx";
 
-import "../styles/Modal.css";
+const ModalElement = styled.div`
+  position: fixed;
+  background-color: white;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 2em;
+  width: var(--width-modal);
+  z-index: 9999;
+  overflow: auto;
+  will-change: transform;
+`;
 
+const Background = styled.div`
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+`;
+
+const Underlay = styled.div`
+  transition: var(--transition);
+  will-change: transform, opacity;
+  transform: ${props => props.show && "scale(0.9)"};
+  opacity: ${props => props.show && 0.2};
+  box-shadow: ${props => props.show && "0 0 0 1px var(--color-gray-2)"};
+`;
+
+// How to do this with styled components?
 const modalDuration = 200;
 const modalDefaultStyle = {
   boxShadow: "none",
@@ -61,30 +92,20 @@ class Modal extends Component {
   render() {
     return (
       <div>
-        <div
-          className={classNames({
-            Underlay: true,
-            showModal: this.props.show
-          })}
-        >
-          {this.props.children}
-        </div>
+        <Underlay>{this.props.children}</Underlay>
         <Transition in={this.props.show ? true : false} timeout={modalDuration}>
           {state => (
-            <div
-              className="Modal"
+            <Modal
               style={{
                 ...modalDefaultStyle,
                 ...modalTransitionStyles[state]
               }}
             >
               {this._renderModalContent()}
-            </div>
+            </Modal>
           )}
         </Transition>
-        {this.props.show && (
-          <div className="ModalBackground" onClick={this.props.close} />
-        )}
+        {this.props.show && <Background onClick={this.props.close} />}
       </div>
     );
   }

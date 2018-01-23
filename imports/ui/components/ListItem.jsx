@@ -1,25 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Flex, Box } from "reflexbox";
-import classnames from "classnames";
+import styled from "styled-components";
 
-import "../styles/ListItem.css";
+const Item = styled(Flex)`
+  border: 1px solid;
+  border-color: ${props =>
+    props.isCurrent ? "var(--color-accent)" : "var(--color-gray-3)"};
+  padding: 1em;
+  margin-bottom: 1em;
+  cursor: pointer;
+  user-select: none;
+  color: var(--color-gray-1);
+  box-shadow: ${props => props.isCurrent && "var(--outline-focus)"};
+
+  &:hover {
+    border-color: var(--color-accent);
+  }
+`;
 
 const ListItem = props => (
-  <Flex
-    className={classnames({
-      ListItem: true,
-      Current: props.isCurrent
-    })}
-    justify="space-between"
-    onClick={props.onClick}
-  >
-    <Box className="ListItemContent">
+  <Item justify="space-between" onClick={props.onClick}>
+    <Box>
       {props.primary && <h3>{props.primary}</h3>}
       {props.secondary && <div>{props.secondary}</div>}
     </Box>
-    {props.actions && <Box className="ListItemActions">{props.actions}</Box>}
-  </Flex>
+    {props.actions && <Box>{props.actions}</Box>}
+  </Item>
 );
 
 ListItem.propTypes = {

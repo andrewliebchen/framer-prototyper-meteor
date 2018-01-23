@@ -162,3 +162,11 @@ select {
 .ActionIcon.Delete:hover {
   color: var(--color-red);
 }
+
+.Search {
+  margin-bottom: 1em;
+}
+
+.ModalSection + .ModalSection {
+  margin-top: 4em;
+}

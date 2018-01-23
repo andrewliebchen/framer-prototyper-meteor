@@ -1,15 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Flex, Box } from "reflexbox";
+import { Box } from "reflexbox";
 import CopyToClipboard from "react-copy-to-clipboard";
 import styled from "styled-components";
 
 import FormLabel from "./FormLabel.jsx";
-
-const Form = styled(Flex)`
-  margin-bottom: 1em;
-  position: relative;
-`;
+import Form from "./Form.jsx";
 
 const InputWrapper = styled(Box)`
   position: relative;
