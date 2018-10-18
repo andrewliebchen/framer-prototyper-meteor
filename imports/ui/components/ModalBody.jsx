@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import Button from "./Button.jsx";
+import Button from './Button.jsx';
 
 const ModalBody = props => (
   <div className="ModalBody">
@@ -18,7 +18,7 @@ const ModalBody = props => (
 ModalBody.propTypes = {
   title: PropTypes.string,
   actionLabel: PropTypes.string,
-  handleAction: PropTypes.func
+  handleAction: PropTypes.func,
 };
 
 export default ModalBody;

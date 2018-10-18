@@ -1,17 +1,16 @@
-import React, { Component } from "react";
-import { Meteor } from "meteor/meteor";
-import PropTypes from "prop-types";
+import {Meteor} from 'meteor/meteor';
+import Button from './Button';
+import PropTypes from 'prop-types';
+import React, {Component} from 'react';
 
-import Button from "./Button";
-
-import "../styles/Accounts.css";
+import '../styles/Accounts.css';
 
 // This should maybe move up the the prototype layer
 class Accounts extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: Meteor.userId()
+      isLoggedIn: Meteor.userId(),
     };
 
     this._handleLogin = this._handleLogin.bind(this);
@@ -21,7 +20,7 @@ class Accounts extends Component {
   _handleLogin() {
     Meteor.loginWithGoogle(err => {
       if (!err) {
-        this.setState({ isLoggedIn: true });
+        this.setState({isLoggedIn: true});
       }
     });
   }
@@ -29,13 +28,13 @@ class Accounts extends Component {
   _handleLogout() {
     Meteor.logout(err => {
       if (!err) {
-        this.setState({ isLoggedIn: false });
+        this.setState({isLoggedIn: false});
       }
     });
   }
 
   render() {
-    const { isLoggedIn } = this.state;
+    const {isLoggedIn} = this.state;
     return (
       <div className="Accounts">
         {Meteor.user() && (
@@ -45,7 +44,7 @@ class Accounts extends Component {
         )}
         <Button
           block
-          label={isLoggedIn ? "Sign out" : "Sign in with Google"}
+          label={isLoggedIn ? 'Sign out' : 'Sign in with Google'}
           onClick={isLoggedIn ? this._handleLogout : this._handleLogin}
         />
       </div>

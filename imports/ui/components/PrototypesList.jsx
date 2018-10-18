@@ -1,17 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Meteor } from "meteor/meteor";
-import { Trash2, Settings } from "react-feather";
-import timeago from "timeago.js";
-import { Flex, Box } from "reflexbox";
-import classnames from "classnames";
-import { Link } from "react-router-dom";
+import {deletePrototype} from '../../lib/utils';
+import {Flex, Box} from 'reflexbox';
+import {Link} from 'react-router-dom';
+import {Meteor} from 'meteor/meteor';
+import {Trash2, Settings} from 'react-feather';
+import Button from './Button.jsx';
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+import timeago from 'timeago.js';
 
-import Button from "./Button.jsx";
-
-import { deletePrototype } from "../../lib/utils";
-
-import "../styles/PrototypesList.css";
+import '../styles/PrototypesList.css';
 
 const timeagoInstance = timeago();
 
@@ -20,9 +18,9 @@ const PrototypesList = props => (
     <div className="PrototypeListHeader">
       <Button
         onClick={() =>
-          Meteor.call("newPrototype", {
+          Meteor.call('newPrototype', {
             createdAt: Date.now(),
-            owner: Meteor.userId()
+            owner: Meteor.userId(),
           })
         }
         label="New Prototype"
@@ -38,12 +36,11 @@ const PrototypesList = props => (
             className={classnames({
               PrototypeItem: true,
               ListItem: true,
-              Current: isCurrent
+              Current: isCurrent,
             })}
-            justify="space-between"
-          >
+            justify="space-between">
             <Box>
-              <h3>{prototype.name || "Untitled"}</h3>
+              <h3>{prototype.name || 'Untitled'}</h3>
               <div>
                 Created <b>{timeagoInstance.format(prototype.createdAt)}</b>
               </div>
@@ -73,7 +70,7 @@ const PrototypesList = props => (
 PrototypesList.propTypes = {
   prototypes: PropTypes.array,
   prototype: PropTypes.object,
-  showSettings: PropTypes.func
+  showSettings: PropTypes.func,
 };
 
 export default PrototypesList;

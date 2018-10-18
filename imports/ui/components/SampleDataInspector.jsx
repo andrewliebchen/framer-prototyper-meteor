@@ -1,13 +1,12 @@
-import React, { Component } from "react";
-import { Meteor } from "meteor/meteor";
-import PropTypes from "prop-types";
-import { toast } from "react-toastify";
+import {Meteor} from 'meteor/meteor';
+import {toast} from 'react-toastify';
+import Button from './Button.jsx';
+import CodeElement from './CodeElement.jsx';
+import PropTypes from 'prop-types';
+import React, {Component} from 'react';
 
-import Button from "./Button.jsx";
-import CodeElement from "./CodeElement.jsx";
-
-import "brace/mode/javascript";
-import "../../lib/tomorrow_night_eighties";
+import 'brace/mode/javascript';
+import '../../lib/tomorrow_night_eighties';
 
 const SampleDataInspector = props => (
   <div className="ModalSection">
@@ -22,33 +21,33 @@ const SampleDataInspector = props => (
         collection={data}
         defaultNameValue={data.name}
         handleNameUpdate={event =>
-          Meteor.call("updateSampleDataGroup", data._id, {
-            name: event.target.value
+          Meteor.call('updateSampleDataGroup', data._id, {
+            name: event.target.value,
           })
         }
         count={data.count || 0}
         handleCountUpdate={event =>
-          Meteor.call("updateSampleDataGroup", data._id, {
-            count: event.target.value
+          Meteor.call('updateSampleDataGroup', data._id, {
+            count: event.target.value,
           })
         }
         code={data.code}
         handleCodeUpdate={event =>
-          Meteor.call("updateSampleDataGroup", data._id, {
-            code: event
+          Meteor.call('updateSampleDataGroup', data._id, {
+            code: event,
           })
         }
         handleDelete={() => {
-          if (window.confirm("Are you sure you want to delete this group?")) {
-            Meteor.call("deleteSampleDataGroup", data._id);
+          if (window.confirm('Are you sure you want to delete this group?')) {
+            Meteor.call('deleteSampleDataGroup', data._id);
           }
         }}
         disabled={!data.name}
         handleRefresh={() =>
-          Meteor.call("refreshSampleData", data, (err, success) => {
+          Meteor.call('refreshSampleData', data, (err, success) => {
             // Not sure why success generates 0...but whatever
             if (success === 0) {
-              toast("New sample data was generated!");
+              toast('New sample data was generated!');
             }
           })
         }
@@ -57,7 +56,7 @@ const SampleDataInspector = props => (
     <Button
       label="Add a group"
       block
-      onClick={() => Meteor.call("newSampleData", props.prototype._id)}
+      onClick={() => Meteor.call('newSampleData', props.prototype._id)}
     />
   </div>
 );
@@ -66,7 +65,7 @@ SampleDataInspector.propTypes = {
   sampleData: PropTypes.array,
   prototype: PropTypes.object,
   prototypeSampleData: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
-  toggleSampleData: PropTypes.func
+  toggleSampleData: PropTypes.func,
 };
 
 export default SampleDataInspector;

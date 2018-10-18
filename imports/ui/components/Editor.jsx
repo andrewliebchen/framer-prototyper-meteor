@@ -1,15 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
-import AceEditor from "react-ace";
+import AceEditor from 'react-ace';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import "brace/mode/javascript";
-import "brace/mode/coffee";
-import "../../lib/tomorrow_night_eighties";
+import 'brace/mode/javascript';
+import 'brace/mode/coffee';
+import '../../lib/tomorrow_night_eighties';
 
 const Editor = props => (
   <AceEditor
     {...props}
-    mode={props.mode === "coffeescript" ? "coffee" : "javascript"}
+    mode={props.mode === 'coffeescript' ? 'coffee' : 'javascript'}
     showInvisibles
     theme="tomorrow_night_eighties"
     tabSize={2}
@@ -17,11 +17,11 @@ const Editor = props => (
     highlightActiveLine={false}
     highlightGutterLine={false}
     editorProps={{
-      $blockScrolling: true
+      $blockScrolling: true,
     }}
     style={{
-      fontSize: "16px",
-      lineHeight: "28px"
+      fontSize: '16px',
+      lineHeight: '28px',
     }}
   />
 );
@@ -32,8 +32,8 @@ Editor.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
   onChange: PropTypes.func,
-  mode: PropTypes.oneOf(["coffeescript", "javascript"]),
-  readOnly: PropTypes.bool
+  mode: PropTypes.oneOf(['coffeescript', 'javascript']),
+  readOnly: PropTypes.bool,
 };
 
 export default Editor;

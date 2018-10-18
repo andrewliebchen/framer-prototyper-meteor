@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const FormSelect = props => (
   <div className="Form">
@@ -8,8 +8,7 @@ const FormSelect = props => (
     <select
       defaultValue={props.defaultValue}
       onChange={props.onChange}
-      disabled={props.disabled}
-    >
+      disabled={props.disabled}>
       {props.options.map(option => (
         <option key={option.value} value={option.value}>
           {option.label}
@@ -28,9 +27,9 @@ FormSelect.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.string,
-      label: PropTypes.string
-    })
-  )
+      label: PropTypes.string,
+    }),
+  ),
 };
 
 export default FormSelect;

@@ -1,15 +1,14 @@
-import React from "react";
-import PropType from "prop-types";
+import PropType from 'prop-types';
+import React from 'react';
 
-import "../styles/Control.css";
+import '../styles/Control.css';
 
 const Control = props => (
   <div className="ControlWrapper">
     <div
-      className={`Control ${props.className ? props.className : ""}`}
+      className={`Control ${props.className ? props.className : ''}`}
       data-tip={props.tip}
-      onClick={props.handleClick && props.handleClick}
-    >
+      onClick={props.handleClick && props.handleClick}>
       <div className="Icon">{props.icon}</div>
     </div>
     {props.badge}
@@ -21,7 +20,7 @@ Control.propTypes = {
   tip: PropType.string,
   handleClick: PropType.func,
   icon: PropType.node,
-  badge: PropType.node
+  badge: PropType.node,
 };
 
 export default Control;

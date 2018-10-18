@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classnames from "classnames";
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import "../styles/Button.css";
+import '../styles/Button.css';
 
 const Button = props => (
   <button
@@ -10,11 +10,10 @@ const Button = props => (
       Button: true,
       Block: props.block,
       Negative: props.negative,
-      Disabled: props.disabled
+      Disabled: props.disabled,
     })}
     onClick={props.onClick}
-    disabled={props.disabled}
-  >
+    disabled={props.disabled}>
     {props.label}
   </button>
 );
@@ -24,7 +23,7 @@ Button.propTypes = {
   label: PropTypes.string,
   onClick: PropTypes.func,
   negative: PropTypes.bool,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
 };
 
 export default Button;

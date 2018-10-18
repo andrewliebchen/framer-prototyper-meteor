@@ -1,4 +1,4 @@
-import ace from "brace";
+import ace from 'brace';
 
 const cssText = `
 .ace-tomorrow-night-eighties .ace_gutter {\
@@ -103,14 +103,14 @@ background-color: #6699CC;
 }`;
 
 ace.define(
-  "ace/theme/tomorrow_night_eighties",
-  ["require", "exports", "module", "ace/lib/dom"],
+  'ace/theme/tomorrow_night_eighties',
+  ['require', 'exports', 'module', 'ace/lib/dom'],
   (acequire, exports, module) => {
     exports.isDark = true;
-    exports.cssClass = "ace-tomorrow-night-eighties";
+    exports.cssClass = 'ace-tomorrow-night-eighties';
     exports.cssText = cssText;
 
-    const dom = acequire("../lib/dom");
+    const dom = acequire('../lib/dom');
     dom.importCssString(exports.cssText, exports.cssClass);
-  }
+  },
 );

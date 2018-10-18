@@ -1,19 +1,18 @@
-import React, { Component } from "react";
-import _ from "lodash";
-import { Flex, Box } from "reflexbox";
-import { toast } from "react-toastify";
-import PropTypes from "prop-types";
-import queryString from "query-string";
+import _ from 'lodash';
+import {Flex, Box} from 'reflexbox';
+import {toast} from 'react-toastify';
+import EditControls from './EditControls.jsx';
+import FormInput from './FormInput.jsx';
+import FramerEditor from './FramerEditor.jsx';
+import Modal from './Modal.jsx';
+import NotFoundPage from '../pages/NotFoundPage.jsx';
+import PageComponents from './PageComponents.jsx';
+import Preview from './Preview.jsx';
+import PropTypes from 'prop-types';
+import queryString from 'query-string';
+import React, {Component} from 'react';
 
-import EditControls from "./EditControls.jsx";
-import FormInput from "./FormInput.jsx";
-import FramerEditor from "./FramerEditor.jsx";
-import Modal from "./Modal.jsx";
-import NotFoundPage from "../pages/NotFoundPage.jsx";
-import PageComponents from "./PageComponents.jsx";
-import Preview from "./Preview.jsx";
-
-import "../styles/Prototype.css";
+import '../styles/Prototype.css';
 
 class Prototype extends Component {
   constructor(props) {
@@ -39,7 +38,7 @@ class Prototype extends Component {
       modal: false,
       playing: true,
       prototypeSampleData: prototypeSampleData,
-      prototypeStypes: prototypeStyles
+      prototypeStypes: prototypeStyles,
     };
 
     this._handleTogglePlaying = this._handleTogglePlaying.bind(this);
@@ -47,16 +46,16 @@ class Prototype extends Component {
   }
 
   _toggleModal(modal) {
-    this.setState({ modal: modal });
+    this.setState({modal: modal});
   }
 
   _handleLogOut() {
     Meteor.logout(error => {
       if (error) {
-        toast("Whoops, couldn't log you out...", { type: "error" });
+        toast("Whoops, couldn't log you out...", {type: 'error'});
       } else {
-        this.setState({ isLoggedIn: false });
-        toast("See you later!");
+        this.setState({isLoggedIn: false});
+        toast('See you later!');
       }
     });
   }
@@ -64,76 +63,75 @@ class Prototype extends Component {
   _handleLogIn() {
     Meteor.loginWithGoogle(error => {
       if (error) {
-        toast("Whoops, couldn't log you in...", { type: "error" });
+        toast("Whoops, couldn't log you in...", {type: 'error'});
       } else {
-        this.setState({ isLoggedIn: true });
-        toast("Great to see you!");
+        this.setState({isLoggedIn: true});
+        toast('Great to see you!');
       }
     });
   }
 
   _handleTogglePlaying() {
-    const { playing } = this.state;
-    this.setState({ playing: !playing });
-    toast(`Preview is ${playing ? "paused" : "reloading automatically"}`);
+    const {playing} = this.state;
+    this.setState({playing: !playing});
+    toast(`Preview is ${playing ? 'paused' : 'reloading automatically'}`);
   }
 
   componentDidMount() {
     // Page action toasts
     const action = queryString.parse(location.search).action;
     switch (action) {
-      case "fork":
-        toast("Sweet, this is a forked prototype...");
+      case 'fork':
+        toast('Sweet, this is a forked prototype...');
         break;
-      case "new":
-        toast("Cowabunga, new prototype created!");
+      case 'new':
+        toast('Cowabunga, new prototype created!');
         break;
     }
   }
 
   componentWillUnmount() {
-    const { prototype } = this.props;
+    const {prototype} = this.props;
     // If there's no difference between the created and updated time, delete it
     if (prototype.updatedAt === prototype.createdAt) {
-      Meteor.call("deletePrototype", prototype._id);
+      Meteor.call('deletePrototype', prototype._id);
     }
   }
 
   render() {
-    const { prototype, loading } = this.props;
-    const { canEdit } = this.state;
-    const code = prototype ? prototype.code : "";
+    const {prototype, loading} = this.props;
+    const {canEdit} = this.state;
+    const code = prototype ? prototype.code : '';
 
     if (_.isEmpty(prototype)) {
       return <NotFoundPage />;
     } else {
       return (
         <div>
-          <PageComponents pageName={prototype.name || "New prototype"} />
+          <PageComponents pageName={prototype.name || 'New prototype'} />
           <Modal
             show={this.state.modal}
-            close={() => this.setState({ modal: false })}
+            close={() => this.setState({modal: false})}
             {...this.props}
-            {...this.state}
-          >
+            {...this.state}>
             <Flex className="App Underlay">
-              <Box auto style={{ position: "relative" }}>
+              <Box auto style={{position: 'relative'}}>
                 <Preview
                   togglePlaying={this._handleTogglePlaying}
                   {...this.state}
                   {...this.props}
                 />
               </Box>
-              <Box w={1 / 2} style={{ position: "relative" }}>
+              <Box w={1 / 2} style={{position: 'relative'}}>
                 <FramerEditor
                   code={code}
                   prototype={prototype}
                   {...this.state}
                 />
                 <EditControls
-                  showAll={() => this._toggleModal("Prototypes")}
-                  showSettings={() => this._toggleModal("Settings")}
-                  showUtilities={() => this._toggleModal("Utilities")}
+                  showAll={() => this._toggleModal('Prototypes')}
+                  showSettings={() => this._toggleModal('Settings')}
+                  showUtilities={() => this._toggleModal('Utilities')}
                   togglePlaying={this._handleTogglePlaying}
                   syntax={this.props.prototype.syntax}
                   handleLogIn={this._handleLogIn.bind(this)}
@@ -153,7 +151,7 @@ Prototype.propTypes = {
   loading: PropTypes.bool,
   prototype: PropTypes.object,
   sampleData: PropTypes.array,
-  styles: PropTypes.array
+  styles: PropTypes.array,
 };
 
 export default Prototype;

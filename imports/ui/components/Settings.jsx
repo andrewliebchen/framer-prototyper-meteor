@@ -1,16 +1,14 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { Meteor } from "meteor/meteor";
-import { Redirect } from "react-router-dom";
-import Accounts from "../components/Accounts.jsx";
-import { toast } from "react-toastify";
-
-import { deletePrototype } from "../../lib/utils";
-import Strings from "../../lib/strings";
-
-import Button from "./Button.jsx";
-import FormInput from "./FormInput.jsx";
-import FormSelect from "./FormSelect.jsx";
+import {deletePrototype} from '../../lib/utils';
+import {Meteor} from 'meteor/meteor';
+import {Redirect} from 'react-router-dom';
+import {toast} from 'react-toastify';
+import Accounts from '../components/Accounts.jsx';
+import Button from './Button.jsx';
+import FormInput from './FormInput.jsx';
+import FormSelect from './FormSelect.jsx';
+import PropTypes from 'prop-types';
+import React, {Component} from 'react';
+import Strings from '../../lib/strings';
 
 const Settings = props => (
   <div>
@@ -23,21 +21,21 @@ const Settings = props => (
           placeholder="Make it snappy"
           onChange={event =>
             Meteor.call(
-              "update",
+              'update',
               props.prototype._id,
               {
-                name: event.target.value
+                name: event.target.value,
               },
               (err, success) => {
                 if (success) {
                   if (!toast.isActive(this.toastId)) {
-                    this.toastId = toast("Prototype name has been updated!");
+                    this.toastId = toast('Prototype name has been updated!');
                   }
                 }
                 if (err) {
-                  toast("Whoops, there was a problem", { type: "error" });
+                  toast('Whoops, there was a problem', {type: 'error'});
                 }
-              }
+              },
             )
           }
         />
@@ -46,22 +44,22 @@ const Settings = props => (
         label="Background color"
         defaultValue={props.prototype.background}
         options={[
-          { value: "light", label: "Light" },
-          { value: "dark", label: "Dark" }
+          {value: 'light', label: 'Light'},
+          {value: 'dark', label: 'Dark'},
         ]}
         onChange={event =>
           Meteor.call(
-            "update",
+            'update',
             props.prototype._id,
-            { background: event.target.value },
+            {background: event.target.value},
             (err, success) => {
               if (success) {
-                toast("Background color updated!");
+                toast('Background color updated!');
               }
               if (err) {
-                toast("Whoops, there was a problem...", { type: "error" });
+                toast('Whoops, there was a problem...', {type: 'error'});
               }
-            }
+            },
           )
         }
       />
@@ -71,25 +69,25 @@ const Settings = props => (
         defaultValue={props.prototype.syntax}
         disabled={!props.canEdit}
         options={[
-          { value: "javascript", label: "JavaScript" },
-          { value: "coffeescript", label: "CoffeeScript" }
+          {value: 'javascript', label: 'JavaScript'},
+          {value: 'coffeescript', label: 'CoffeeScript'},
         ]}
         onChange={event =>
           Meteor.call(
-            "updateSyntax",
+            'updateSyntax',
             props.prototype._id,
             {
               syntax: event.target.value,
-              code: props.prototype.code
+              code: props.prototype.code,
             },
             (err, success) => {
               if (success) {
-                toast("Syntax updated!");
+                toast('Syntax updated!');
               }
               if (err) {
-                toast("Whoops, there was a problem...", { type: "error" });
+                toast('Whoops, there was a problem...', {type: 'error'});
               }
-            }
+            },
           )
         }
       />
@@ -108,14 +106,14 @@ const Settings = props => (
         <div className="Form">
           <label className="FormLabel">Permissions</label>
           <p>
-            <b>{props.isOwner ? "Only you" : "Anyone"}</b> can edit this
+            <b>{props.isOwner ? 'Only you' : 'Anyone'}</b> can edit this
             prototype.
           </p>
           <Button
             label="Fork this prototype"
             onClick={() =>
               Meteor.call(
-                "forkPrototype",
+                'forkPrototype',
                 props.prototype._id,
                 Meteor.userId(),
                 (err, id) => {
@@ -123,9 +121,9 @@ const Settings = props => (
                     window.location.replace(`/${id}?action=fork`);
                   }
                   if (err) {
-                    toast("Whoops, there was a problem...", { type: "error" });
+                    toast('Whoops, there was a problem...', {type: 'error'});
                   }
-                }
+                },
               )
             }
             block
@@ -159,7 +157,7 @@ Settings.propTypes = {
   isDesktop: PropTypes.bool,
   isLoggedIn: PropTypes.bool,
   isOwner: PropTypes.bool,
-  prototype: PropTypes.object
+  prototype: PropTypes.object,
 };
 
 export default Settings;

@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Flex, Box } from "reflexbox";
-import Spinner from "react-spinkit";
+import {Flex, Box} from 'reflexbox';
+import PropTypes from 'prop-types';
+import React from 'react';
+import Spinner from 'react-spinkit';
 
-import "../styles/Loader.css";
+import '../styles/Loader.css';
 
 const LoaderSpinner = props => (
   <Spinner
@@ -28,7 +28,7 @@ const Loader = props => (
 );
 
 Loader.propTypes = {
-  full: PropTypes.bool
+  full: PropTypes.bool,
 };
 
 export default Loader;

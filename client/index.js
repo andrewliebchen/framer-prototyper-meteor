@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { Meteor } from "meteor/meteor";
-import { render } from "react-dom";
-import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React, {Component} from 'react';
+import {Meteor} from 'meteor/meteor';
+import {render} from 'react-dom';
+import ReactDOM from 'react-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-import PrototypePage from "../imports/ui/pages/PrototypePage.jsx";
-import PreviewPage from "../imports/ui/pages/PreviewPage.jsx";
-import NewPrototypePage from "../imports/ui/pages/NewPrototypePage.jsx";
-import NotFoundPage from "../imports/ui/pages/NotFoundPage.jsx";
+import PrototypePage from '../imports/ui/pages/PrototypePage.jsx';
+import PreviewPage from '../imports/ui/pages/PreviewPage.jsx';
+import NewPrototypePage from '../imports/ui/pages/NewPrototypePage.jsx';
+import NotFoundPage from '../imports/ui/pages/NotFoundPage.jsx';
 
-import "./index.css";
+import './index.css';
 
 const Routes = () => (
   <Router>
@@ -24,5 +24,5 @@ const Routes = () => (
 );
 
 Meteor.startup(() => {
-  render(<Routes />, document.getElementById("root"));
+  render(<Routes />, document.getElementById('root'));
 });

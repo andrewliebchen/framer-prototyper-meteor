@@ -1,14 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Flex, Box } from "reflexbox";
-import _ from "lodash";
+import _ from 'lodash';
+import {Flex, Box} from 'reflexbox';
+import Button from './Button.jsx';
+import Editor from './Editor.jsx';
+import FormInput from './FormInput.jsx';
+import FormSelect from './FormSelect.jsx';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import FormSelect from "./FormSelect.jsx";
-import FormInput from "./FormInput.jsx";
-import Editor from "./Editor.jsx";
-import Button from "./Button.jsx";
-
-import "../styles/SampleDataGroup.css";
+import '../styles/SampleDataGroup.css';
 
 const CodeElement = props => (
   <div className="SampleDataGroup">
@@ -18,12 +17,12 @@ const CodeElement = props => (
           label="name"
           defaultValue={props.defaultNameValue}
           placeholder="Descriptive name, no spaces!"
-          style={{ fontFamily: "monospace" }}
+          style={{fontFamily: 'monospace'}}
           onChange={props.handleNameUpdate}
         />
       </Box>
       {_.isNumber(props.count) && (
-        <Box w={1 / 4} style={{ paddingLeft: "1em" }}>
+        <Box w={1 / 4} style={{paddingLeft: '1em'}}>
           <FormInput
             label="Count"
             defaultValue={props.count}
@@ -70,7 +69,7 @@ CodeElement.propTypes = {
   handleCodeUpdate: PropTypes.func,
   handleDelete: PropTypes.func,
   disabled: PropTypes.bool,
-  handleRefresh: PropTypes.func
+  handleRefresh: PropTypes.func,
 };
 
 export default CodeElement;

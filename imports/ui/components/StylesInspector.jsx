@@ -1,8 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-
-import Button from "./Button.jsx";
-import CodeElement from "./CodeElement.jsx";
+import Button from './Button.jsx';
+import CodeElement from './CodeElement.jsx';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const StylesInspector = props => (
   <div className="ModalSection">
@@ -17,36 +16,36 @@ const StylesInspector = props => (
         collection={style}
         defaultNameValue={style.name}
         handleNameUpdate={event =>
-          Meteor.call("updateStyle", style._id, {
-            name: event.target.value
+          Meteor.call('updateStyle', style._id, {
+            name: event.target.value,
           })
         }
         code={style.code}
         handleCodeUpdate={event =>
-          Meteor.call("updateStyle", style._id, {
-            code: event
+          Meteor.call('updateStyle', style._id, {
+            code: event,
           })
         }
         handleDelete={() => {
-          if (window.confirm("Are you sure you want to delete this style?")) {
-            Meteor.call("deleteStyle", style._id);
+          if (window.confirm('Are you sure you want to delete this style?')) {
+            Meteor.call('deleteStyle', style._id);
           }
         }}
-        handleRefresh={() => console.log("refresh?")}
+        handleRefresh={() => console.log('refresh?')}
         disabled={!style.name}
       />
     ))}
     <Button
       block
       label="Add new style"
-      onClick={() => Meteor.call("newStyle", props.prototype._id)}
+      onClick={() => Meteor.call('newStyle', props.prototype._id)}
     />
   </div>
 );
 
 StylesInspector.propTypes = {
   styles: PropTypes.array,
-  prototype: PropTypes.object
+  prototype: PropTypes.object,
 };
 
 export default StylesInspector;

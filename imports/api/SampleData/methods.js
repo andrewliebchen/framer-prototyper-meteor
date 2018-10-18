@@ -1,8 +1,8 @@
-import { Meteor } from "meteor/meteor";
-import sample from "faker";
-import _ from "lodash";
+import {Meteor} from 'meteor/meteor';
+import sample from 'faker';
+import _ from 'lodash';
 
-import SampleData from "./SampleData";
+import SampleData from './SampleData';
 
 const initialCode = `{
   firstName: sample.name.firstName(),
@@ -16,7 +16,7 @@ Meteor.methods({
       prototype: prototypeId,
       count: 0,
       code: initialCode,
-      values: []
+      values: [],
     });
   },
 
@@ -24,8 +24,8 @@ Meteor.methods({
     return SampleData.update(id, {
       $set: {
         ...args,
-        updatedAt: Date.now()
-      }
+        updatedAt: Date.now(),
+      },
     });
   },
 
@@ -41,8 +41,8 @@ Meteor.methods({
     });
 
     console.log(data);
-    return Meteor.call("updateSampleDataGroup", sampleData._id, {
-      values: data
+    return Meteor.call('updateSampleDataGroup', sampleData._id, {
+      values: data,
     });
-  }
+  },
 });

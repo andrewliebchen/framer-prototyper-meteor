@@ -1,10 +1,9 @@
-import React from "react";
-import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
-import PropTypes from "prop-types";
-
-import SampleDataInspector from "./SampleDataInspector.jsx";
-import Snippets from "./Snippets.jsx";
-import StylesInspector from "./StylesInspector.jsx";
+import {Tabs, TabList, Tab, TabPanel} from 'react-tabs';
+import PropTypes from 'prop-types';
+import React from 'react';
+import SampleDataInspector from './SampleDataInspector.jsx';
+import Snippets from './Snippets.jsx';
+import StylesInspector from './StylesInspector.jsx';
 
 const Utilities = props => (
   <Tabs>
@@ -31,7 +30,7 @@ Utilities.propTypes = {
   data: PropTypes.array,
   sampleData: PropTypes.array,
   prototypeSampleData: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
-  toggleSampleData: PropTypes.func
+  toggleSampleData: PropTypes.func,
 };
 
 export default Utilities;

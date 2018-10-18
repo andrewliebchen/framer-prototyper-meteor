@@ -1,10 +1,10 @@
 // Snippet library
 
 export const settings = {
-  title: "Settings",
+  title: 'Settings',
   snippets: [
     {
-      name: "Disable context menu",
+      name: 'Disable context menu',
       code: {
         javascript: `// Disable right-click context menu
   if (document.addEventListener != null) {
@@ -13,42 +13,42 @@ export const settings = {
         coffeescript: `# Disable right-click context menu
   if document.addEventListener?
   	document.addEventListener "contextmenu", (event) ->
-  		event.preventDefault()`
-      }
+  		event.preventDefault()`,
+      },
     },
     {
-      name: "Disable multi-touch",
+      name: 'Disable multi-touch',
       code: {
         javascript: `Framer.Extras.TouchEmulator.disable();`,
-        coffeescript: `Framer.Extras.TouchEmulator.disable()`
-      }
+        coffeescript: `Framer.Extras.TouchEmulator.disable()`,
+      },
     },
     {
-      name: "Normal cursor",
+      name: 'Normal cursor',
       code: {
         javascript: `// Use desktop cursor
 document.body.style.cursor = "auto";`,
         coffeescript: `# Use desktop cursor
-document.body.style.cursor = "auto"`
-      }
+document.body.style.cursor = "auto"`,
+      },
     },
     {
-      name: "Show hints",
+      name: 'Show hints',
       code: {
         javascript: `// Show Hints
 Framer.Extras.Hints.enable();`,
         coffeescript: `# Show Hints
-Framer.Extras.Hints.enable()`
-      }
-    }
-  ]
+Framer.Extras.Hints.enable()`,
+      },
+    },
+  ],
 };
 
 export const device = {
-  title: "Device",
+  title: 'Device',
   snippets: [
     {
-      name: "Customize device",
+      name: 'Customize device',
       code: {
         javascript: `// Define and set custom device
   Framer.Device.customize({
@@ -68,37 +68,37 @@ export const device = {
   	screenHeight: 1024
   	deviceImage: "http://f.cl.ly/items/001L0v3c1f120t0p2z24/custom.png"
   	deviceImageWidth: 800
-  	deviceImageHeight: 1214`
-      }
+  	deviceImageHeight: 1214`,
+      },
     },
     {
-      name: "Canvas image",
+      name: 'Canvas image',
       code: {
         javascript: `// Set Device background
     Screen.backgroundColor = null;
     Canvas.image = Utils.randomImage(Canvas.size);`,
         coffeescript: `# Set Device background
   Screen.backgroundColor = null
-  Canvas.image = Utils.randomImage(Canvas.size)`
-      }
+  Canvas.image = Utils.randomImage(Canvas.size)`,
+      },
     },
     {
-      name: "Screen color",
+      name: 'Screen color',
       code: {
         javascript: `// Set Screen background
     Screen.backgroundColor = "#00AAFF";`,
         coffeescript: `# Set Screen background
-  Screen.backgroundColor = "#00AAFF"`
-      }
-    }
-  ]
+  Screen.backgroundColor = "#00AAFF"`,
+      },
+    },
+  ],
 };
 
 export const components = {
-  title: "Components",
+  title: 'Components',
   snippets: [
     {
-      name: "Flow Component",
+      name: 'Flow Component',
       code: {
         javascript: `// Create layers
     const screenA = new Layer({
@@ -137,11 +137,11 @@ export const components = {
     	flow.showNext(screenB)
 
     screenB.onClick ->
-    	flow.showPrevious()`
-      }
+    	flow.showPrevious()`,
+      },
     },
     {
-      name: "Page Component",
+      name: 'Page Component',
       code: {
         javascript: `// Variables
     const pageCount = 8;
@@ -192,11 +192,11 @@ export const components = {
     		parent: pageScroller.content
 
     	page.onClick ->
-    		pageScroller.snapToPage(this)`
-      }
+    		pageScroller.snapToPage(this)`,
+      },
     },
     {
-      name: "Range Slider",
+      name: 'Range Slider',
       code: {
         javascript: `// Create a range slider
     const range = new RangeSliderComponent({
@@ -214,11 +214,11 @@ export const components = {
     	min: 0
     	max: 100
     	minValue: 0
-    	maxValue: 50`
-      }
+    	maxValue: 50`,
+      },
     },
     {
-      name: "Scroll grid",
+      name: 'Scroll grid',
       code: {
         javascript: `// Variables
     const tileCount = 26;
@@ -277,11 +277,11 @@ export const components = {
     		borderRadius: 4
     		parent: scroll.content
     	tile.image = Utils.randomImage(tile)
-    `
-      }
+    `,
+      },
     },
     {
-      name: "Slider",
+      name: 'Slider',
       code: {
         javascript: `// Create slider
     const slider = new SliderComponent({
@@ -298,17 +298,17 @@ export const components = {
 
     # Listen for slider value updates
     slider.onValueChange ->
-    	Screen.backgroundColor = Color.mix("black", "#00AAFF", slider.value)`
-      }
-    }
-  ]
+    	Screen.backgroundColor = Color.mix("black", "#00AAFF", slider.value)`,
+      },
+    },
+  ],
 };
 
 export const layers = {
-  title: "Layers",
+  title: 'Layers',
   snippets: [
     {
-      name: "Click animation",
+      name: 'Click animation',
       code: {
         javascript: `// Create layer
   let layer = new Layer({
@@ -335,11 +335,11 @@ export const layers = {
   	layer.animate
   		rotation: layer.rotation + 90
   		options:
-  			curve: Spring(damping: 0.5)`
-      }
+  			curve: Spring(damping: 0.5)`,
+      },
     },
     {
-      name: "Draggable constraints",
+      name: 'Draggable constraints',
       code: {
         javascript: `// Create the constraints layer
   const constraints = new Layer({
@@ -374,11 +374,11 @@ export const layers = {
 
   # Enable dragging, set constraints
   layer.draggable.enabled = true
-  layer.draggable.constraints = constraints.frame`
-      }
+  layer.draggable.constraints = constraints.frame`,
+      },
     },
     {
-      name: "Draggable",
+      name: 'Draggable',
       code: {
         javascript: `// Create the draggable layer
   layer = new Layer({
@@ -394,11 +394,11 @@ export const layers = {
   	y: Align.center
 
   # Enable dragging
-  layer.draggable.enabled = true`
-      }
+  layer.draggable.enabled = true`,
+      },
     },
     {
-      name: "Image",
+      name: 'Image',
       code: {
         javascript: `// Create layer, define image
   layer = new Layer({
@@ -412,11 +412,11 @@ export const layers = {
   	image: "http://i.imgur.com/SdLS9us.jpg"
   	borderRadius: 4
   	x: Align.center
-  	y: Align.center`
-      }
+  	y: Align.center`,
+      },
     },
     {
-      name: "States",
+      name: 'States',
       code: {
         javascript: `// Create layer
   layer = new Layer({
@@ -458,11 +458,11 @@ export const layers = {
 
   # Switch states on click
   layer.onClick ->
-  	layer.stateCycle("one", "two")`
-      }
+  	layer.stateCycle("one", "two")`,
+      },
     },
     {
-      name: "Text Layer",
+      name: 'Text Layer',
       code: {
         javascript: `// Create text layer
   const text = new TextLayer({
@@ -478,8 +478,8 @@ export const layers = {
   	fontSize: 64
   	fontWeight: 600
   	x: Align.center
-  	y: Align.center`
-      }
-    }
-  ]
+  	y: Align.center`,
+      },
+    },
+  ],
 };

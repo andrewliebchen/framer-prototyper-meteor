@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { Flex, Box } from "reflexbox";
-import CopyToClipboard from "react-copy-to-clipboard";
+import {Flex, Box} from 'reflexbox';
+import CopyToClipboard from 'react-copy-to-clipboard';
+import PropTypes from 'prop-types';
+import React, {Component} from 'react';
 
-import "../styles/FormInput.css";
+import '../styles/FormInput.css';
 
 class FormInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      copied: false
+      copied: false,
     };
   }
 
@@ -26,11 +26,10 @@ class FormInput extends Component {
               <CopyToClipboard
                 text={this.props.copy}
                 onCopy={() => {
-                  this.setState({ copied: true });
-                  setTimeout(() => this.setState({ copied: false }), 4000);
-                }}
-              >
-                <span>{this.state.copied ? "Copied!" : "Copy"}</span>
+                  this.setState({copied: true});
+                  setTimeout(() => this.setState({copied: false}), 4000);
+                }}>
+                <span>{this.state.copied ? 'Copied!' : 'Copy'}</span>
               </CopyToClipboard>
             </div>
           )}
@@ -42,17 +41,17 @@ class FormInput extends Component {
 }
 
 FormInput.defaultProps = {
-  type: "text"
+  type: 'text',
 };
 
 FormInput.propTypes = {
   label: PropTypes.string,
-  type: PropTypes.oneOf(["text", "number"]),
+  type: PropTypes.oneOf(['text', 'number']),
   placeholder: PropTypes.string,
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   copy: PropTypes.string,
   disabled: PropTypes.bool,
-  hint: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
+  hint: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 };
 
 export default FormInput;

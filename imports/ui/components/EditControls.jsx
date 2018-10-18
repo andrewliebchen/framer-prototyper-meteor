@@ -1,7 +1,4 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Flex, Box } from "reflexbox";
-import { Link } from "react-router-dom";
+import {Flex, Box} from 'reflexbox';
 import {
   Folder,
   Settings,
@@ -10,32 +7,34 @@ import {
   Sun,
   Zap,
   LogIn,
-  LogOut
-} from "react-feather";
+  LogOut,
+} from 'react-feather';
+import {Link} from 'react-router-dom';
+import Badge from './Badge.jsx';
+import Control from './Control.jsx';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import Control from "./Control.jsx";
-import Badge from "./Badge.jsx";
-
-import "../styles/Controls.css";
+import '../styles/Controls.css';
 
 const EditControls = props => (
   <Flex className="Controls" column>
     {(props.isDesktop || props.canEdit) && (
-        <Control
-          tip="All prototypes"
-          icon={<Folder />}
-          handleClick={props.showAll}
-        />
-      )}
+      <Control
+        tip="All prototypes"
+        icon={<Folder />}
+        handleClick={props.showAll}
+      />
+    )}
     <Control
       tip="Settings"
       icon={<Settings />}
       handleClick={props.showSettings}
-      badge={<Badge label={props.syntax === "javascript" ? "JS" : "CS"} />}
+      badge={<Badge label={props.syntax === 'javascript' ? 'JS' : 'CS'} />}
     />
     <Control tip="Utilities" icon={<Zap />} handleClick={props.showUtilities} />
     <Control
-      tip={props.playing ? "Pause" : "Play"}
+      tip={props.playing ? 'Pause' : 'Play'}
       icon={props.playing ? <Pause /> : <Play />}
       handleClick={props.togglePlaying}
     />
@@ -43,15 +42,14 @@ const EditControls = props => (
       <Link
         className="Control PrimaryControl"
         to="/new"
-        data-tip="New Prototype"
-      >
+        data-tip="New Prototype">
         <Sun />
       </Link>
     </div>
     {props.isDesktop || (
-      <Box style={{ marginTop: "auto" }}>
+      <Box style={{marginTop: 'auto'}}>
         <Control
-          tip={`Sign ${props.isLoggedIn ? "out" : "in"}`}
+          tip={`Sign ${props.isLoggedIn ? 'out' : 'in'}`}
           icon={props.isLoggedIn ? <LogOut /> : <LogIn />}
           handleClick={() => {
             if (props.isLoggedIn) {
@@ -76,8 +74,8 @@ EditControls.propTypes = {
   showAll: PropTypes.func,
   showSettings: PropTypes.func,
   showUtilities: PropTypes.func,
-  syntax: PropTypes.oneOf(["coffeescript", "javascript"]),
-  togglePlaying: PropTypes.func
+  syntax: PropTypes.oneOf(['coffeescript', 'javascript']),
+  togglePlaying: PropTypes.func,
 };
 
 export default EditControls;
