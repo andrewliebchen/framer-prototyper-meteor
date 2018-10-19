@@ -1,6 +1,6 @@
 import {Meteor} from 'meteor/meteor';
 import {Mongo} from 'meteor/mongo';
 
-const Styles = new Mongo.Collection('Sty;les');
+const Styles = new Mongo.Collection('Styles');
 
 export default Styles;

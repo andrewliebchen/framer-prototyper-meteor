@@ -27,9 +27,10 @@ class Prototype extends Component {
 
     const prototypeStyles = {};
     this.props.styles.map(style => {
-      console.log(style.code);
-      prototypeStyles[style.name] = style.code;
+      prototypeStyles[`"${style.name}"`] = style.code;
     });
+
+    console.log(prototypeStyles);
 
     this.state = {
       canEdit: isOwner || !this.props.prototype.owner,

@@ -32,30 +32,22 @@ export const initPreviewCode = args => {
       </head>
       <body>
         <script src="${args.framerURI}"></script>
-        <script>const Styles = (...props) => _.assign({}, ...props);</script>
+        <script>const style = (...props) => _.assign({}, ...props);</script>
         ${
           args.syntax === 'coffeescript'
             ? `<script src="${args.coffeescriptURI}"></script>`
             : ''
         }
-        <script>
-          ${
+          <script>${
             args.syntax === 'coffeescript'
-              ? `DATA = ${JSON.stringify(args.sampleData)}`
-              : `const DATA = ${JSON.stringify(args.sampleData)};`
-          }
-
-          ${
-            args.syntax === 'coffeescript'
-              ? `STYLES = ${args.styles}`
-              : `const STYLES = ${args.styles};`
-          }
-
-          ${
+              ? `STYLES = ${JSON.parse(args.styles)}}`
+              : `const STYLES = ${JSON.parse(args.styles)};`
+          }</script>
+          <script>${
             args.syntax === 'coffeescript'
               ? `bg = new BackgroundLayer({backgroundColor: "${bgColor}"})`
               : `const bg = new BackgroundLayer({backgroundColor: "${bgColor}"});`
-          }
+          }</script>
         </script>
         <script type="text/${args.syntax}">${args.code}</script>
       </body>
