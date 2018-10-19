@@ -1,5 +1,5 @@
-import Button from './Button.jsx';
-import CodeElement from './CodeElement.jsx';
+import Button from './Button';
+import CodeElement from './CodeElement';
 import PropTypes from 'prop-types';
 import React from 'react';
 

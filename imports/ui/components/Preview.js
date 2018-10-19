@@ -2,7 +2,7 @@ import {Flex, Box} from 'reflexbox';
 import {initPreviewCode} from '../../lib/utils';
 import classnames from 'classnames';
 import Frame from 'react-frame-component';
-import PreviewControls from '../components/PreviewControls.jsx';
+import PreviewControls from '../components/PreviewControls';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import ReactInterval from 'react-interval';

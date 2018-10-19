@@ -4,10 +4,10 @@ import {render} from 'react-dom';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-import PrototypePage from '../imports/ui/pages/PrototypePage.jsx';
-import PreviewPage from '../imports/ui/pages/PreviewPage.jsx';
-import NewPrototypePage from '../imports/ui/pages/NewPrototypePage.jsx';
-import NotFoundPage from '../imports/ui/pages/NotFoundPage.jsx';
+import PrototypePage from '../imports/ui/pages/PrototypePage';
+import PreviewPage from '../imports/ui/pages/PreviewPage';
+import NewPrototypePage from '../imports/ui/pages/NewPrototypePage';
+import NotFoundPage from '../imports/ui/pages/NotFoundPage';
 
 import './index.css';
 

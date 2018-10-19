@@ -1,9 +1,9 @@
 import {Tabs, TabList, Tab, TabPanel} from 'react-tabs';
 import PropTypes from 'prop-types';
 import React from 'react';
-import SampleDataInspector from './SampleDataInspector.jsx';
-import Snippets from './Snippets.jsx';
-import StylesInspector from './StylesInspector.jsx';
+import SampleDataInspector from './SampleDataInspector';
+import Snippets from './Snippets';
+import StylesInspector from './StylesInspector';
 
 const Utilities = props => (
   <Tabs>

@@ -3,7 +3,7 @@ import {Flex, Box} from 'reflexbox';
 import {Link} from 'react-router-dom';
 import {Meteor} from 'meteor/meteor';
 import {Trash2, Settings} from 'react-feather';
-import Button from './Button.jsx';
+import Button from './Button';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';

@@ -3,8 +3,8 @@ import {Meteor} from 'meteor/meteor';
 import PropTypes from 'prop-types';
 import {withTracker} from 'meteor/react-meteor-data';
 
-import Prototype from '../components/Prototype.jsx';
-import Loader from '../components/Loader.jsx';
+import Prototype from '../components/Prototype';
+import Loader from '../components/Loader';
 
 import Prototypes from '../../api/Prototypes/Prototypes';
 import SampleData from '../../api/SampleData/SampleData';

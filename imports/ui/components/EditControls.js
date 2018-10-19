@@ -10,8 +10,8 @@ import {
   LogOut,
 } from 'react-feather';
 import {Link} from 'react-router-dom';
-import Badge from './Badge.jsx';
-import Control from './Control.jsx';
+import Badge from './Badge';
+import Control from './Control';
 import PropTypes from 'prop-types';
 import React from 'react';
 

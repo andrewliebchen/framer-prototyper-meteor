@@ -1,11 +1,11 @@
 import {Flex} from 'reflexbox';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import PrototypesList from './PrototypesList.jsx';
+import PrototypesList from './PrototypesList';
 import React, {Component} from 'react';
-import Settings from './Settings.jsx';
+import Settings from './Settings';
 import Transition from 'react-transition-group/Transition';
-import Utilities from './Utilities.jsx';
+import Utilities from './Utilities';
 
 import '../styles/Modal.css';
 

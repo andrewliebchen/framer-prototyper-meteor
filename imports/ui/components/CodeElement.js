@@ -1,9 +1,9 @@
 import _ from 'lodash';
 import {Flex, Box} from 'reflexbox';
-import Button from './Button.jsx';
-import Editor from './Editor.jsx';
-import FormInput from './FormInput.jsx';
-import FormSelect from './FormSelect.jsx';
+import Button from './Button';
+import Editor from './Editor';
+import FormInput from './FormInput';
+import FormSelect from './FormSelect';
 import PropTypes from 'prop-types';
 import React from 'react';
 

@@ -1,6 +1,6 @@
 import {Meteor} from 'meteor/meteor';
 import {settings, device, components, layers} from '../../lib/snippets';
-import ListItem from './ListItem.jsx';
+import ListItem from './ListItem';
 import PropTypes from 'prop-types';
 import React from 'react';
 

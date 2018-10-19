@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Button from './Button.jsx';
+import Button from './Button';
 
 const ModalBody = props => (
   <div className="ModalBody">

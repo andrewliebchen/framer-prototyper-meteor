@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Meteor} from 'meteor/meteor';
 import {Redirect} from 'react-router-dom';
 
-import Loader from '../components/Loader.jsx';
+import Loader from '../components/Loader';
 
 // Creates a new prototype, passes the new prototype id to state.
 // Then, redirects to the new prototype from id in state.

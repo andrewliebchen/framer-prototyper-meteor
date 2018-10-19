@@ -4,7 +4,7 @@ import AceEditor from 'react-ace';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 
-import Editor from './Editor.jsx';
+import Editor from './Editor';
 
 import '../styles/FramerEditor.css';
 
